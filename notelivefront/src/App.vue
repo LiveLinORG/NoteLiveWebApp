@@ -1,9 +1,10 @@
 <template>
-  <the-header/>
-  <main-container></main-container>
 
+
+  <the-header/>
   <the-footer/>
 
+  <main-container></main-container>
 </template>
 
 <script>
@@ -24,6 +25,10 @@ export default {
 <style>
 #app {
   font-family: Roboto,serif;
-
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
 }
 </style>

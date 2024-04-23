@@ -1,10 +1,7 @@
 <template>
-
-
   <the-header/>
   <main-container></main-container>
   <the-footer/>
-
 </template>
 
 <script>

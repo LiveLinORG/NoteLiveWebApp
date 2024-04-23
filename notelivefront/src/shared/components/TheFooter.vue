@@ -6,7 +6,7 @@ export default {
 
 <template>
   <footer class="footer-container">
-    <div class="copyright">Copyright notelive</div>
+    <div class="copyright">Copyright Notelive</div>
   </footer>
 </template>
 

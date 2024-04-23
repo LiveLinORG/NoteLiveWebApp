@@ -1,23 +1,23 @@
 <template>
 
-<the-footer></the-footer>
 
-<the-header></the-header>
+  <the-header/>
+  <the-footer/>
 
-  <HelloWorld />
+  <main-container></main-container>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 import TheFooter from "@/shared/components/TheFooter.vue";
 import TheHeader from "@/shared/components/Theheader.vue";
+import MainContainer from "@/components/main-contaienr.vue";
 
 export default {
   name: 'App',
   components: {
+    MainContainer,
     TheHeader,
-    TheFooter,
-    HelloWorld
+    TheFooter
   }
 }
 </script>

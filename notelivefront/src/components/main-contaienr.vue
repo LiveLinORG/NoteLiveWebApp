@@ -1,13 +1,10 @@
 <template>
-
+<div>ola</div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
+  name: 'main-container'
 }
 </script>
 

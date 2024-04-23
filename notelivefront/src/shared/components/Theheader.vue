@@ -1,13 +1,13 @@
 <script>
 export default {
-  name: 'the-header',
-  props: {
-  }
+  name: 'the-header'
 }
 </script>
 
 <template>
-
+  <header>
+  <div>ola</div>
+  </header>
 </template>
 
 <style scoped>

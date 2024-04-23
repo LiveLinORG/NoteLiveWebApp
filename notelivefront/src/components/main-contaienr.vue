@@ -1,10 +1,13 @@
 <template>
-<div>ola</div>
+<the-chat/>
 </template>
 
 <script>
+import TheChat from "@/shared/components/TheChat.vue";
+
 export default {
-  name: 'main-container'
+  name: 'main-container',
+  components: {TheChat}
 }
 </script>
 

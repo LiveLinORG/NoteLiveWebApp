@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <template>
 
 
@@ -6,22 +7,32 @@
 
   <main-container></main-container>
 </template>
+=======
+  <template>
+    <the-header/>
+    <main-container></main-container>
 
-<script>
-import TheFooter from "@/shared/components/TheFooter.vue";
-import TheHeader from "@/shared/components/Theheader.vue";
-import MainContainer from "@/components/main-contaienr.vue";
+    <the-footer/>
 
-export default {
-  name: 'App',
-  components: {
-    MainContainer,
-    TheHeader,
-    TheFooter
+  </template>
+>>>>>>> Stashed changes
+
+  <script>
+  import TheFooter from "@/shared/components/TheFooter.vue";
+  import TheHeader from "@/shared/components/Theheader.vue";
+  import MainContainer from "@/components/main-contaienr.vue";
+
+  export default {
+    name: 'App',
+    components: {
+      MainContainer,
+      TheHeader,
+      TheFooter
+    }
   }
-}
-</script>
+  </script>
 
+<<<<<<< Updated upstream
 <style>
 #app {
   font-family: Roboto,serif;
@@ -32,3 +43,11 @@ export default {
   margin-top: 60px;
 }
 </style>
+=======
+  <style>
+  #app {
+    font-family: Roboto,serif;
+
+  }
+  </style>
+>>>>>>> Stashed changes

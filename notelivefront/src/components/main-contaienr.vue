@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <section class="generalstyles">
     <the-chat/>
     <PreguntaCard :pregunta="pregunta" :nombre="nombre"></PreguntaCard>
     <OrangeCard :pin="pin"></OrangeCard>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -26,5 +26,7 @@ export default {
 </script>
 
 <style scoped>
-/* Puedes agregar estilos aquí si es necesario */
+.generalstyles{
+  font-family:monospace;
+}
 </style>

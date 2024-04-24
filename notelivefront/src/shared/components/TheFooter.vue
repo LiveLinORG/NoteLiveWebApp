@@ -25,4 +25,9 @@ export default {
 .copyright {
   color: #333;
 }
+@media screen and (max-width: 670px) {
+  .footer-container {
+    display: none; /* Oculta el footer */
+  }
+}
 </style>

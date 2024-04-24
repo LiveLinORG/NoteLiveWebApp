@@ -24,6 +24,5 @@
   <style>
   #app {
     font-family: Roboto,serif;
-
   }
   </style>

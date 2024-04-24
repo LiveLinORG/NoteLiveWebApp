@@ -1,32 +1,31 @@
 <template>
-  <section class="generalstyles">
+    <!--
     <the-chat/>
     <PreguntaCard :pregunta="pregunta" :nombre="nombre"></PreguntaCard>
     <OrangeCard :pin="pin"></OrangeCard>
-  </section>
+    -->
+  <init-page></init-page>
+  <router-view></router-view>
 </template>
 
 <script>
-import TheChat from "@/shared/components/TheChat.vue";
-import PreguntaCard from "@/shared/components/PreguntaCard.vue";
-import OrangeCard from "@/shared/components/OrangeCard.vue";
+
+import InitPage from "@/public/pages/InitPage.vue";
 
 export default {
-  name: 'main-container',
-  components: {OrangeCard, TheChat, PreguntaCard },
-  data() {
-    return {
-      sidebarVisible: false,
-      pregunta: "¿Qué es la programación orientada a objetos?",
-      nombre: "Juan Pérez",
-      pin: "12345",
-    };
-  },
+name: 'main-container',
+components: {InitPage},
+data() {
+  return {
+    sidebarVisible: false,
+    pregunta: "¿Qué es la programación orientada a objetos?",
+    nombre: "Juan Pérez",
+    pin: "12345",
+  };
+},
 };
 </script>
 
 <style scoped>
-.generalstyles{
-  font-family:monospace;
-}
+
 </style>

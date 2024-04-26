@@ -15,10 +15,6 @@ name: 'main-container',
 components: {InitPage},
 data() {
   return {
-    sidebarVisible: false,
-    pregunta: "¿Qué es la programación orientada a objetos?",
-    nombre: "Juan Pérez",
-    pin: "12345",
   };
 },
 };

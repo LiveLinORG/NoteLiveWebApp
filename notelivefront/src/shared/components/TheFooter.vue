@@ -20,6 +20,10 @@ export default {
   padding: 20px;
   text-align: center;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); /* Personaliza la sombra según sea necesario */
+  height: 1.5vh;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 
 .copyright {

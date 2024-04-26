@@ -16,7 +16,7 @@ export default {
 .header-container {
   background-color: #FFD8BA; /* Color de fondo del encabezado */
   padding: 1vw; /* Espaciado interior del encabezado */
-  max-height: 3vw;
+  height: 3vh;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra del encabezado */
   display: flex;
   align-items: center; /* Para centrar verticalmente el contenido */

@@ -31,12 +31,13 @@ const irUnirse = () => {
 </template>
 
 <style scoped>
+
 .general {
   display: flex;
   flex-direction: row;
   justify-content: center;
   width: 100%;
-  height: 100%;
+  height: auto;
   align-items: center;
   margin-top: 8%;
   margin-bottom: auto;

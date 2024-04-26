@@ -1,11 +1,9 @@
 <template>
-    <!--
-    <the-chat/>
-    <PreguntaCard :pregunta="pregunta" :nombre="nombre"></PreguntaCard>
-    <OrangeCard :pin="pin"></OrangeCard>
-    -->
+  <body>
   <init-page></init-page>
   <router-view></router-view>
+  </body>
+
 </template>
 
 <script>
@@ -27,5 +25,11 @@ data() {
 </script>
 
 <style scoped>
+body{
+  margin: 0;
+  padding:0;
+  height: auto;
+  overflow: hidden;
 
+}
 </style>

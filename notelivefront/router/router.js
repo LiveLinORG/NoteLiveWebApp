@@ -11,7 +11,15 @@ const router = createRouter(
             meta: {
                 isVisibleInitialPage: false // Establecer isVisible como false para esta ruta
             }
-        }
+        },
+            {
+                path: '/unirsesesion', // Ruta para unirse a una sesión
+                name: 'unirsesesion',
+                component: () => import('../src/public/pages/JoinSesion.vue'), // Asegúrate de tener el componente correspondiente
+                meta: {
+                    isVisibleInitialPage: false // O false si no debe ser la página inicial
+                }
+            }
         ]
     }
 )

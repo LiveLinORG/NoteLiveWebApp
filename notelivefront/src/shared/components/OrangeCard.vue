@@ -36,7 +36,6 @@ export default {
 
 .pin {
   margin: 5px 0;
-  font-size: 24px;
   color: black;
   text-align: center;
   font-size: 5vh;

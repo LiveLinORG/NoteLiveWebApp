@@ -42,6 +42,8 @@ export default {
     align-content: center;
     margin-top:10%;
     margin-bottom:auto;
+    align-items:center;
+    justify-content:center;
 
   }
  .pincontainer {
@@ -55,6 +57,7 @@ export default {
    align-items: center;
    justify-content: center;
    border-radius: 10px;
+   padding:2vh;
  }
 
   .button {

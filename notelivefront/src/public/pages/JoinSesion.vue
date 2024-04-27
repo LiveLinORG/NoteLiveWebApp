@@ -51,9 +51,9 @@ export default {
    width: auto;
    height: auto;
    background-color: #F7A072;
-   display: grid; /* Cambiar a grid */
-   grid-auto-flow: row; /* Asegurarse de que los elementos fluyan en una sola columna */
-   gap: 0; /* Establecer el espacio entre las filas a 0 */
+   display: grid;
+   grid-auto-flow: row;
+   gap: 0;
    align-items: center;
    justify-content: center;
    border-radius: 10px;
@@ -73,10 +73,12 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-top:4vh;
+    padding-bottom:4vh;
 
   }
   .button > img{
-    width:90%;
+    width:70%;
   }
   .placehold{
     grid-area: placehold;
@@ -90,22 +92,27 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
 
   }
   .placehold::placeholder  {
     font-weight:400;
     font-size:3.5vh;
     margin:0;
-    text-align: center;
     line-height: 2.5;
+    text-align: center;
 
   }
  .placehold::placeholder {
    color: rgba(0, 0, 0, 0.5);
+   text-align: center;
+
  }
  input:focus {
    outline: none;
+   font-size:3.5vh;
    text-align: center;
+
  }
  .placehold:focus::placeholder {
    color: #3d210b;

@@ -27,3 +27,9 @@ export const isVisibleInitialPage = ref(true);
 
 export default router;
 
+router.beforeEach((to, from, next) => {
+    let baseTitle = 'NoteLive';
+    document.title = `${baseTitle} | ${to.meta['title']}`;
+    next();
+});
+

@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import { ref } from 'vue'; // Importar ref desde Vue
+import { ref } from 'vue';
+import ProfessorSession from "@/public/pages/ProfessorSession.vue";
+import StudentSession from "@/public/pages/StudentSession.vue"; // Importar ref desde Vue
 
 const router = createRouter(
     {
@@ -19,6 +21,11 @@ const router = createRouter(
                 meta: {
                     isVisibleInitialPage: false // O false si no debe ser la página inicial
                 }
+            },
+            {
+            path: '/professorSession',component:ProfessorSession,meta:{title:'Professor Session'}
+            },
+            {path:'/studentSession',component:StudentSession,meta:{title:'Student Session'}
             }
         ]
     }

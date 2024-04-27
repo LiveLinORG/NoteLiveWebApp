@@ -1,6 +1,14 @@
 <script>
 export default {
   name: "joinSesion",
+  title: 'Join Session',
+  data(){
+    return {
+      items:[
+    {label:'StudentSession',to:'/studentSession'},
+      ]
+    };
+  }
 };
 </script>
 
@@ -9,14 +17,19 @@ export default {
     <section class="container">
       <div class="pincontainer">
       <h2>Ingresar PIN de la sesión</h2>
-      <h1>Ej: 835925</h1>
+     <h2> <input type="text" class="placehold" placeholder="Ingresa el PIN..."></h2>
       </div>
-      <div class="button">
-        <img src="../../assets/entericon.png" alt="">
-      </div>
+      <router-link v-for="item in items" :key="item.label"
+                   v-slot="{navigate,href}" :to="item.to" custom>
+        <div :href="href" class="button" @click="navigate">
+          <img src="../../assets/entericon.png" alt="">
+        </div>
+      </router-link>
+
       <input type="text" class="placehold" placeholder="Ingresa tu nombre...">
     </section>
   </section>
+  <router-view></router-view>
 </template>
 
 <style scoped>

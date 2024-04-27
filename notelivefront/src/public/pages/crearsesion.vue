@@ -11,7 +11,10 @@ export default {
       text: "PIN",
       text2: "Participantes",
       number: '15',
-      text3: "Erick"
+      text3: "Erick",
+      items: [
+        {label: 'ProfessorSession',to: '/professorSession'},
+      ]
     };
 },
 };
@@ -32,7 +35,10 @@ export default {
 
   </section>
   <section class="crear-session2">
-    <button class="boton">Empezar</button>
+    <router-link v-for="item in items" :key="item.label"
+                 v-slot="{navigate,href}" :to="item.to" custom>
+      <button :href="href" class="boton" @click="navigate">Empezar</button>
+    </router-link>
   <ul class="lista">
       <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
       <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
@@ -57,7 +63,9 @@ export default {
 
   </ul>
   </section>
+  <router-view></router-view>
 </section>
+
 </template>
 
 <style>

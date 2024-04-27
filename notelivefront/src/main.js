@@ -22,6 +22,7 @@ import Dropdown from "primevue/dropdown";
 import InputText from "primevue/inputtext";
 import Tooltip from "primevue/tooltip";
 import ProgressBar from "primevue/progressbar";
+import Sidebar from "primevue/sidebar";
 
 createApp(App)
     .use(PrimeVue,{ripple:true})
@@ -48,4 +49,5 @@ createApp(App)
     .component('pv-toast', Toast)
     .component('pv-tooltip', Tooltip)
     .component('pv-progressbar', ProgressBar)
+    .component('pv-sidebar',Sidebar)
     .mount('#app');

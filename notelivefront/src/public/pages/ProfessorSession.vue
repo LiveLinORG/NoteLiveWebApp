@@ -6,7 +6,9 @@ export default {
 </script>
 
 <template>
-<h1>Hola soy profesor</h1>
+
+
+
 </template>
 
 <style scoped>

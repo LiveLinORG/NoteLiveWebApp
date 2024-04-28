@@ -36,12 +36,14 @@ export default {
 </script>
 
 <style scoped>
-/* Enlace al archivo de estilos de Font Awesome desde una CDN */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
 
 .question-card {
   border-radius: 1.9%;
   background-color: #FDE49C;
+  padding:1.5vh;
+
+
 }
 
 .question-header {
@@ -49,8 +51,8 @@ export default {
   justify-content: space-between;
   align-items: center;
   color: black;
-  padding: 0.1%;
   margin-left: 1%;
+  padding:1vh;
 }
 
 .nombre {
@@ -79,11 +81,12 @@ export default {
 }
 
 .question-text {
-  padding: 0.1%;
   margin-bottom: 1%;
   margin-left: 1%;
   text-align: left;
   color: black;
-  font-family: Inter, sans-serif
+  font-family: Inter, sans-serif;
+  padding:1vh;
+
 }
 </style>

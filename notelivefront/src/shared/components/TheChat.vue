@@ -60,16 +60,29 @@ export default {
   align-items: center;
   height:10%;
   width:100%;
+
 }
-.sendMessage input{
+.sendMessage input {
   color: black;
   background-color: #FFFFFF;
-  align-items:center;
+  align-items: center;
   border-radius: 0.4rem 0 0 0.4rem;
   border-color: rgba(0, 0, 0, 0);
-  height:90%;
-  width:100%;
+  height: 90%;
+  width: 100%;
+  font-size: 1em;
+  padding-left: 2vh;
+
 }
+
+.sendMessage input::placeholder {
+  font-size: 1em;
+}
+
+.sendMessage input:focus {
+  font-size: 1em;
+}
+
 .sendMessage button {
   background-color: #768FE8;
   align-items: center;
@@ -77,7 +90,29 @@ export default {
   border-radius: 0 0.4rem 0.4rem 0;
   margin: 0;
   height: 100%;
-  width: 30%;
+  width: 40%;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
+
+.sendMessage button:hover {
+  background-color: #577AC7;
+}
+
+.sendMessage button:active {
+  transform: scale(0.95);
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.sendMessage button {
+  animation: fadeIn 0.5s ease;
+}
+
 
 </style>

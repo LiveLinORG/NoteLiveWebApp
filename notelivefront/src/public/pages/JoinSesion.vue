@@ -122,7 +122,7 @@ input{
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center; 
+    text-align: center;
     transition: all 0.3s ease;
     border-radius:6%;
   }

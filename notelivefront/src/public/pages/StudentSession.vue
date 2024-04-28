@@ -20,7 +20,6 @@ export default {
 
 <style scoped>
 .Session-container {
-  background-color:orange;
   height: 80vh;
   padding:5vh;
   display: grid;
@@ -30,14 +29,15 @@ export default {
 }
 .Chat-container {
   grid-column: 1 / 2;
-  background-color: blue;
   height: 90%;
+
 }
 
 .diaposity-container {
   grid-column: 2 / 3;
   background-color: yellow;
   height: 95%;
+
 }
 
 .questions-container {

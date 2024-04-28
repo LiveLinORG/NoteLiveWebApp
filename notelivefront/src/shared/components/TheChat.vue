@@ -37,6 +37,8 @@ export default {
   background-color: #F7A072;
   height:100%;
   width:100%;
+  border-radius:5px;
+
 }
 .messages{
 

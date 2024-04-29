@@ -1,35 +1,47 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { ref } from 'vue';
-import ProfessorSession from "@/public/pages/ProfessorSession.vue";
-import StudentSession from "@/public/pages/StudentSession.vue"; // Importar ref desde Vue
 
-const router = createRouter(
-    {
-        history: createWebHistory(import.meta.env),
-        routes: [{
+import mainSession from "@/public/pages/mainSession.vue"; // Importar ref desde Vue
+
+const router = createRouter({
+    history: createWebHistory(import.meta.env),
+    routes: [
+        {
             path:'/crearsesion',
             name:'Crearsesion',
-            component:()=>import('../src/public/pages/crearsesion.vue'),
+            component: () => import('../src/public/pages/crearsesion.vue'),
             meta: {
-                isVisibleInitialPage: false,meta:{title:'Create'}
+                isVisibleInitialPage: false,
+                title: 'Create'
             }
         },
-            {
-                path: '/unirsesesion', // Ruta para unirse a una sesión
-                name: 'unirsesesion',
-                component: () => import('../src/public/pages/JoinSesion.vue'), // Asegúrate de tener el componente correspondiente
-                meta: {
-                    isVisibleInitialPage: false,meta:{title:'Join'}
-                }
-            },
-            {
-            path: '/professorSession',component:ProfessorSession,meta:{title:'Professor Session'}
-            },
-            {path:'/studentSession',component:StudentSession,meta:{title:'Student Session'}
+        {
+            path: '/unirsesesion',
+            name: 'unirsesesion',
+            component: () => import('../src/public/pages/JoinSesion.vue'),
+            meta: {
+                isVisibleInitialPage: false,
+                title: 'Join'
             }
-        ]
-    }
-)
+        },
+        {
+            path: '/professorSession',
+            component: mainSession,
+            meta: {
+                title: 'Professor Session',
+                isProfessor: true
+            }
+        },
+        {
+            path: '/studentSession',
+            component: mainSession,
+            meta: {
+                title: 'Student Session',
+                isProfessor: false
+            }
+        }
+    ]
+});
 export const isVisibleInitialPage = ref(true);
 export const isLogged = ref(false);
 

@@ -20,7 +20,6 @@ export default {
     <div class="padding">
       <div class="messages">
         <el-Mensaje class="message" nombre="Jorge Díaz" texto="Hola, cómo están?"></el-Mensaje>
-        <el-mensaje class="message" nombre="Juan Pérez" texto="Hola, cómo están todos hoy?"></el-mensaje>
       </div>
     </div>
     <div class="sendMessage">

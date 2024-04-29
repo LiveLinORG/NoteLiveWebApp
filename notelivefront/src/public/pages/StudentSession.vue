@@ -1,13 +1,25 @@
 <script>
+import { onMounted } from 'vue';
 import TheChat from "@/shared/components/TheChat.vue";
 import PreguntaCard from "@/shared/components/PreguntaCard.vue";
+import mitt from 'mitt';
 
+const emitter = mitt();
 export default {
-  name: "studentSession",
-  components: {PreguntaCard, TheChat},
-  title: "Student Session"
-}
+  name: "StudentSession",
+  components: { PreguntaCard, TheChat },
+  setup() {
+    onMounted(() => {
+      // Escuchar el evento global cuando socket esté listo
+      emitter.on('socket-ready', socket => {
+        // Emitir un evento hacia arriba con el socket como payload
+        emitter.emit('student-socket-ready', socket);
+      });
+    });
+  }
+};
 </script>
+
 
 <template>
   <section class="Session-container">
@@ -26,9 +38,6 @@ export default {
     </section>
     <section class="questions-container">
       <PreguntaCard pregunta="¿Cómo afecta la inmutabilidad en .NET a la concurrencia en aplicaciones multi-hilo?" nombre="Carlos Sánchez"></PreguntaCard>
-      <PreguntaCard pregunta="¿Cuáles son las mejores prácticas para diseñar clases inmutables en C#?" nombre="Laura González"></PreguntaCard>
-      <PreguntaCard pregunta="¿Qué ventajas ofrece la inmutabilidad en el desarrollo de software en el ecosistema .NET?" nombre="Pedro Rodríguez"></PreguntaCard>
-      <PreguntaCard pregunta="¿Cómo puede la inmutabilidad mejorar el rendimiento de las aplicaciones en .NET?" nombre="Alejandro Pérez"></PreguntaCard>
 
     </section>
   </section>

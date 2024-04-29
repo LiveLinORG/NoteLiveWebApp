@@ -17,16 +17,18 @@ async function enviarPinAlServicio(id) {
 }
 
 async function buscarPin(pin, inputName) {
+    if (pin.trim().length < 4 || inputName.trim().length <= 3) {
+        console.log(pin.trim().length <= 3 ? 'El PIN no existe.' : 'El nombre debe ser mayor a 4 caracteres');
+        return false;
+    }
 
-        const response = await axios.get(`${BASE_URL}/pins/${pin}`);
-        if (response.data) {
-            console.log('PIN encontrado:', response.data, 'Nombre del usuario:', inputName);
-            return true;
-        } else {
-            console.log('El PIN no existe.');
-            return false;
-        }
+    const response = await axios.get(`${BASE_URL}/pins/${pin}`).catch(error => {
+        console.error('Error al buscar el PIN:', error.message);
+        return { data: null };
+    });
 
+    console.log(response.data ? `PIN encontrado: ${response.data}, Nombre del usuario: ${inputName}` : 'El PIN no existe.');
+    return !!response.data;
 }
 
 

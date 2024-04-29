@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { ref } from 'vue';
 
-import mainSession from "@/public/pages/mainSession.vue"; // Importar ref desde Vue
+import mainSession from "@/public/pages/mainSession.vue";
+import crearsesion from "@/public/pages/crearsesion.vue"; // Importar ref desde Vue
 
 const router = createRouter({
     history: createWebHistory(import.meta.env),
@@ -39,6 +40,9 @@ const router = createRouter({
                 title: 'Student Session',
                 isProfessor: false
             }
+        },{
+            path: '/salaCreada',
+            component: crearsesion
         }
     ]
 });

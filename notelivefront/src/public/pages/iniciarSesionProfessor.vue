@@ -1,18 +1,30 @@
-<script setup>
-
+<script>
+export default {
+  name: "createSession",
+  data() {
+    return {
+      inputName: "",
+      items: [
+        { label: 'SalaDeEspera', to: '/salaCreada' },
+      ]
+    };
+  }
+};
 </script>
 
-<template>
 
+
+<template>
   <section class="global">
     <div class="ingresar-section">
-
-      <input type="text" class="placeholder" placeholder="Ingrese su nombre">
-      <button class="botoncito">Crear Sala</button>
+      <input type="text" class="placeholder" v-model="inputName"  placeholder="Ingrese su nombre">
+      <router-link v-for="item in items" :key="item.label" v-slot="{navigate, href}" :to="item.to" custom>
+        <button :href="href" class="botoncito" @click="navigate">Crear Sala</button>
+      </router-link>
     </div>
-
   </section>
 </template>
+
 
 <style scoped>
  .global{

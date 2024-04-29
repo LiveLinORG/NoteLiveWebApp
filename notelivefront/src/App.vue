@@ -18,6 +18,9 @@
       MainContainer,
       TheHeader,
       TheFooter
+    },
+    mounted() {
+      fetch("./assets/db.json").then(res => res.json()).then(data=>console.log(data));
     }
   }
   </script>

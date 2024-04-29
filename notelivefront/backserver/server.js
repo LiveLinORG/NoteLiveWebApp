@@ -9,12 +9,13 @@ app.use(cors());
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:8081", // Este es el origen de tu aplicación Vue.js
+        origin: "*", // Permitir cualquier origen
         methods: ["GET", "POST"],
         allowedHeaders: ["my-custom-header"],
         credentials: true
     }
 });
+
 
 io.on('connection', (socket) => {
     console.log('Nuevo usuario conectado');

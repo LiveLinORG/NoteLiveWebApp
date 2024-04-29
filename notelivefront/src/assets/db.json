@@ -1,0 +1,29 @@
+{
+  "pins": [
+    {
+      "id": "5290"
+    }
+  ],
+  "usuarios": [
+    {
+      "id": "1",
+      "nombre": "Usuario1",
+      "tipo_plan": "Plan básico",
+      "contraseña": "contraseña123"
+    },
+    {
+      "id": "2",
+      "nombre": "Usuario2",
+      "tipo_plan": "Plan premium",
+      "contraseña": "contraseña456"
+    },
+    {
+      "id": "3",
+      "nombre": "Usuario3",
+      "tipo_plan": "Plan básico",
+      "contraseña": "contraseña789"
+    }
+  ],
+  "profesores": [],
+  "estudiantes": []
+}

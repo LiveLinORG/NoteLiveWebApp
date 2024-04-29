@@ -1,24 +1,40 @@
 <script>
 import OrangeCard from "@/shared/components/OrangeCard.vue";
 import ListaNombre from "@/shared/components/ListaNombre.vue";
+import { generarPinAleatorio, enviarPinAlServicio } from "@/notelive/services/pinService."; // Importa las funciones necesarias desde el servicio
 
 export default {
   name: "crearSesion",
-  components: {ListaNombre, OrangeCard},
+  components: { ListaNombre, OrangeCard },
   data() {
     return {
-      pin: '1234',
+      pin: '',
       text: "PIN",
       text2: "Participantes",
       number: '15',
       text3: "Erick",
-      items: [
-        {label: 'ProfessorSession',to: '/professorSession'},
-      ]
+      items: [{ label: 'ProfessorSession', to: '/professorSession' }]
     };
-},
+  },
+  mounted() {
+    this.generarPinAleatorio(); // Genera el PIN cuando se monta el componente
+  },
+  methods: {
+    async empezarSesionAndNavigate(navigate) {
+      await this.empezarSesion();
+      navigate();
+    },
+    async empezarSesion() {
+      await enviarPinAlServicio(this.pin);
+    },
+    generarPinAleatorio() {
+      this.pin = generarPinAleatorio();
+    }
+  }
 };
 </script>
+
+
 
 <template>
 
@@ -35,9 +51,8 @@ export default {
 
   </section>
   <section class="crear-session2">
-    <router-link v-for="item in items" :key="item.label"
-                 v-slot="{navigate,href}" :to="item.to" custom>
-      <button :href="href" class="boton" @click="navigate">Empezar</button>
+    <router-link v-for="item in items" :key="item.label" v-slot="{navigate, href}" :to="item.to" custom>
+      <button :href="href" class="boton" @click="empezarSesionAndNavigate(navigate)">Empezar</button>
     </router-link>
   <ul class="lista">
       <ListaNombre class="listaNombre" :text="text3"></ListaNombre>

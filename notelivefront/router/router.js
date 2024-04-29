@@ -9,7 +9,7 @@ const router = createRouter({
         {
             path:'/crearsesion',
             name:'Crearsesion',
-            component: () => import('../src/public/pages/crearsesion.vue'),
+            component: () => import('../src/public/pages/iniciarSesionProfessor.vue'),
             meta: {
                 isVisibleInitialPage: false,
                 title: 'Create'

@@ -1,14 +1,39 @@
 <script>
+import { buscarPin } from "@/notelive/services/pinService.";
+
 export default {
   name: "joinSesion",
-  title: 'Join Session',
-  data(){
+  data() {
     return {
-      items:[
-    {label:'StudentSession',to:'/studentSession'},
+      inputName: "",
+      items: [
+        { label: 'StudentSession', to: '/studentSession' },
       ]
     };
+  },
+  methods: {
+    async buscarPinExistente(navigate) {
+      const inputPin = document.getElementById('pin').value;
+
+      const inputName = this.inputName;
+
+      try {
+        const pinEncontrado = await buscarPin(inputPin, inputName);
+        if (!pinEncontrado) {
+          console.log('El PIN no existe.');
+        } else {
+          navigate();
+        }
+      } catch (error) {
+        console.error('Error al buscar el PIN:', error);
+      }
+    },
+    // Método para actualizar inputName
+    actualizarNombre(event) {
+      this.inputName = event.target.value;
+    }
   }
+
 };
 </script>
 
@@ -17,16 +42,16 @@ export default {
     <section class="container">
       <div class="pincontainer">
       <h2>Ingresar PIN de la sesión</h2>
-     <h2> <input type="text" class="placeholdpin" id="pin" placeholder="Ej: 835925"></h2>
+     <h2> <input type="text" class="placeholdpin" id="pin" placeholder="Ej: 835925" ></h2>
       </div>
       <router-link v-for="item in items" :key="item.label"
                    v-slot="{navigate,href}" :to="item.to" custom>
-        <div :href="href" class="button" @click="navigate">
+        <div :href="href" class="button" @click="buscarPinExistente(navigate)">
           <img src="../../assets/entericon.png" alt="">
         </div>
       </router-link>
 
-      <input type="text" class="placehold" placeholder="Ingresa tu nombre...">
+      <input type="text" class="placehold" placeholder="Ingresa tu nombre..." id="inputName" v-model="inputName" @input="actualizarNombre">
     </section>
   </section>
   <router-view></router-view>

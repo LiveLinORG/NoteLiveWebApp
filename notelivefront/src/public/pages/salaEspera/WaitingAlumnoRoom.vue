@@ -1,35 +1,25 @@
 <script>
 import OrangeCard from "@/shared/components/OrangeCard.vue";
 import ListaNombre from "@/shared/components/ListaNombre.vue";
-import { generarPinAleatorio, enviarPinAlServicio } from "@/notelive/services/pinService."; // Importa las funciones necesarias desde el servicio
 
 export default {
-  name: "crearSesion",
+  name: "waitingStudent",
   components: { ListaNombre, OrangeCard },
   data() {
     return {
       pin: '',
       text: "PIN",
       text2: "Participantes",
-      number: '15',
-      text3: "Erick",
-      items: [{ label: 'ProfessorSession', to: '/professorSession' }]
+      number: '',
+      text3: "",
+      items: [{ label: 'StudentSession', to: '/studentSession' }]
     };
   },
   mounted() {
-    this.generarPinAleatorio(); // Genera el PIN cuando se monta el componente
+
   },
   methods: {
-    async empezarSesionAndNavigate(navigate) {
-      await this.empezarSesion();
-      navigate();
-    },
-    async empezarSesion() {
-      await enviarPinAlServicio(this.pin);
-    },
-    generarPinAleatorio() {
-      this.pin = generarPinAleatorio();
-    }
+
   }
 };
 </script>
@@ -39,47 +29,41 @@ export default {
 <template>
 
 
-<section class="global">
-  <section class="crear-session">
+  <section class="global">
+    <section class="crear-session">
       <OrangeCard class="card" :text="text" :pin="pin"></OrangeCard>
-    <div class="icono-subir">
-      <div class="imagen">
-        <img class="subir-archivoimg" src="../../assets/subir-archivo.png" >
-      </div>
-    </div>
+
       <OrangeCard class="card2" :text="text2" :pin="number"></OrangeCard>
 
-  </section>
-  <section class="crear-session2">
-    <router-link v-for="item in items" :key="item.label" v-slot="{navigate, href}" :to="item.to" custom>
-      <button :href="href" class="boton" @click="empezarSesionAndNavigate(navigate)">Empezar</button>
-    </router-link>
-  <ul class="lista">
-      <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-      <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-      <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-      <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-      <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-    <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-    <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-    <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-    <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-    <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-    <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-    <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-    <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-    <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-    <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-    <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-    <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-    <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-    <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-    <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
+    </section>
+    <section class="crear-session2">
 
-  </ul>
+      <ul class="lista">
+        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
+        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
+        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
+        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
+        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
+        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
+        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
+        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
+        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
+        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
+        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
+        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
+        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
+        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
+        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
+        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
+        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
+        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
+        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
+        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
+
+      </ul>
+    </section>
+    <router-view></router-view>
   </section>
-  <router-view></router-view>
-</section>
 
 </template>
 

@@ -11,9 +11,7 @@ export default {
   components: { PreguntaCard, TheChat },
   setup() {
     onMounted(() => {
-      // Escuchar el evento global cuando socket esté listo
       emitter.on('socket-ready', socket => {
-        // Emitir un evento hacia arriba con el socket como payload
         emitter.emit('student-socket-ready', socket);
       });
     });

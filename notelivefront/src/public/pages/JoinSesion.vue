@@ -7,7 +7,7 @@ export default {
     return {
       inputName: "",
       items: [
-        { label: 'StudentSession', to: '/studentSession' },
+        { label: 'AlumnoWaiting', to: '/salaCreadaAlumno' },
       ]
     };
   },

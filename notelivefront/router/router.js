@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import { ref } from 'vue';
 
 import mainSession from "@/public/pages/mainSession.vue";
-import crearsesion from "@/public/pages/crearsesion.vue"; // Importar ref desde Vue
+import waitingMainRoom from "@/public/pages/salaEspera/WaitingMainRoom.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env),
@@ -42,7 +42,18 @@ const router = createRouter({
             }
         },{
             path: '/salaCreada',
-            component: crearsesion
+            component: waitingMainRoom,
+            meta: {
+                title: 'Profesor',
+                isAlumnoWaiting:false
+            }
+        },{
+            path: '/salaCreadaAlumno',
+            component: waitingMainRoom,
+            meta: {
+                title: 'Alumno',
+                isAlumnoWaiting:true
+            }
         }
     ]
 });

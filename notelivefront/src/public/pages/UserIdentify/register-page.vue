@@ -1,0 +1,22 @@
+<script>
+import {defineComponent} from "vue";
+import TheHeader from "@/App.vue";
+import TheFooter from "@/App.vue";
+
+export default defineComponent({
+  components: {TheFooter, TheHeader}
+})
+
+</script>
+
+<template>
+  <the-header/>
+  <div class="">
+
+  </div>
+  <the-footer/>
+</template>
+
+<style>
+
+</style>

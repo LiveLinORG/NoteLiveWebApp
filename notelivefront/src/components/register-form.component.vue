@@ -7,7 +7,7 @@ export default{
 </script>
 
 <template>
-  <div class="">
+  <div class="container-register-form">
 
   </div>
 </template>

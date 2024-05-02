@@ -7,7 +7,8 @@ export default{
 </script>
 
 <template>
-  <div class="">
+  <div class="container-login-form">
+  <h1 class="title"> Iniciar Sesión </h1>
 
   </div>
 </template>

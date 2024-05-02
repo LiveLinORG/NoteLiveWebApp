@@ -11,7 +11,7 @@ export default defineComponent({
 
 <template>
   <the-header/>
-  <div class="">
+  <div class="container-register-page">
 
   </div>
   <the-footer/>

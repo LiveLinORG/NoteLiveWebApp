@@ -6,231 +6,231 @@
   ],
   "users": [
       {
-        "id_usuario": 1,
-        "nombre_usuario": "juancgarcia",
-        "contraseña": "JuanC@rcia123",
-        "nombres_reales": "Juan Carlos",
-        "apellidos_reales": "García Pérez",
-        "telefono": "912345671",
-        "correo": "juancgarcia@example.com",
-        "tipo_usuario": "Alumno",
-        "membresia": {
-          "id_membresia": 101,
-          "activa": true,
-          "tipo_membresia": "Básico"
+        "id": 1,
+        "username": "juancgarcia",
+        "password": "JuanC@rcia123",
+        "firstname": "Juan Carlos",
+        "lastname": "García Pérez",
+        "phonenumber": "912345671",
+        "email": "juancgarcia@example.com",
+        "usertype": "Alumno",
+        "membership": {
+          "id": 101,
+          "activatete": true,
+          "membertype": "Básico"
         }
       },
       {
-        "id_usuario": 2,
-        "nombre_usuario": "mariaplopez",
-        "contraseña": "MariaL0pez!",
-        "nombres_reales": "María Paula",
-        "apellidos_reales": "López Sánchez",
-        "telefono": "912345672",
-        "correo": "mariaplopez@example.com",
-        "tipo_usuario": "Profesor",
-        "membresia": {
-          "id_membresia": 102,
-          "activa": false,
-          "tipo_membresia": "Premium"
+        "id": 2,
+        "username": "mariaplopez",
+        "password": "MariaL0pez!",
+        "firstname": "María Paula",
+        "lastname": "López Sánchez",
+        "phonenumber": "912345672",
+        "email": "mariaplopez@example.com",
+        "usertype": "Profesor",
+        "membership": {
+          "id": 102,
+          "activate": false,
+          "membertype": "Premium"
         }
       },
       {
-        "id_usuario": 3,
-        "nombre_usuario": "luismartinez",
-        "contraseña": "Lui$Martinez",
-        "nombres_reales": "Luis Alberto",
-        "apellidos_reales": "Martínez González",
-        "telefono": "912345673",
-        "correo": "luismartinez@example.com",
-        "tipo_usuario": "Alumno",
-        "membresia": {
-          "id_membresia": 103,
-          "activa": true,
-          "tipo_membresia": "Empresarial"
+        "id": 3,
+        "username": "luismartinez",
+        "password": "Lui$Martinez",
+        "firstname": "Luis Alberto",
+        "lastname": "Martínez González",
+        "phonenumber": "912345673",
+        "email": "luismartinez@example.com",
+        "usertype": "Alumno",
+        "membership": {
+          "id": 103,
+          "activate": true,
+          "membertype": "Empresarial"
         }
       },
       {
-        "id_usuario": 4,
-        "nombre_usuario": "anagomez",
-        "contraseña": "AnaGomez_2023",
-        "nombres_reales": "Ana María",
-        "apellidos_reales": "Gómez Rodríguez",
-        "telefono": "912345674",
-        "correo": "anagomez@example.com",
-        "tipo_usuario": "Alumno",
-        "membresia": {
-          "id_membresia": 104,
-          "activa": true,
-          "tipo_membresia": "Premium"
+        "id": 4,
+        "username": "anagomez",
+        "password": "AnaGomez_2023",
+        "firstname": "Ana María",
+        "lastname": "Gómez Rodríguez",
+        "phonenumber": "912345674",
+        "email": "anagomez@example.com",
+        "usertype": "Alumno",
+        "membership": {
+          "id": 104,
+          "activate": true,
+          "membertype": "Premium"
         }
       },
       {
-        "id_usuario": 5,
-        "nombre_usuario": "carlosrodriguez",
-        "contraseña": "C@rl0sRodriguez",
-        "nombres_reales": "Carlos Eduardo",
-        "apellidos_reales": "Rodríguez Pérez",
-        "telefono": "912345675",
-        "correo": "carlosrodriguez@example.com",
-        "tipo_usuario": "Profesor",
-        "membresia": {
-          "id_membresia": 105,
-          "activa": false,
-          "tipo_membresia": "Básico"
+        "id": 5,
+        "username": "carlosrodriguez",
+        "password": "C@rl0sRodriguez",
+        "firstname": "Carlos Eduardo",
+        "lastname": "Rodríguez Pérez",
+        "phonenumber": "912345675",
+        "email": "carlosrodriguez@example.com",
+        "usertype": "Profesor",
+        "membership": {
+          "id": 105,
+          "activate": false,
+          "membertype": "Básico"
         }
       },
       {
-        "id_usuario": 6,
-        "nombre_usuario": "laurahernandez",
-        "contraseña": "L@uraH3rnandez",
-        "nombres_reales": "Laura Sofía",
-        "apellidos_reales": "Hernández Ramírez",
-        "telefono": "912345676",
-        "correo": "laurahernandez@example.com",
-        "tipo_usuario": "Alumno",
-        "membresia": {
-          "id_membresia": 106,
-          "activa": true,
-          "tipo_membresia": "Empresarial"
+        "id": 6,
+        "username": "laurahernandez",
+        "password": "L@uraH3rnandez",
+        "firstname": "Laura Sofía",
+        "lastname": "Hernández Ramírez",
+        "phonenumber": "912345676",
+        "email": "laurahernandez@example.com",
+        "usertype": "Alumno",
+        "membership": {
+          "id": 106,
+          "activate": true,
+          "membertype": "Empresarial"
         }
       },
       {
-        "id_usuario": 7,
-        "nombre_usuario": "pedroperez",
-        "contraseña": "P3droPerez!",
-        "nombres_reales": "Pedro José",
-        "apellidos_reales": "Pérez López",
-        "telefono": "912345677",
-        "correo": "pedroperez@example.com",
-        "tipo_usuario": "Alumno",
-        "membresia": {
-          "id_membresia": 107,
-          "activa": false,
-          "tipo_membresia": "Premium"
+        "id": 7,
+        "username": "pedroperez",
+        "password": "P3droPerez!",
+        "firstname": "Pedro José",
+        "lastname": "Pérez López",
+        "phonenumber": "912345677",
+        "email": "pedroperez@example.com",
+        "usertype": "Alumno",
+        "membership": {
+          "id": 107,
+          "activate": false,
+          "membertype": "Premium"
         }
       },
       {
-        "id_usuario": 8,
-        "nombre_usuario": "monicafernandez",
-        "contraseña": "M0nicaFernandez",
-        "nombres_reales": "Mónica Isabel",
-        "apellidos_reales": "Fernández López",
-        "telefono": "912345678",
-        "correo": "monicafernandez@example.com",
-        "tipo_usuario": "Profesor",
-        "membresia": {
-          "id_membresia": 108,
-          "activa": true,
-          "tipo_membresia": "Básico"
+        "id": 8,
+        "username": "monicafernandez",
+        "password": "M0nicaFernandez",
+        "firstname": "Mónica Isabel",
+        "lastname": "Fernández López",
+        "phonenumber": "912345678",
+        "email": "monicafernandez@example.com",
+        "usertype": "Profesor",
+        "membership": {
+          "id": 108,
+          "activate": true,
+          "membertype": "Básico"
         }
       },
       {
-        "id_usuario": 9,
-        "nombre_usuario": "diegosanchez",
-        "contraseña": "DiegoS@nchez12",
-        "nombres_reales": "Diego Andrés",
-        "apellidos_reales": "Sánchez Rodríguez",
-        "telefono": "912345679",
-        "correo": "diegosanchez@example.com",
-        "tipo_usuario": "Alumno",
-        "membresia": {
-          "id_membresia": 109,
-          "activa": true,
-          "tipo_membresia": "Empresarial"
+        "id": 9,
+        "username": "diegosanchez",
+        "password": "DiegoS@nchez12",
+        "firstname": "Diego Andrés",
+        "lastname": "Sánchez Rodríguez",
+        "phonenumber": "912345679",
+        "email": "diegosanchez@example.com",
+        "usertype": "Alumno",
+        "membership": {
+          "id": 109,
+          "activate": true,
+          "membertype": "Empresarial"
         }
       },
       {
-        "id_usuario": 10,
-        "nombre_usuario": "carmenmartin",
-        "contraseña": "C@rmenMart1n",
-        "nombres_reales": "Carmen Rosa",
-        "apellidos_reales": "Martín González",
-        "telefono": "912345680",
-        "correo": "carmenmartin@example.com",
-        "tipo_usuario": "Alumno",
-        "membresia": {
-          "id_membresia": 110,
-          "activa": false,
-          "tipo_membresia": "Premium"
+        "id": 10,
+        "username": "carmenmartin",
+        "password": "C@rmenMart1n",
+        "firstname": "Carmen Rosa",
+        "lastname": "Martín González",
+        "phonenumber": "912345680",
+        "email": "carmenmartin@example.com",
+        "usertype": "Alumno",
+        "membership": {
+          "id": 110,
+          "activate": false,
+          "membertype": "Premium"
         }
       },
       {
-        "id_usuario": 11,
-        "nombre_usuario": "pablolima",
-        "contraseña": "P@bloLima456",
-        "nombres_reales": "Pablo Andrés",
-        "apellidos_reales": "Lima García",
-        "telefono": "912345681",
-        "correo": "pablolima@example.com",
-        "tipo_usuario": "Profesor",
-        "membresia": {
-          "id_membresia": 111,
-          "activa": true,
-          "tipo_membresia": "Básico"
+        "id": 11,
+        "username": "pablolima",
+        "password": "P@bloLima456",
+        "firstname": "Pablo Andrés",
+        "lastname": "Lima García",
+        "phonenumber": "912345681",
+        "email": "pablolima@example.com",
+        "usertype": "Profesor",
+        "membership": {
+          "id": 111,
+          "activate": true,
+          "membertype": "Básico"
         }
       },
       {
-        "id_usuario": 12,
-        "nombre_usuario": "juliaramirez",
-        "contraseña": "JuliaR@mirez",
-        "nombres_reales": "Julia María",
-        "apellidos_reales": "Ramírez Pérez",
-        "telefono": "912345682",
-        "correo": "juliaramirez@example.com",
-        "tipo_usuario": "Alumno",
-        "membresia": {
-          "id_membresia": 112,
-          "activa": true,
-          "tipo_membresia": "Empresarial"
+        "id": 12,
+        "username": "juliaramirez",
+        "password": "JuliaR@mirez",
+        "firstname": "Julia María",
+        "lastname": "Ramírez Pérez",
+        "phonenumber": "912345682",
+        "email": "juliaramirez@example.com",
+        "usertype": "Alumno",
+        "membership": {
+          "id": 112,
+          "activate": true,
+          "membertype": "Empresarial"
         }
       },
       {
-        "id_usuario": 13,
-        "nombre_usuario": "robertogutierrez",
-        "contraseña": "Rob3rtoGuti3rrez",
-        "nombres_reales": "Roberto Carlos",
-        "apellidos_reales": "Gutiérrez Rodríguez",
-        "telefono": "912345683",
-        "correo": "robertogutierrez@example.com",
-        "tipo_usuario": "Alumno",
-        "membresia": {
-          "id_membresia": 113,
-          "activa": true,
-          "tipo_membresia": "Básico"
+        "id": 13,
+        "username": "robertogutierrez",
+        "password": "Rob3rtoGuti3rrez",
+        "firstname": "Roberto Carlos",
+        "lastname": "Gutiérrez Rodríguez",
+        "phonenumber": "912345683",
+        "email": "robertogutierrez@example.com",
+        "usertype": "Alumno",
+        "membership": {
+          "id": 113,
+          "activate": true,
+          "membertype": "Básico"
         }
       },
       {
-        "id_usuario": 14,
-        "nombre_usuario": "luciafernandez",
-        "contraseña": "L@c1aFernandez",
-        "nombres_reales": "Lucía Fernanda",
-        "apellidos_reales": "Fernández Pérez",
-        "telefono": "912345684",
-        "correo": "luciafernandez@example.com",
-        "tipo_usuario": "Profesor",
-        "membresia": {
-          "id_membresia": 114,
-          "activa": false,
-          "tipo_membresia": "Premium"
+        "id": 14,
+        "username": "luciafernandez",
+        "password": "L@c1aFernandez",
+        "firstname": "Lucía Fernanda",
+        "lastname": "Fernández Pérez",
+        "phonenumber": "912345684",
+        "email": "luciafernandez@example.com",
+        "usertype": "Profesor",
+        "membership": {
+          "id": 114,
+          "activate": false,
+          "membertype": "Premium"
         }
       },
       {
-        "id_usuario": 15,
-        "nombre_usuario": "sergioortiz",
-        "contraseña": "S3rgioOrtiz!",
-        "nombres_reales": "Sergio Alberto",
-        "apellidos_reales": "Ortiz Ramírez",
-        "telefono": "912345685",
-        "correo": "sergioortiz@example.com",
-        "tipo_usuario": "Alumno",
-        "membresia": {
-          "id_membresia": 115,
-          "activa": true,
-          "tipo_membresia": "Empresarial"
+        "id": 15,
+        "username": "sergioortiz",
+        "password": "S3rgioOrtiz!",
+        "firstname": "Sergio Alberto",
+        "lastname": "Ortiz Ramírez",
+        "phonenumber": "912345685",
+        "email": "sergioortiz@example.com",
+        "usertype": "Alumno",
+        "membership": {
+          "id": 115,
+          "activate": true,
+          "membertype": "Empresarial"
         }
       }
   ],
-  "profesores": [],
-  "alumnos": []
+  "Profesores": [],
+  "Alumnos": []
 }

@@ -8,6 +8,22 @@ const router = createRouter({
     history: createWebHistory(import.meta.env),
     routes: [
         {
+        path: '/register',
+            name: 'register',
+            component: () => import('../src/public/pages/UserIdentify/register-page.vue'),
+            meta:
+                {
+                    title: 'Register'
+                }
+        },{
+            path: '/login',
+            name: 'login',
+            component: () => import('../src/public/pages/UserIdentify/login-page.vue'),
+            meta:{
+                isVisibleInitialPage: false,
+                title: 'Login'
+            }
+        },{
             path:'/crearsesion',
             name:'Crearsesion',
             component: () => import('../src/public/pages/iniciarSesionProfessor.vue'),
@@ -15,8 +31,7 @@ const router = createRouter({
                 isVisibleInitialPage: false,
                 title: 'Create'
             }
-        },
-        {
+        },{
             path: '/unirsesesion',
             name: 'unirsesesion',
             component: () => import('../src/public/pages/JoinSesion.vue'),
@@ -24,16 +39,14 @@ const router = createRouter({
                 isVisibleInitialPage: false,
                 title: 'Join'
             }
-        },
-        {
+        },{
             path: '/professorSession',
             component: mainSession,
             meta: {
                 title: 'Professor Session',
                 isProfessor: true
             }
-        },
-        {
+        },{
             path: '/studentSession',
             component: mainSession,
             meta: {

@@ -80,4 +80,13 @@ export default{
   font-family: "Inter", sans-serif;
   font-size:34px;
 }
+
+.button-login:hover{
+  transform: translateY(-5px);
+}
+
+.button-login:active {
+  background-color: #f6985b;
+  transform: translateY(-10%) scale(0.95);
+}
 </style>

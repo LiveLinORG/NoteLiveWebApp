@@ -1,22 +1,35 @@
 <script>
 import {defineComponent} from "vue";
-import TheHeader from "@/App.vue";
-import TheFooter from "@/App.vue";
+import LoginForm from "@/components/login-form.component.vue";
 
 export default defineComponent({
-  components: {TheFooter, TheHeader}
+  components: {LoginForm}
 })
 
 </script>
 
 <template>
-  <the-header/>
-  <div class="container-login-page">
-
+  <div class="general">
+  <h1 class="title"> Iniciar Sesión </h1>
+    <login-form/>
   </div>
-  <the-footer/>
 </template>
 
 <style>
+.general{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  align-items: center;
+  margin-top: 1%;
+  margin-bottom: auto;
+}
 
+.title {
+  font-family: "Inter", sans-serif;
+  font-size: 48px;
+  margin-bottom: 0;
+}
 </style>

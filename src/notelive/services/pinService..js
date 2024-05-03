@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:4000';
+const BASE_URL = 'https://66355711415f4e1a5e244cb2.mockapi.io';
 
 function generarPinAleatorio() {
     const pin = Math.floor(1000 + Math.random() * 9000).toString();
@@ -22,7 +22,7 @@ async function buscarPin(pin, inputName) {
         return false;
     }
 
-    const response = await axios.get(`${BASE_URL}/pins/${pin}`).catch(error => {
+    const response = await axios.get(`${BASE_URL}/pins?pins=${pin}`).catch(error => {
         console.error('Error al buscar el PIN:', error.message);
         return { data: null };
     });

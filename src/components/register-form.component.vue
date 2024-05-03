@@ -17,7 +17,7 @@ export default{
     <p class="text-left">Contraseña:</p>
     <input type="text" class="input-container"  placeholder="Ingresa tu contraseña">
     <div class="button-container">
-      <router-link to='/'>
+      <router-link to='/login'>
         <button class="button-register">Registrarse</button>
       </router-link>
     </div>

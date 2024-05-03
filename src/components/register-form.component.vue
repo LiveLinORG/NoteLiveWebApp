@@ -17,7 +17,7 @@ export default{
     <p class="text-left">Contraseña:</p>
     <input type="text" class="input-container"  placeholder="Ingresa tu contraseña">
     <div class="button-container">
-      <button class="button-login">Registrarse</button>
+      <button class="button-register">Registrarse</button>
     </div>
   </div>
 </template>
@@ -54,7 +54,7 @@ export default{
   margin-bottom: 10%;
 }
 
-.button-login{
+.button-register{
   margin: 0;
   width: 481px;
   height: 93px;
@@ -63,5 +63,14 @@ export default{
   border: #F7A072;
   font-family: "Inter", sans-serif;
   font-size:34px;
+}
+
+.button-register:hover{
+  transform: translateY(-5px);
+}
+
+.button-register:active {
+  background-color: #f6985b;
+  transform: translateY(-10%) scale(0.95);
 }
 </style>

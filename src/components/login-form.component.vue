@@ -27,7 +27,7 @@ export default{
       <p class="text-left">Contraseña:</p>
       <input type="text" class="input-container"  placeholder="Ingresa tu contraseña">
       <p class="text-center">¿No tienes una cuenta?
-        <router-link to="/register">Regístrate</router-link>
+        <router-link to='/register'>Regístrate</router-link>
       </p>
       <div class="button-container">
         <button class="button-login">Iniciar Sesión</button>

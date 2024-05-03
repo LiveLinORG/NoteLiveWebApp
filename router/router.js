@@ -3,26 +3,24 @@ import { ref } from 'vue';
 
 import mainSession from "@/public/pages/mainSession.vue";
 import waitingMainRoom from "@/public/pages/salaEspera/WaitingMainRoom.vue";
+import RegisterPage from "@/public/pages/UserIdentify/register-page.vue";
+import LoginPage from "@/public/pages/UserIdentify/login-page.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env),
     routes: [
         {
-        path: '/register',
+            path: '/init',
+            name: 'init',
+            component: () => import( '../src/public/pages/InitPage.vue'),
+        },{
+            path: '/register',
             name: 'register',
-            component: () => import('../src/public/pages/UserIdentify/register-page.vue'),
-            meta:
-                {
-                    title: 'Register'
-                }
+            component: RegisterPage,
         },{
             path: '/login',
             name: 'login',
-            component: () => import('../src/public/pages/UserIdentify/login-page.vue'),
-            meta:{
-                isVisibleInitialPage: false,
-                title: 'Login'
-            }
+            component: LoginPage,
         },{
             path:'/crearsesion',
             name:'Crearsesion',

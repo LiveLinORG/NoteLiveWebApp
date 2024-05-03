@@ -3,13 +3,31 @@
     <img src="../../assets/logoAPPWEB.png" alt="logo" class="logo" />
     <div class="spacer"></div>
     <div class="username">Username</div>
+    <section v-on:click="isVisibleInitialPage"> <!--v-if="isMainPage"-->
+    <router-link to='/login'>
+      <button class="login-button">Iniciar sesión</button>
+    </router-link>
+    </section>
   </header>
 </template>
 
 <script>
+import {isVisibleInitialPage} from "../../../router/router";
+//import {useRouter} from "vue-router";
+
 export default {
-  name: 'the-header'
+  name: 'the-header',
+  computed: {
+    isVisibleInitialPage() {
+      return isVisibleInitialPage.value = false;
+    },
+    //isMainPage(){
+    //  const router = useRouter();
+    //  return router.currentRoute.path === '/';
+    //}
+  },
 }
+
 </script>
 
 <style scoped>
@@ -24,6 +42,26 @@ export default {
 
 .username {
   margin-right: 1vw;
+}
+
+.login-button {
+  margin: 0;
+  width: 290px;
+  height: 37px;
+  border-radius: 50vh;
+  background-color: #F7A072;
+  border: #F7A072;
+  font-family: "Inter", sans-serif;
+  font-size: 24px;
+}
+
+.login-button:hover{
+  transform: translateY(-2px);
+}
+
+.login-button:active {
+  background-color: #f6985b;
+  transform: translateY(-10%) scale(0.95);
 }
 
 .spacer {

@@ -7,14 +7,15 @@ function generarPinAleatorio() {
     return pin;
 }
 
-async function enviarPinAlServicio(id) {
+async function enviarPinAlServicio(pins) {
     try {
-        const response = await axios.post(`${BASE_URL}/pins`, { id });
+        const response = await axios.post(`${BASE_URL}/pins`, { pins }); 
         console.log('PIN agregado con éxito:', response.data);
     } catch (error) {
         console.error('Error al agregar el PIN:', error.message);
     }
 }
+
 
 async function buscarPin(pin, inputName) {
     if (pin.trim().length < 4 || inputName.trim().length <= 3) {

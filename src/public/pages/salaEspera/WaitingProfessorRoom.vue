@@ -18,17 +18,20 @@ export default {
   },
   mounted() {
     this.generarPinAleatorio();
+
   },
   methods: {
     async empezarSesionAndNavigate(navigate) {
-      await this.empezarSesion();
       navigate();
     },
-    async empezarSesion() {
-      await enviarPinAlServicio(this.pin);
+    async empezarSesion(pin1) {
+      await enviarPinAlServicio(pin1);
     },
     generarPinAleatorio() {
-      this.pin = generarPinAleatorio();
+      let valor = generarPinAleatorio();
+      this.pin = valor;
+
+      this.empezarSesion(this.pin);
     }
   }
 };

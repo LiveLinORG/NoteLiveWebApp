@@ -31,6 +31,12 @@ const irUnirse = () => {
 </template>
 
 <style scoped>
+/* Base styles for general webpage */
+body {
+  font-family: monospace; /* Adjust font family for consistency */
+  margin: 0;
+  padding: 0;
+}
 
 .general {
   display: flex;
@@ -44,7 +50,6 @@ const irUnirse = () => {
 }
 
 .generalstyles {
-  font-family: monospace;
   display: flex;
   width: 80vw;
   flex-direction: row;
@@ -127,4 +132,30 @@ const irUnirse = () => {
     transform: translateY(0);
   }
 }
+
+/* Media query for iPhone 15 (estimated screen size: 375px) */
+@media (max-width: 375px) {
+  .generalstyles {
+    width: 100vw; /* Adjust width for smaller screens */
+    padding: 5vw; /* Adjust padding for better spacing on iPhone 15 */
+  }
+
+  .cardicon,
+  .cardicon1 {
+    min-width: 45%; /* Adjust card width for better layout on iPhone 15 */
+    margin: 2vw 0; /* Adjust margin for better spacing on iPhone 15 */
+    padding: 5vw; /* Adjust padding for better spacing and text size on iPhone 15 */
+  }
+
+  .cardicon > p,
+  .cardicon1 > p {
+    font-size: 28px; /* Adjust font size for smaller screens */
+  }
+
+  .icono {
+    width: 8vw; /* Adjust icon size for smaller screens */
+    height: 8vw; /* Adjust icon size for smaller screens */
+  }
+}
+
 </style>

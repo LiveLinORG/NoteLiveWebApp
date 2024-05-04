@@ -38,91 +38,142 @@ export default {
 </template>
 
 <style scoped>
+/* Base styles for general webpage */
 .Session-container {
   height: 80vh;
-  padding:5vh;
+  padding: 5vh;
   display: grid;
   grid-template-columns: 0.5fr 2fr 0.5fr;
   grid-template-rows: auto;
-  grid-gap:10vh;
+  grid-gap: 10vh;
 }
+
 .Chat-container {
   grid-column: 1 / 2;
   height: 90%;
-
 }
+
 .diaposity-container {
   grid-column: 2 / 3;
   height: 95%;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  padding:0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
   justify-content: flex-start;
 }
-.ppt{
-  width:100%;
-  height:90%;
-  background-color:red;
+
+.ppt {
+  width: 100%;
+  height: 90%;
+  background-color: red;
 }
-.question-sender{
-  height:20%;
-  width:100%;
-  display:flex;
-  flex-direction:row;
-  align-items:center;
-  justify-content:center;
-  gap:3vw;
+
+.question-sender {
+  height: 20%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 3vw;
 }
-.question-placehold{
-  border:none;
-  width:60%;
-  height:40%;
-  border-radius:1.1vh;
+
+.question-placehold {
+  border: none;
+  width: 60%;
+  height: 40%;
+  border-radius: 1.1vh;
   transition: transform 0.3s ease;
   font-size: 1em;
   padding-left: 4vh;
-
 }
-.question-placehold:hover{
+
+.question-placehold:hover {
   transform: scale(1.05);
 }
-.question-placehold:active{
+
+.question-placehold:active {
   transition: transform 0.5s ease;
   transform: translateY(-5%);
 }
+
 .question-placehold input::placeholder {
   font-size: 1em;
-
 }
-
 
 .question-placehold input:focus {
   font-size: 1em;
 }
-.send-svg{
-  border:none;
-  border-radius:1.1vh;
-  background-color:#DF711B;
-  width:13%;
-  height:40%;
+
+.send-svg {
+  border: none;
+  border-radius: 1.1vh;
+  background-color: #df711b;
+  width: 13%;
+  height: 40%;
   transition: transform 0.3s ease;
 }
+
 .send-svg:hover {
   transform: scale(1.1);
 }
+
 .send-svg:active {
   transition: transform 0.5s ease;
   transform: translateY(-5%);
 }
+
 .questions-container {
   grid-column: 3 / 4;
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items:center;
-  gap:3vh;
-  padding:1vh;
+  align-items: center;
+  gap: 3vh;
+  padding: 1vh;
 }
 
+/* Media query for iPhone 15 (estimated screen size: 375px) */
+@media (max-width: 375px) {
+  /* Adjust layout for iPhone 15 */
+  .Session-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    grid-gap: 5vh;
+  }
+
+  .Chat-container,
+  .diaposity-container,
+  .questions-container {
+    width: 100%; /* Make sections take full width on iPhone 15 */
+  }
+
+  .Chat-container,
+  .questions-container {
+    order: 2; /* Reorder Chat and Questions sections below diaposity on iPhone 15 */
+  }
+
+  .diaposity-container {
+    order: 1;
+  }
+
+  .Chat-container,
+  .diaposity-container,
+  .questions-container {
+    padding: 2vh; /* Add padding for better spacing on smaller screens */
+  }
+
+  /* Adjust question sender styles for iPhone 15 */
+  .question-sender {
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+  }
+
+  .question-placehold,
+  .send-svg {
+    width: 100%; /* Make elements take full width on iPhone 15 */
+  }
+}
 </style>

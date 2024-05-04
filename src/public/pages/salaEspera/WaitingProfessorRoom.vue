@@ -84,41 +84,41 @@ export default {
 </template>
 
 <style>
-.global{
-  display:grid;
-  grid-template-columns:1fr;
-  grid-template-rows:1fr 1fr;
-  grid-gap:2vh;
+/* Base styles for general webpage */
+.global {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 2vh;
 }
+
 .crear-session {
   display: flex;
-  width: 100vw;
   flex-direction: row;
   padding: 0;
   background-color: rgba(194, 144, 104, 0);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
   border-radius: 0.8%;
-  align-items:center;
+  align-items: center;
   justify-content: center;
   height: auto;
-  margin-top:7vh;
+  margin-top: 7vh;
 }
 
 .crear-session > * {
   margin: 1vw;
 }
+
 .crear-session2 {
   display: flex;
-  width: 100vw;
   flex-direction: column;
   padding: 0;
   background-color: rgba(194, 144, 104, 0);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
   border-radius: 8px;
-  align-items:center;
+  align-items: center;
   justify-content: center;
 }
-
 
 .card {
   display: flex;
@@ -131,8 +131,7 @@ export default {
   transition: transform 0.5s ease;
   align-self: center;
   font-size: 4vh;
-  width:20%;
-
+  width: 20%; /* Adjust width as needed for your general layout */
 }
 
 .card2 {
@@ -140,18 +139,13 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   background-color: #f7a072;
-  width:20%;
-  min-height: 5vw;
+  width: 20%; /* Adjust width as needed for your general layout */
+  min-height: 5vh;
   border-radius: 8px;
   transition: transform 0.5s ease;
   align-self: center;
-
 }
-
-
-
 
 .imagen {
   background-color: #fde49c;
@@ -160,8 +154,8 @@ export default {
   margin-right: 1vw;
   cursor: pointer;
   padding: 1vw;
-  padding-top:2vw;
-  padding-bottom:2vw;
+  padding-top: 2vw;
+  padding-bottom: 2vw;
 }
 
 .icono-subir .subir-archivoimg {
@@ -169,7 +163,7 @@ export default {
 }
 
 .boton {
-  background-color: #DF711B;
+  background-color: #df711b;
   color: #000;
   border: none;
   border-radius: 5px;
@@ -179,8 +173,9 @@ export default {
   width: 33vh;
   font-size: 4vh;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-  margin-bottom:8vh;
+  margin-bottom: 8vh;
 }
+
 .boton:active {
   transform: translateY(-2%) scale(1.1);
 }
@@ -190,15 +185,43 @@ export default {
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-auto-flow: row;
   grid-gap: 1vh;
-  width:65%;
+  width: 65%; /* Adjust width as needed for your general layout */
 }
 
-.lista .listaNombre{
+.lista .listaNombre {
   background-color: rgba(244, 215, 192, 0.37);
   padding: 1vh;
   border-radius: 5px;
   text-align: center;
-  font-size:2vh;
+  font-size: 2vh;
+}
+
+@media (max-width: 768px) {
+  /* Adjust layout for iPhone 15 and similar devices */
+  .crear-session,
+  .crear-session2 {
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center elements horizontally */
+  }
+
+  .crear-session > *,
+  .crear-session2 > * {
+    margin: 1vh 0; /* Adjust margin for better spacing */
+  }
+
+  .card,
+  .card2 {
+    width: 100%; /* Make cards take full width */
+  }
+
+  .lista {
+    width: 100%; /* Make list take full width */
+  }
+
+  .boton {
+    width: 100%; /* Make button take full width */
+    margin-bottom: 2vh; /* Adjust margin for better spacing */
+  }
 }
 
 </style>

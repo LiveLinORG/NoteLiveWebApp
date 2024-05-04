@@ -31,6 +31,7 @@ export default {
 </script>
 
 <style scoped>
+/* Base styles for general webpage */
 .header-container {
   background-color: #FFD8BA; /* Color de fondo del encabezado */
   padding: 1vw; /* Espaciado interior del encabezado */
@@ -55,7 +56,7 @@ export default {
   font-size: 24px;
 }
 
-.login-button:hover{
+.login-button:hover {
   transform: translateY(-2px);
 }
 
@@ -108,4 +109,29 @@ export default {
     filter: hue-rotate(360deg);
   }
 }
+
+/* Media query for iPhone 15 (estimated screen size: 375px) */
+@media (max-width: 375px) {
+  .header-container {
+    /* Adjust header height for better layout */
+    height: 5vh;
+  }
+
+  .login-button {
+    /* Adjust button width for smaller screens */
+    width: 200px;
+    font-size: 18px; /* Adjust font size for better readability */
+  }
+
+  .username {
+    /* Adjust font size for better readability */
+    font-size: 16px;
+  }
+
+  .logo {
+    /* Adjust logo height for better proportions */
+    height: 3.5vh;
+  }
+}
+
 </style>

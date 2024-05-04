@@ -11,6 +11,7 @@ export default {
 </template>
 
 <style scoped>
+/* Base styles for general webpage*/
 .footer-container {
   position: fixed;
   bottom: 0;
@@ -29,9 +30,13 @@ export default {
 .copyright {
   color: #333;
 }
-@media screen and (max-width: 670px) {
+
+/* Media query for iPhone 15 (estimated screen size: 375px) */
+@media (max-width: 375px) {
+  /* Minor adjustments for iPhone 15 */
   .footer-container {
-    display: none; /* Oculta el footer */
+    font-size: 0.8rem; /* Adjust font size for better readability  */
+    padding: 10px; /* Adjust padding for better spacing  */
   }
 }
 </style>

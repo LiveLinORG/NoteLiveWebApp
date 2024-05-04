@@ -1,11 +1,12 @@
 <script>
 import User from "@/notelive/userEntity/components/user-li-component.vue";
 import { getUsersInWaitingRoom } from '@/notelive/userEntity/service/userservice';
-import {enviarPinAlServicio, generarPinAleatorio} from "@/notelive/services/pinService.";
+import { enviarPinAlServicio, generarPinAleatorio } from "@/notelive/services/pinService.";
 import OrangeCard from "@/shared/components/OrangeCard.vue";
+
 export default {
   name: "waitingTeacher",
-  components: {OrangeCard, User },
+  components: { OrangeCard, User },
   data() {
     return {
       pin: '',
@@ -14,13 +15,21 @@ export default {
       number: '',
       text3: "",
       items: [{ label: 'ProfessorSession', to: '/professorSession' }],
-      users: []
+      users: [],
+      interval: null // Initialize interval variable
     };
   },
   mounted() {
     console.log("Estás en el WaitingProffesorRoom");
     this.generarPinAleatorio();
     this.getUsers();
+
+    this.interval = setInterval(() => {
+      this.getUsers();
+    }, 2000);
+  },
+  beforeUnmount() {
+    clearInterval(this.interval);
   },
   methods: {
     async getUsers() {
@@ -29,7 +38,8 @@ export default {
       } catch (error) {
         console.error('Error fetching users:', error);
       }
-    }, async empezarSesionAndNavigate(navigate) {
+    },
+    async empezarSesionAndNavigate(navigate) {
       navigate();
     },
     async empezarSesion(pin1) {
@@ -38,7 +48,6 @@ export default {
     generarPinAleatorio() {
       let valor = generarPinAleatorio();
       this.pin = valor;
-
       this.empezarSesion(this.pin);
     }
   }

@@ -3,7 +3,7 @@
   <template v-if="isAdminView">
     <template v-if="isProfessor">
       <li class="case-container">
-        <div class="nombreUser" :class="{ boldText: isProfessor }">{{ userInfo.name }}</div>
+        <div class="nombreUser" :class="{ boldText: isProfessor }">{{ userInfo.username }}</div>
         <div class="spacer"></div>
         <div class="buttons-container">
           <button class="buttonDetail">
@@ -21,7 +21,7 @@
     </template>
     <template v-else>
       <li class="case-container">
-        <div class="nombreUser">{{ userInfo.name }}</div>
+        <div class="nombreUser">{{ userInfo.username }}</div>
         <div class="spacer"></div>
         <div class="buttons-container">
           <button class="buttonDetail">
@@ -41,13 +41,13 @@
   <template v-else>
     <template v-if="isProfessor">
       <li class="case-container">
-        <div class="nombreUser" :class="{ boldText: isProfessor }">{{ userInfo.name }}</div>
+        <div class="nombreUser" :class="{ boldText: isProfessor }">{{ userInfo.username }}</div>
         <div class="spacer"></div>
       </li>
     </template>
     <template v-else>
       <li class="case-container">
-        <div class="nombreUser">{{ userInfo.name }}</div>
+        <div class="nombreUser">{{ userInfo.username }}</div>
         <div class="spacer"></div>
       </li>
     </template>

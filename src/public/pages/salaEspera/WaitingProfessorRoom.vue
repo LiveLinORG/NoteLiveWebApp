@@ -56,7 +56,7 @@ export default {
         this.users = userInfoArray;
       } catch (error) {
         console.error('Error obteniendo usuarios en la sala de espera:', error.message);
-        this.users = []; // Actualiza la lista de usuarios como vacía en caso de error
+        this.users = [];
       }
     },
 
@@ -96,9 +96,13 @@ export default {
         <button :href="href" class="boton" @click="empezarSesionAndNavigate(navigate)">Empezar</button>
       </router-link>
       <ul class="lista">
-        <li v-for="user in users" :key="user.id" class="listaNombre">{{ user.username }}</li>
-        <li class="listaNombre">ola</li>
+        <li v-for="(userArray, index) in users" :key="index" class="listaNombre">
+          <template v-for="(user, innerIndex) in userArray" :key="innerIndex">
+            {{ user.username }}
+          </template>
+        </li>
       </ul>
+
 
     </section>
     <router-view></router-view>

@@ -23,7 +23,7 @@ async function introducirUsuarioEnSalaAsync(pin, inputName) {
         const pinData = await obtenerPinPorId(pin);
 
         if (pinData) {
-            pinData.userIds.push({ id: userId });
+            pinData.usersID.push({ id: userId });
             await axios.put(`${BASE_URL}/pins/${pin}`, pinData);
             console.log('ID de usuario agregada con éxito al PIN:', userId);
         } else {
@@ -44,16 +44,31 @@ async function buscarPin(pin, inputName) {
         console.error('Error al buscar el PIN:', error.message);
         return { data: null };
     });
+    const pinData = response.data.find(item => item.pins === pin);
+    if (!pinData) {
+        console.log('PIN no encontrado');
+        return false;
+    }
+    const pinId = pinData.id;
+    console.log(`PIN encontrado: ${pinId}, Nombre del usuario: ${inputName}`);
+    await introducirUsuarioEnSalaAsync(pinId, inputName);
+    return true;
+    /*
 
-    if (response.data) {
-        console.log(`PIN encontrado: ${response.data}, Nombre del usuario: ${inputName}`);
-        await introducirUsuarioEnSalaAsync(pin, inputName);
+        if (response.data && response.data.id) {
+        const pinId = response.data.id;
+        console.log(`PIN encontrado: ${pinId}, Nombre del usuario: ${inputName}`);
+        await introducirUsuarioEnSalaAsync(pinId, inputName);
         return true;
     } else {
         console.log('El PIN no existe.');
         return false;
     }
+
+     */
+
 }
+
 
 async function obtenerPinPorId(id) {
     try {

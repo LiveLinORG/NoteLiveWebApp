@@ -14,9 +14,9 @@ export async function createTempUser(username, rol) {
         const id = generateUniqueId();
 
         const tempUser = new User(
-            id,
-            username,
             '',
+            username,
+            id,
             '',
             '',
             '',
@@ -63,7 +63,7 @@ export async function getUsersInWaitingRoom (roomId) {
 
         const usersInWaitingRoom = [];
 
-        for (const userId of pinData.userIds) {
+        for (const userId of pinData.usersID) {
             const userData = await getUserInfo(userId);
             if (userData) {
                 usersInWaitingRoom.push(userData);

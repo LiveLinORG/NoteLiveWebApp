@@ -1,5 +1,5 @@
 <script>
-import {getUsersInWaitingRoom} from '@/notelive/userEntity/service/userservice';
+import {getUserInfo, getUsersInWaitingRoom} from '@/notelive/userEntity/service/userservice';
 import {enviarPinAlServicio, generarPinAleatorio} from "@/notelive/services/pinService.";
 import OrangeCard from "@/shared/components/OrangeCard.vue";
 import UserLiComponent from "@/notelive/userEntity/components/user-li-component.vue";
@@ -34,8 +34,11 @@ export default {
   methods: {
     async getUsers() {
       try {
-        this.users = await getUsersInWaitingRoom(this.pin);
-        console.log('Getusers de waitingprofeesorroom',this.users)
+        const users = await getUsersInWaitingRoom(this.pin);
+        for (const user of users) {
+          user.userInfo = await getUserInfo(user.id); 
+        }
+        this.users = users;
       } catch (error) {
         console.error('Error fetching users:', error);
       }
@@ -76,7 +79,7 @@ export default {
         <button :href="href" class="boton" @click="empezarSesionAndNavigate(navigate)">Empezar</button>
       </router-link>
       <ul class="lista">
-        <user-li-component v-for="user in users" :key="user.id" :user-info="user.username" class="listaNombre"></user-li-component>
+        <user-li-component v-for="user in users" :key="user.id" :user-info="user.userInfo" class="listaNombre"></user-li-component>
 
       </ul>
     </section>

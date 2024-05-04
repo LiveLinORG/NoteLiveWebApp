@@ -65,16 +65,9 @@ export async function getUsersInWaitingRoom(PIN) {
             return [];
         }
 
-        const usersInWaitingRoom = [];
 
-        for (const userId of pinData.usersID) {
-            const userData = await getUserInfo(userId.id);
-            if (userData) {
-                usersInWaitingRoom.push(userData);
-            }
-        }
-        console.log(usersInWaitingRoom)
-        return usersInWaitingRoom;
+
+        return pinData;
     } catch (error) {
         console.error('Error fetching users in waiting room:', error.message);
         throw error;

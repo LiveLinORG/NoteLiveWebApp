@@ -1,11 +1,10 @@
 <script>
-import OrangeCard from "@/shared/components/OrangeCard.vue";
-import ListaNombre from "@/shared/components/ListaNombre.vue";
-import { generarPinAleatorio, enviarPinAlServicio } from "@/notelive/services/pinService.";
-
+import User from "@/notelive/userEntity/components/user-li-component.vue";
+import { getUsersInWaitingRoom } from '@/notelive/userEntity/service/userservice';
+import {enviarPinAlServicio, generarPinAleatorio} from "@/notelive/services/pinService.";
 export default {
   name: "waitingTeacher",
-  components: { ListaNombre, OrangeCard },
+  components: { User },
   data() {
     return {
       pin: '',
@@ -13,15 +12,22 @@ export default {
       text2: "Participantes",
       number: '',
       text3: "",
-      items: [{ label: 'ProfessorSession', to: '/professorSession' }]
+      items: [{ label: 'ProfessorSession', to: '/professorSession' }],
+      users: []
     };
   },
   mounted() {
     this.generarPinAleatorio();
-
+    this.getUsers();
   },
   methods: {
-    async empezarSesionAndNavigate(navigate) {
+    async getUsers() {
+      try {
+        this.users = await getUsersInWaitingRoom(this.pin);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
+    }, async empezarSesionAndNavigate(navigate) {
       navigate();
     },
     async empezarSesion(pin1) {
@@ -58,27 +64,7 @@ export default {
         <button :href="href" class="boton" @click="empezarSesionAndNavigate(navigate)">Empezar</button>
       </router-link>
       <ul class="lista">
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-
+        <user v-for="user in users" :key="user.id" :user-id="user.id" class="listaNombre"></user>
       </ul>
     </section>
     <router-view></router-view>

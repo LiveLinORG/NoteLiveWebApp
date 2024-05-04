@@ -32,14 +32,15 @@ async function enviarPinAlServicio(pins) {
     }
 }
 
-async function introducirUsuarioEnSalaAsync(pin, inputName) {
+async function introducirUsuarioEnSalaAsync(piID, inputName) {
     try {
         const userId = await createTempUser(inputName, "Alumno");
-        const pinData = await obtenerPinPorId(pin);
+
+        const pinData = await obtenerPinPorId(piID);
 
         if (pinData) {
             pinData.usersID.push({ id: userId });
-            await axios.put(`${BASE_URL}/pins/${pin}`, pinData);
+            await axios.put(`${BASE_URL}/pins/${piID}`, pinData);
             console.log('ID de usuario agregada con éxito al PIN:', userId);
         } else {
             console.log('No se pudo encontrar el PIN.');
@@ -85,7 +86,6 @@ async function obtenerPinPorId(id) {
         }
     } catch (error) {
         console.error('Error al obtener el PIN:', error.message);
-        const response  = await axios.get(`${BASE_URL}/pins/${id}`);
 
         console.log('responsedata de obtener pinporid: ', response.data)
 

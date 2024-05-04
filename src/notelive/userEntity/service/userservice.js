@@ -11,12 +11,11 @@ function generateUniqueId() {
 
 export async function createTempUser(username, rol) {
     try {
-        const id = generateUniqueId();
-
+        const password = generateUniqueId();
         const tempUser = new User(
             '',
             username,
-            id,
+            password,
             '',
             '',
             '',
@@ -27,8 +26,10 @@ export async function createTempUser(username, rol) {
 
         // Realizar POST a users para agregar al usuario temporalmente creado
         await axios.post(`${BASE_URL}/users`, tempUser);
+        const response2 = await axios.get(`${BASE_URL}/users?password=${password}`);
+        let mamerrori = response2.data.id;
 
-        return id;
+        return mamerrori;
     } catch (error) {
         console.error('Error al crear usuario temporal:', error.message);
         throw error;
@@ -39,7 +40,7 @@ export async function createTempUser(username, rol) {
 async function getUserInfo(userId) {
     console.log("este es el parametro recibido por getUserInfo", userId)
     try {
-        const response = await axios.get(`${BASE_URL}/users?password=${userId}`);
+        const response = await axios.get(`${BASE_URL}/users/${userId}`);
         return response.data;
     } catch (error) {
         console.error('Error fetching user information:', error);

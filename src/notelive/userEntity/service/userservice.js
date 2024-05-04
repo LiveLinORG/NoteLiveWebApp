@@ -24,7 +24,6 @@ export async function createTempUser(username, rol) {
             ''
         );
 
-        // Realizar POST a users para agregar al usuario temporalmente creado
         await axios.post(`${BASE_URL}/users`, tempUser);
         return password;
     } catch (error) {
@@ -35,7 +34,6 @@ export async function createTempUser(username, rol) {
 
 
 async function getUserInfo(userId) {
-    // Verificar si userId tiene al menos 3 caracteres
     if (userId.length < 3) {
         throw new Error("El userId debe tener al menos 3 caracteres.");
     }

@@ -3,7 +3,7 @@
     <img src="../../assets/logoAPPWEB.png" alt="logo" class="logo" />
     <div class="spacer"></div>
     <div class="username">Username</div>
-    <section v-on:click="isVisibleInitialPage"> <!--v-if="isMainPage"-->
+    <section v-on:click="isVisibleInitialPage">
     <router-link to='/login'>
       <button class="login-button">Iniciar sesión</button>
     </router-link>

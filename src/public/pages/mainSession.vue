@@ -29,7 +29,6 @@ export default {
 
     emitter.emit('socket-ready', this.socket);
 
-    // Determinar si el usuario es un profesor o un estudiante basado en meta de ruta
     this.isProfessor = this.$route.meta.isProfessor || false;
   }
 };

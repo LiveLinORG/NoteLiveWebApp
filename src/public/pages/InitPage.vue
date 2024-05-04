@@ -4,12 +4,12 @@ import {isVisibleInitialPage} from "../../../router/router";
 const router = useRouter();
 
 const irCrear = () => {
-  isVisibleInitialPage.value = false; // Modificar el valor de isVisible
+  isVisibleInitialPage.value = false;
   router.push('/crearsesion');
 };
 
 const irUnirse = () => {
-  isVisibleInitialPage.value = false; // Modificar el valor de isVisible
+  isVisibleInitialPage.value = false;
   router.push('/unirsesesion');
 };
 </script>

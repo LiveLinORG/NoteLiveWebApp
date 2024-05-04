@@ -16,6 +16,7 @@ export default {
     };
   },
   mounted() {
+    console.log("Estás en el WaitingAlumnoRoom");
 
   },
   methods: {

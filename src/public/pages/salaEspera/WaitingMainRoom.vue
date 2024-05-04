@@ -8,7 +8,7 @@ export default {
   data() {
     return {
       isSessionInitialized: false,
-      isAlumnoWaiting: null, // Change to null initially
+      isAlumnoWaiting: true,
       socket: null
     };
   },

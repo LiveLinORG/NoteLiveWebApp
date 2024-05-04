@@ -17,6 +17,7 @@ export default {
     };
   },
   mounted() {
+    console.log("Estás en el WaitingProffesorRoom");
     this.generarPinAleatorio();
     this.getUsers();
   },

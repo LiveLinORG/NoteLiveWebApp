@@ -1,12 +1,12 @@
 <script>
-import User from "@/notelive/userEntity/components/user-li-component.vue";
-import { getUsersInWaitingRoom } from '@/notelive/userEntity/service/userservice';
-import { enviarPinAlServicio, generarPinAleatorio } from "@/notelive/services/pinService.";
+import {getUsersInWaitingRoom} from '@/notelive/userEntity/service/userservice';
+import {enviarPinAlServicio, generarPinAleatorio} from "@/notelive/services/pinService.";
 import OrangeCard from "@/shared/components/OrangeCard.vue";
+import UserLiComponent from "@/notelive/userEntity/components/user-li-component.vue";
 
 export default {
   name: "waitingTeacher",
-  components: { OrangeCard, User },
+  components: { UserLiComponent, OrangeCard },
   data() {
     return {
       pin: '',
@@ -35,6 +35,7 @@ export default {
     async getUsers() {
       try {
         this.users = await getUsersInWaitingRoom(this.pin);
+        console.log('Getusers de waitingprofeesorroom',this.users)
       } catch (error) {
         console.error('Error fetching users:', error);
       }
@@ -75,7 +76,8 @@ export default {
         <button :href="href" class="boton" @click="empezarSesionAndNavigate(navigate)">Empezar</button>
       </router-link>
       <ul class="lista">
-        <user v-for="user in users" :key="user.id" :user-id="user.id" class="listaNombre"></user>
+        <user-li-component v-for="user in users" :key="user.id" :user-info="user.username" class="listaNombre"></user-li-component>
+
       </ul>
     </section>
     <router-view></router-view>

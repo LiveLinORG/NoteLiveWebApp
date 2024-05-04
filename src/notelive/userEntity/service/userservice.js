@@ -35,15 +35,18 @@ export async function createTempUser(username, rol) {
 
 
 async function getUserInfo(userId) {
-    console.log("este es el parametro recibido por getUserInfo", userId)
+    console.log("este es el parámetro recibido por getUserInfo", userId);
     try {
-        const response = await axios.get(`${BASE_URL}/users/${userId}`);
-        return response.data;
+        const response = await axios.get(`${BASE_URL}/users?password=${userId}`);
+        console.log("Respuesta de la solicitud HTTP:", response.data);
+        return response;
+
     } catch (error) {
         console.error('Error fetching user information:', error);
         throw error;
     }
 }
+
 
 function isProfessor(userData) {
     return userData && userData.usertype === 'Profesor';
@@ -51,13 +54,12 @@ function isProfessor(userData) {
 
 export { getUserInfo, isProfessor };
 
-export async function getUsersInWaitingRoom(roomId) {
+export async function getUsersInWaitingRoom(PIN) {
     try {
-        const pinID = await obtenerIdDelPinPorPin(roomId);
+        const pinID = await obtenerIdDelPinPorPin(PIN);
         console.log('ID del PIN:', pinID);
 
         const pinData = await obtenerPinPorId(pinID);
-
         if (!pinData) {
             console.log('No se encontró la sala.');
             return [];
@@ -66,12 +68,12 @@ export async function getUsersInWaitingRoom(roomId) {
         const usersInWaitingRoom = [];
 
         for (const userId of pinData.usersID) {
-            const userData = await getUserInfo(userId);
+            const userData = await getUserInfo(userId.id);
             if (userData) {
                 usersInWaitingRoom.push(userData);
             }
         }
-
+        console.log(usersInWaitingRoom)
         return usersInWaitingRoom;
     } catch (error) {
         console.error('Error fetching users in waiting room:', error.message);

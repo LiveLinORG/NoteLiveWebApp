@@ -2,7 +2,22 @@ import axios from 'axios';
 import { createTempUser } from '../userEntity/service/userservice';
 
 const BASE_URL = 'https://66355711415f4e1a5e244cb2.mockapi.io';
-
+export async function obtenerIdDelPinPorPin(pin) {
+    try {
+        const response = await axios.get(`${BASE_URL}/pins?pins=${pin}`);
+        const pinData = response.data.find(item => item.pins === pin);
+        if (pinData) {
+            console.log(`ID del PIN encontrado: ${pinData.id}`);
+            return pinData.id;
+        } else {
+            console.log('El PIN no fue encontrado.');
+            return null;
+        }
+    } catch (error) {
+        console.error('Error al obtener el ID del PIN:', error.message);
+        return null;
+    }
+}
 function generarPinAleatorio() {
     const pin = Math.floor(1000 + Math.random() * 9000).toString();
     return pin;
@@ -53,19 +68,6 @@ async function buscarPin(pin, inputName) {
     console.log(`PIN encontrado: ${pinId}, Nombre del usuario: ${inputName}`);
     await introducirUsuarioEnSalaAsync(pinId, inputName);
     return true;
-    /*
-
-        if (response.data && response.data.id) {
-        const pinId = response.data.id;
-        console.log(`PIN encontrado: ${pinId}, Nombre del usuario: ${inputName}`);
-        await introducirUsuarioEnSalaAsync(pinId, inputName);
-        return true;
-    } else {
-        console.log('El PIN no existe.');
-        return false;
-    }
-
-     */
 
 }
 
@@ -73,6 +75,7 @@ async function buscarPin(pin, inputName) {
 async function obtenerPinPorId(id) {
     try {
         const response  = await axios.get(`${BASE_URL}/pins/${id}`);
+        console.log('responsedata de obtener pinporid: ', response.data)
         if (response.data) {
             console.log('Datos del PIN:', response.data);
             return response.data;

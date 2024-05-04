@@ -16,7 +16,7 @@ export default {
       text3: "",
       items: [{ label: 'ProfessorSession', to: '/professorSession' }],
       users: [],
-      interval: null // Initialize interval variable
+      interval: null
     };
   },
   mounted() {

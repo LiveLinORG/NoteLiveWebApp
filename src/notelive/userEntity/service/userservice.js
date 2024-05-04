@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {obtenerPinPorId} from '../../services/pinService.';
+import {obtenerIdDelPinPorPin, obtenerPinPorId} from '../../services/pinService.';
 import {User} from "@/notelive/userEntity/models/user.entity";
 const BASE_URL = 'https://66355711415f4e1a5e244cb2.mockapi.io';
 
@@ -54,7 +54,12 @@ export { getUserInfo, isProfessor };
 
 export async function getUsersInWaitingRoom (roomId) {
     try {
-        const pinData = await obtenerPinPorId(roomId);
+        console.log(roomId)
+
+        const pinID = obtenerIdDelPinPorPin(roomId);
+        console.log(pinID);
+
+        const pinData = await obtenerPinPorId(pinID);
 
         if (!pinData) {
             console.log('No se encontró la sala.');

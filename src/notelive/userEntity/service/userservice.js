@@ -1,6 +1,16 @@
 import axios from 'axios';
 import {obtenerIdDelPinPorPin, obtenerPinPorId} from '../../services/pinService.';
 import {User} from "@/notelive/userEntity/models/user.entity";
+
+export async function getUserInfoWR(id) {
+    try {
+        const response = await axios.get(`${BASE_URL}/users?password=${id}`);
+        return response.data;
+    } catch (error) {
+        throw new Error(`Error obteniendo información para la contraseña ${id}: ${error.message}`);
+    }
+}
+
 const BASE_URL = 'https://66355711415f4e1a5e244cb2.mockapi.io';
 
 function generateUniqueId() {

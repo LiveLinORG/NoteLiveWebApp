@@ -1,10 +1,8 @@
 <script>
-import { getUsersInWaitingRoom } from '@/notelive/userEntity/service/userservice';
+import { getUsersInWaitingRoom, getUserInfoWR } from '@/notelive/userEntity/service/userservice';
 import { enviarPinAlServicio, generarPinAleatorio } from "@/notelive/services/pinService.";
 import OrangeCard from "@/shared/components/OrangeCard.vue";
-import axios from 'axios';
 
-const BASE_URL = 'https://66355711415f4e1a5e244cb2.mockapi.io';
 
 export default {
   name: "waitingTeacher",
@@ -43,13 +41,8 @@ export default {
         const userInfoArray = [];
 
         for (const user of usersPromise) {
-          try {
-            const response = await axios.get(`${BASE_URL}/users?password=${user.id}`);
-
-            userInfoArray.push(response.data);
-          } catch (error) {
-            console.error(`Error obteniendo información para la contraseña ${user.id}: ${error.message}`);
-          }
+          const userInfo = await getUserInfoWR(user.id);
+          userInfoArray.push(userInfo);
         }
 
         console.log('Resultado previsto:', userInfoArray);

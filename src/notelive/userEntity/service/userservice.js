@@ -52,12 +52,10 @@ function isProfessor(userData) {
 
 export { getUserInfo, isProfessor };
 
-export async function getUsersInWaitingRoom (roomId) {
+export async function getUsersInWaitingRoom(roomId) {
     try {
-        console.log(roomId)
-
-        const pinID = obtenerIdDelPinPorPin(roomId);
-        console.log(pinID);
+        const pinID = await obtenerIdDelPinPorPin(roomId);
+        console.log('ID del PIN:', pinID);
 
         const pinData = await obtenerPinPorId(pinID);
 

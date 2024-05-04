@@ -85,6 +85,10 @@ async function obtenerPinPorId(id) {
         }
     } catch (error) {
         console.error('Error al obtener el PIN:', error.message);
+        const response  = await axios.get(`${BASE_URL}/pins/${id}`);
+
+        console.log('responsedata de obtener pinporid: ', response.data)
+
         return null;
     }
 }

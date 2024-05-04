@@ -26,7 +26,7 @@ export default {
 
     this.interval = setInterval(() => {
       this.getUsers();
-    }, 2000);
+    }, 10000);
   },
   beforeUnmount() {
     clearInterval(this.interval);

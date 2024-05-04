@@ -1,12 +1,14 @@
 <script>
-import {getUserInfo, getUsersInWaitingRoom} from '@/notelive/userEntity/service/userservice';
-import {enviarPinAlServicio, generarPinAleatorio} from "@/notelive/services/pinService.";
+import { getUsersInWaitingRoom } from '@/notelive/userEntity/service/userservice';
+import { enviarPinAlServicio, generarPinAleatorio } from "@/notelive/services/pinService.";
 import OrangeCard from "@/shared/components/OrangeCard.vue";
-import UserLiComponent from "@/notelive/userEntity/components/user-li-component.vue";
+import axios from 'axios';
+
+const BASE_URL = 'https://66355711415f4e1a5e244cb2.mockapi.io';
 
 export default {
   name: "waitingTeacher",
-  components: { UserLiComponent, OrangeCard },
+  components: { OrangeCard },
   data() {
     return {
       pin: '',
@@ -22,8 +24,9 @@ export default {
   mounted() {
     console.log("Estás en el WaitingProffesorRoom");
     this.generarPinAleatorio();
-    this.getUsers();
-
+    setTimeout(() => {
+      this.getUsers();
+    }, 5000);
     this.interval = setInterval(() => {
       this.getUsers();
     }, 10000);
@@ -34,15 +37,29 @@ export default {
   methods: {
     async getUsers() {
       try {
-        const users = await getUsersInWaitingRoom(this.pin);
-        for (const user of users) {
-          user.userInfo = await getUserInfo(user.id); 
+        const usersPromise = await getUsersInWaitingRoom(this.pin);
+        console.log(usersPromise);
+
+        const userInfoArray = [];
+
+        for (const user of usersPromise) {
+          try {
+            const response = await axios.get(`${BASE_URL}/users?password=${user.id}`);
+
+            userInfoArray.push(response.data);
+          } catch (error) {
+            console.error(`Error obteniendo información para la contraseña ${user.id}: ${error.message}`);
+          }
         }
-        this.users = users;
+
+        console.log('Resultado previsto:', userInfoArray);
+        this.users = userInfoArray;
       } catch (error) {
-        console.error('Error fetching users:', error);
+        console.error('Error obteniendo usuarios en la sala de espera:', error.message);
+        this.users = []; // Actualiza la lista de usuarios como vacía en caso de error
       }
     },
+
     async empezarSesionAndNavigate(navigate) {
       navigate();
     },
@@ -79,9 +96,10 @@ export default {
         <button :href="href" class="boton" @click="empezarSesionAndNavigate(navigate)">Empezar</button>
       </router-link>
       <ul class="lista">
-        <user-li-component v-for="user in users" :key="user.id" :user-info="user.userInfo" class="listaNombre"></user-li-component>
-
+        <li v-for="user in users" :key="user.id" class="listaNombre">{{ user.username }}</li>
+        <li class="listaNombre">ola</li>
       </ul>
+
     </section>
     <router-view></router-view>
   </section>

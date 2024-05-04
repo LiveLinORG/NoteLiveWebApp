@@ -35,17 +35,22 @@ export async function createTempUser(username, rol) {
 
 
 async function getUserInfo(userId) {
+    // Verificar si userId tiene al menos 3 caracteres
+    if (userId.length < 3) {
+        throw new Error("El userId debe tener al menos 3 caracteres.");
+    }
+
     console.log("este es el parámetro recibido por getUserInfo", userId);
     try {
         const response = await axios.get(`${BASE_URL}/users?password=${userId}`);
         console.log("Respuesta de la solicitud HTTP:", response.data);
         return response;
-
     } catch (error) {
         console.error('Error fetching user information:', error);
         throw error;
     }
 }
+
 
 
 function isProfessor(userData) {
@@ -65,9 +70,10 @@ export async function getUsersInWaitingRoom(PIN) {
             return [];
         }
 
+        console.log('pindata: ',pinData)
+        console.log('pindata usersID: ',pinData.usersID)
 
-
-        return pinData;
+        return pinData.usersID;
     } catch (error) {
         console.error('Error fetching users in waiting room:', error.message);
         throw error;

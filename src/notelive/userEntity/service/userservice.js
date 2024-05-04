@@ -37,8 +37,9 @@ export async function createTempUser(username, rol) {
 
 
 async function getUserInfo(userId) {
+    console.log("este es el parametro recibido por getUserInfo", userId)
     try {
-        const response = await axios.get(`${BASE_URL}/users/${userId}`);
+        const response = await axios.get(`${BASE_URL}/users?password=${userId}`);
         return response.data;
     } catch (error) {
         console.error('Error fetching user information:', error);

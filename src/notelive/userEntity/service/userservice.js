@@ -26,10 +26,7 @@ export async function createTempUser(username, rol) {
 
         // Realizar POST a users para agregar al usuario temporalmente creado
         await axios.post(`${BASE_URL}/users`, tempUser);
-        const response2 = await axios.get(`${BASE_URL}/users?password=${password}`);
-        let mamerrori = response2.data.id;
-
-        return mamerrori;
+        return password;
     } catch (error) {
         console.error('Error al crear usuario temporal:', error.message);
         throw error;

@@ -7,7 +7,7 @@ export async function obtenerIdDelPinPorPin(pin) {
         const response = await axios.get(`${BASE_URL}/pins?pins=${pin}`);
         const pinData = response.data.find(item => item.pins === pin);
         if (pinData) {
-            console.log(`ID del PIN encontrado: ${pinData.id}`);
+            console.log(`ID del PIN encontrado (obtenerIdDelPinPorPin): ${pinData.id}`);
             return pinData.id;
         } else {
             console.log('El PIN no fue encontrado.');
@@ -87,7 +87,6 @@ async function obtenerPinPorId(id) {
     } catch (error) {
         console.error('Error al obtener el PIN:', error.message);
 
-        console.log('responsedata de obtener pinporid: ', response.data)
 
         return null;
     }

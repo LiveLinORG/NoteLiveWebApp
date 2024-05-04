@@ -2,9 +2,10 @@
 import User from "@/notelive/userEntity/components/user-li-component.vue";
 import { getUsersInWaitingRoom } from '@/notelive/userEntity/service/userservice';
 import {enviarPinAlServicio, generarPinAleatorio} from "@/notelive/services/pinService.";
+import OrangeCard from "@/shared/components/OrangeCard.vue";
 export default {
   name: "waitingTeacher",
-  components: { User },
+  components: {OrangeCard, User },
   data() {
     return {
       pin: '',

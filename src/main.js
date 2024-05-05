@@ -23,12 +23,19 @@ import InputText from "primevue/inputtext";
 import Tooltip from "primevue/tooltip";
 import ProgressBar from "primevue/progressbar";
 import Sidebar from "primevue/sidebar";
+import mitt from 'mitt';
+import {VueElement} from "vue";
+const emitter = mitt();
+
+VueElement.prototype.$on = emitter.on;
+VueElement.prototype.$off = emitter.off;
+VueElement.prototype.$emit = emitter.emit;
 
 createApp(App)
-    .use(PrimeVue,{ripple:true})
+    .use(PrimeVue, { ripple: true })
     .use(router)
-    .component('pv-toolbar',Toolbar)
-    .component('pv-button',Button)
+    .component('pv-toolbar', Toolbar)
+    .component('pv-button', Button)
     .component('pv-toolbar', Toolbar)
     .component('pv-button', Button)
     .component('pv-inputtext', InputText)
@@ -49,5 +56,5 @@ createApp(App)
     .component('pv-toast', Toast)
     .component('pv-tooltip', Tooltip)
     .component('pv-progressbar', ProgressBar)
-    .component('pv-sidebar',Sidebar)
+    .component('pv-sidebar', Sidebar)
     .mount('#app');

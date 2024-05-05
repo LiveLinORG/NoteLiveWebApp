@@ -70,6 +70,8 @@ const router = createRouter({
 });
 export const isVisibleInitialPage = ref(true);
 export const isLogged = ref(false);
+export const usernameinput = ref(String);
+export const pinvalue = ref(String);
 
 export default router;
 

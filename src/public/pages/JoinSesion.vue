@@ -1,5 +1,6 @@
 <script>
-import { buscarPin } from "@/notelive/services/pinService.";
+import {buscarPin} from "@/notelive/services/pinService.";
+import {pinvalue, usernameinput} from "../../../router/router";
 
 export default {
   name: "joinSesion",
@@ -31,6 +32,9 @@ export default {
     // Método para actualizar inputName
     actualizarNombre(event) {
       this.inputName = event.target.value;
+      usernameinput.value=this.inputName;
+      pinvalue.value=document.getElementById('pin').value;
+      console.log(pinvalue.value)
     }
   }
 

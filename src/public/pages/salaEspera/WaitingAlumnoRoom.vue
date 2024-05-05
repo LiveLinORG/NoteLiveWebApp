@@ -1,10 +1,12 @@
 <script>
 import OrangeCard from "@/shared/components/OrangeCard.vue";
-import ListaNombre from "@/shared/components/ListaNombre.vue";
+import {getUserInfoWR, getUsersInWaitingRoom} from "@/notelive/userEntity/service/userservice";
+import {pinvalue} from "../../../../router/router";
+
 
 export default {
   name: "waitingStudent",
-  components: { ListaNombre, OrangeCard },
+  components: { OrangeCard },
   data() {
     return {
       pin: '',
@@ -12,61 +14,70 @@ export default {
       text2: "Participantes",
       number: '',
       text3: "",
-      items: [{ label: 'StudentSession', to: '/studentSession' }]
+      items: [{ label: 'StudentSession', to: '/studentSession' }],
+      users: [],
+      interval: null
     };
   },
   mounted() {
     console.log("Estás en el WaitingAlumnoRoom");
+    this.fetchUsersMetadata(); // Llamada inicial
+    this.interval = setInterval(this.fetchUsersMetadata, 10000); // Llamada cada 10 segundos
+  },
+  beforeUnmount() {
 
+    clearInterval(this.interval);
   },
   methods: {
+    async fetchUsersMetadata() {
+      console.log(pinvalue.value)
 
+      this.pin=pinvalue;
+      console.log(pinvalue.value)
+
+      console.log('pin actual: ',this.pin)
+      try {
+        const usersPromise = await getUsersInWaitingRoom(this.pin);
+        console.log(usersPromise);
+
+        const userInfoArray = [];
+
+        for (const user of usersPromise) {
+          const userInfo = await getUserInfoWR(user.id);
+          userInfoArray.push(userInfo);
+        }
+
+        console.log('Resultado previsto:', userInfoArray);
+        this.users = userInfoArray;
+
+      } catch (error) {
+        console.error('Error obteniendo usuarios en la sala de espera:', error.message);
+        this.users = [];
+      }
+
+    }
   }
 };
 </script>
-
-
-
 <template>
-
-
   <section class="global">
     <section class="crear-session">
       <OrangeCard class="card" :text="text" :pin="pin"></OrangeCard>
-
       <OrangeCard class="card2" :text="text2" :pin="number"></OrangeCard>
-
     </section>
     <section class="crear-session2">
-
       <ul class="lista">
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-        <ListaNombre class="listaNombre" :text="text3"></ListaNombre>
-
+        <li v-for="(userArray, index) in users" :key="index" class="listaNombre">
+          <template v-for="(user, innerIndex) in userArray" :key="innerIndex">
+            {{ user.username }}
+          </template>
+        </li>
       </ul>
     </section>
     <router-view></router-view>
   </section>
-
 </template>
+
 
 <style>
 .global{

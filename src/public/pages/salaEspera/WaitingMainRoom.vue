@@ -17,6 +17,7 @@ export default {
 
   },
   methods: {
+
   }
 };
 </script>
@@ -24,7 +25,7 @@ export default {
 <template>
   <div>
     <waiting-alumno-room v-if="isAlumnoWaiting" />
-    <WaitingProfessorRoom v-else />
+    <WaitingProfessorRoom v-else/>
   </div>
 </template>
 

@@ -3,7 +3,6 @@ import { getUsersInWaitingRoom, getUserInfoWR } from '@/notelive/userEntity/serv
 import { enviarPinAlServicio, generarPinAleatorio } from "@/notelive/services/pinService.";
 import OrangeCard from "@/shared/components/OrangeCard.vue";
 
-
 export default {
   name: "waitingTeacher",
   components: { OrangeCard },
@@ -47,6 +46,7 @@ export default {
 
         console.log('Resultado previsto:', userInfoArray);
         this.users = userInfoArray;
+
       } catch (error) {
         console.error('Error obteniendo usuarios en la sala de espera:', error.message);
         this.users = [];
@@ -63,7 +63,8 @@ export default {
       let valor = generarPinAleatorio();
       this.pin = valor;
       this.empezarSesion(this.pin);
-    }
+    },
+
   }
 };
 </script>

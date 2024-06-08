@@ -1,7 +1,9 @@
 import axios from 'axios';
-import { createTempUser } from '../userEntity/service/userservice';
+import { v4 as uuidv4 } from 'uuid';
 
-const BASE_URL = 'https://66355711415f4e1a5e244cb2.mockapi.io';
+import { createTempUser } from '../userEntity/service/userservice';
+//const BASE_URL = 'https://66355711415f4e1a5e244cb2.mockapi.io';
+const BASE_URL = 'http://localhost:3000';
 export async function obtenerIdDelPinPorPin(pin) {
     try {
         const response = await axios.get(`${BASE_URL}/pins?pins=${pin}`);
@@ -23,14 +25,23 @@ function generarPinAleatorio() {
     return pin;
 }
 
-async function enviarPinAlServicio(pins) {
+export async function enviarPinAlServicio(pin) {
+    const uniqueId = uuidv4(); // Generate a unique ID
+    const payload = {
+        id: uniqueId,
+        pins: pin,
+        usersID: [], // Assuming an empty array initially
+        creator: {}
+    };
+
     try {
-        const response = await axios.post(`${BASE_URL}/pins`, { pins });
+        const response = await axios.post(`${BASE_URL}/pins`, payload);
         console.log('PIN agregado con éxito:', response.data);
     } catch (error) {
         console.error('Error al agregar el PIN:', error.message);
     }
 }
+
 
 async function introducirUsuarioEnSalaAsync(piID, inputName) {
     try {
@@ -93,4 +104,4 @@ async function obtenerPinPorId(id) {
 }
 
 
-export { generarPinAleatorio, enviarPinAlServicio, buscarPin,obtenerPinPorId };
+export { generarPinAleatorio, buscarPin,obtenerPinPorId };

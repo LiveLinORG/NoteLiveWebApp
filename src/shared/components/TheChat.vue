@@ -19,7 +19,8 @@
 
 <script>
 import * as signalR from "@microsoft/signalr";
-import ElMensaje from "@/shared/components/ChatHijos/Mensaje.vue"; // Asegúrate de importar el componente correcto
+import ElMensaje from "@/shared/components/ChatHijos/Mensaje.vue";
+
 
 export default {
   name: "TheChat",
@@ -53,16 +54,32 @@ export default {
       }
     },
   },
-  mounted() {
+  async mounted() {
+    /*
+
+        if (typeof this.roomId === 'undefined') {
+      this.roomId = await obtenerIdDelPinPorPin(pinvalue.value);
+    }
+    if (typeof this.roomId === 'undefined') {
+      this.userId = iduser.value.toString();
+    }
+
+     */
+
+console.log("datos:::");
+
+    console.log(this.roomId, this.userId, this.newMessage);
     this.connection = new signalR.HubConnectionBuilder()
-        .withUrl("http://localhost:8080/chatHub") // Asegúrate de ajustar la URL correcta de tu backend
+        .withUrl("https://localhost:44353/chatHub")
         .build();
 
     this.connection.on("ReceiveMessage", (userId, message) => {
+      console.log("Message received: ", {userId, message});
       this.messages.push({userId, content: message});
     });
 
     this.connection.on("RemoveMessage", (userId, message) => {
+      console.log("Message removed: ", {userId, message});
       this.messages = this.messages.filter(
           (m) => !(m.userId === userId && m.content === message)
       );
@@ -71,12 +88,15 @@ export default {
     this.connection
         .start()
         .then(() => {
-          this.connection.invoke("JoinRoom", this.roomId).catch((err) =>
-              console.error(err)
-          );
+          console.log("Connection started");
+          this.connection.invoke("JoinRoom", this.roomId).catch((err) => {
+            console.error("Error joining room: ", err);
+          });
         })
-        .catch((err) => console.error(err));
-  },
+        .catch((err) => {
+          console.error("Error starting connection: ", err);
+        });
+  }, // Aquí cierra la función mounted correctamente
 };
 </script>
 

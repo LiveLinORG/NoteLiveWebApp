@@ -17,11 +17,11 @@
 </template>
 
 <script>
-import { onMounted } from 'vue';
+import {onMounted, ref} from 'vue';
 import TheChat from "@/shared/components/TheChat.vue";
 import PreguntaCard from "@/shared/components/PreguntaCard.vue";
 import {modificarSesionIniciadaDelPin} from "@/notelive/services/pinService.";
-import {pinvalue} from "../../../router/router";
+import {iduser, pinvalue} from "../../../router/router";
 
 
 export default {
@@ -30,12 +30,18 @@ export default {
    setup() {
     // Emit socket event
      const pin =pinvalue.value;
+     const roomId = ref('');
+     const userId = ref('');
     onMounted(() => {
-   modificarSesionIniciadaDelPin(pin);
+      roomId.value = pinvalue.value; // Asigna el valor del pinvalue a roomId
+      userId.value = iduser.value; // Aquí debes obtener el userId del usuario actual, asegúrate de tener esta lógica implementada
+
+      modificarSesionIniciadaDelPin(pin);
     });
 
     return {
-
+      roomId,
+      userId,
     };
   }
 };

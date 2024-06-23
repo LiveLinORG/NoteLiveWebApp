@@ -20,19 +20,22 @@
 import TheChat from "@/shared/components/TheChat.vue";
 import PreguntaCard from "@/shared/components/PreguntaCard.vue";
 import { onMounted, ref } from 'vue';
-import {iduser, pinvalue} from "../../../router/router";
+import { iduser, pinvalue } from "../../../router/router";
+import {modificarSesionIniciadaDelPin} from "@/notelive/services/pinService.";
 
 export default {
-  name: "StudentSession",
+  name: "ProfessorSession",
   components: { PreguntaCard, TheChat },
   setup() {
     const roomId = ref('');
     const userId = ref('');
 
-    // Lógica para obtener roomId y userId, puedes adaptarla según tu flujo de la aplicación
     onMounted(() => {
       roomId.value = pinvalue.value; // Asigna el valor del pinvalue a roomId
       userId.value = iduser.value; // Aquí debes obtener el userId del usuario actual, asegúrate de tener esta lógica implementada
+
+      // Modificar la sesión iniciada del pin
+      modificarSesionIniciadaDelPin(pinvalue.value);
     });
 
     return {

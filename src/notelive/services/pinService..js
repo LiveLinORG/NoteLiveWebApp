@@ -20,6 +20,7 @@ export async function obtenerIdDelPinPorPin(pin) {
         return null;
     }
 }
+
 function generarPinAleatorio() {
     const pin = Math.floor(1000 + Math.random() * 9000).toString();
     return pin;
@@ -30,8 +31,10 @@ export async function enviarPinAlServicio(pin) {
     const payload = {
         id: uniqueId,
         pins: pin,
-        usersID: [], // Assuming an empty array initially
-        creator: {}
+        usersID: [],
+        creator: {},
+        sesionIniciada: false
+
     };
 
     try {
@@ -101,7 +104,46 @@ async function obtenerPinPorId(id) {
 
         return null;
     }
+}export async function modificarSesionIniciadaDelPin(pinId) {
+    console.log("------------------------------");
+    console.log("MODIFICACION DE LA SESION INICIADA");
+    console.log("------------------------------");
+
+    try {
+        // Obtener el ID del PIN
+        const IDPIN = await obtenerIdDelPinPorPin(pinId);
+
+        // Obtener los datos del PIN por su ID
+        const pinData = await obtenerPinPorId(IDPIN);
+
+        // Modificar solo el atributo sesionIniciada
+        pinData.sesionIniciada = true;
+
+        // Realizar la solicitud PUT con Axios para actualizar el PIN
+        await axios.put(`${BASE_URL}/pins/${IDPIN}`, pinData);
+
+        console.log(`Sesión iniciada para el PIN: ${pinId}`);
+    } catch (error) {
+        console.error('Error al modificar la sesión iniciada del PIN:', error.message);
+    }
 }
 
+export async function verificarSesionIniciada(pinId) {
+    try {
+        const IDPIN = await obtenerIdDelPinPorPin(pinId);
+        const pinData = await obtenerPinPorId(IDPIN);
+        if (pinData) {
+            console.log(`Estado de sesión iniciada para el PIN ${pinId}:`, pinData.sesionIniciada);
+            console.log(pinId)
+            return pinData.sesionIniciada;
+        } else {
+            console.log('No se pudo encontrar el PIN.');
+            return false;
+        }
+    } catch (error) {
+        console.error('Error al verificar la sesión iniciada del PIN:', error.message);
+        return false;
+    }
+}
 
 export { generarPinAleatorio, buscarPin,obtenerPinPorId };

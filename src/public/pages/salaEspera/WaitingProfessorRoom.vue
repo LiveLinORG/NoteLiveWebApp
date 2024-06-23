@@ -2,6 +2,7 @@
 import { getUsersInWaitingRoom, getUserInfoWR } from '@/notelive/userEntity/service/userservice';
 import { enviarPinAlServicio, generarPinAleatorio } from "@/notelive/services/pinService.";
 import OrangeCard from "@/shared/components/OrangeCard.vue";
+import {pinvalue} from "../../../../router/router";
 
 export default {
   name: "waitingTeacher",
@@ -62,6 +63,7 @@ export default {
     generarPinAleatorio() {
       let valor = generarPinAleatorio();
       this.pin = valor;
+      pinvalue.value=this.pin;
       this.empezarSesion(this.pin);
     },
   }

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {obtenerIdDelPinPorPin, obtenerPinPorId} from '../../services/pinService.';
 import {User} from "@/notelive/userEntity/models/user.entity";
+import {iduser} from "../../../../router/router";
 
 export async function getUserInfoWR(id) {
     try {
@@ -23,7 +24,7 @@ export async function createTempUser(username, rol) {
     try {
         const password = generateUniqueId();
         const tempUser = new User(
-            '',
+            password,
             username,
             password,
             '',
@@ -35,6 +36,7 @@ export async function createTempUser(username, rol) {
         );
 
         await axios.post(`${BASE_URL}/users`, tempUser);
+        iduser.value=password;
         return password;
     } catch (error) {
         console.error('Error al crear usuario temporal:', error.message);

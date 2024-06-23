@@ -1,7 +1,7 @@
 <template>
   <div>
-    <ProfessorSession v-if="isProfessor" />
-    <StudentSession v-else />
+    <ProfessorSession v-if="isProfessor" :roomId="roomId" :userId="userId" />
+    <StudentSession v-else :roomId="roomId" :userId="userId" />
   </div>
 </template>
 
@@ -10,7 +10,7 @@ import { io } from 'socket.io-client';
 import ProfessorSession from "@/public/pages/ProfessorSession.vue";
 import StudentSession from "@/public/pages/StudentSession.vue";
 import mitt from 'mitt';
-
+import {iduser, pinvalue} from "../../../router/router";
 const emitter = mitt();
 
 export default {
@@ -21,15 +21,19 @@ export default {
   data() {
     return {
       isProfessor: false,
-      socket: null
+      socket: null,
+      roomId: '', // Aquí almacenaremos el roomId
+      userId: ''   // Aquí almacenaremos el userId
     };
   },
   mounted() {
     this.socket = io('http://localhost:3000');
-
     emitter.emit('socket-ready', this.socket);
 
     this.isProfessor = this.$route.meta.isProfessor || false;
+
+    this.roomId = pinvalue.value;
+    this.userId = iduser.value;
   }
 };
 </script>

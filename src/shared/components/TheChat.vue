@@ -1,69 +1,121 @@
-<script>
-import elMensaje from "@/shared/components/ChatHijos/Mensaje.vue";
-
-export default {
-  name: "TheChat",
-  data() {
-    return {
-      messages: [],
-      newMessage: ''
-    };
-  },
-  components: {
-    elMensaje
-  }
-}
-</script>
-
 <template>
   <div class="container">
     <div class="padding">
       <div class="messages">
-        <el-Mensaje class="message" nombre="Jorge Díaz" texto="Hola, cómo están?"></el-Mensaje>
+        <el-Mensaje
+            v-for="message in messages"
+            :key="message.id"
+            :nombre="message.userId"
+            :texto="message.content"
+        ></el-Mensaje>
       </div>
     </div>
     <div class="sendMessage">
-      <input placeholder="Escribe aquí..."/>
-      <button>Submit</button>
+      <input v-model="newMessage" placeholder="Escribe aquí..." />
+      <button @click="sendMessage">Enviar</button>
     </div>
   </div>
 </template>
 
+<script>
+import * as signalR from "@microsoft/signalr";
+import ElMensaje from "@/shared/components/ChatHijos/Mensaje.vue"; // Asegúrate de importar el componente correcto
+
+export default {
+  name: "TheChat",
+  components: {
+    ElMensaje,
+  },
+  props: {
+    roomId: {
+      type: String,
+      required: true,
+    },
+    userId: {
+      type: String,
+      required: true,
+    },
+  },
+  data() {
+    return {
+      connection: null,
+      messages: [],
+      newMessage: "",
+    };
+  },
+  methods: {
+    sendMessage() {
+      if (this.newMessage.trim()) {
+        this.connection
+            .invoke("SendMessage", this.roomId, this.userId, this.newMessage)
+            .catch((err) => console.error(err));
+        this.newMessage = "";
+      }
+    },
+  },
+  mounted() {
+    this.connection = new signalR.HubConnectionBuilder()
+        .withUrl("http://localhost:8080/chatHub") // Asegúrate de ajustar la URL correcta de tu backend
+        .build();
+
+    this.connection.on("ReceiveMessage", (userId, message) => {
+      this.messages.push({userId, content: message});
+    });
+
+    this.connection.on("RemoveMessage", (userId, message) => {
+      this.messages = this.messages.filter(
+          (m) => !(m.userId === userId && m.content === message)
+      );
+    });
+
+    this.connection
+        .start()
+        .then(() => {
+          this.connection.invoke("JoinRoom", this.roomId).catch((err) =>
+              console.error(err)
+          );
+        })
+        .catch((err) => console.error(err));
+  },
+};
+</script>
+
 <style scoped>
-.container{
+.container {
   justify-content: center;
   align-items: center;
-  background-color: #F7A072;
-  height:100%;
-  width:100%;
-  border-radius:5px;
-
+  background-color: #f7a072;
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
 }
-.messages{
 
+.messages {
 }
-.padding{
-  height:90%;
 
+.padding {
+  height: 90%;
 }
-.message{
-  display:flex;
+
+.message {
+  display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items:center;
+  align-items: center;
 }
-.sendMessage{
-  display:flex;
+
+.sendMessage {
+  display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height:10%;
-  width:100%;
-
+  height: 10%;
+  width: 100%;
 }
+
 .sendMessage input {
   color: black;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   align-items: center;
   border-radius: 0.4rem 0 0 0.4rem;
   border-color: rgba(0, 0, 0, 0);
@@ -71,7 +123,6 @@ export default {
   width: 100%;
   font-size: 1em;
   padding-left: 2vh;
-
 }
 
 .sendMessage input::placeholder {
@@ -83,7 +134,7 @@ export default {
 }
 
 .sendMessage button {
-  background-color: #768FE8;
+  background-color: #768fe8;
   align-items: center;
   border: none;
   border-radius: 0 0.4rem 0.4rem 0;
@@ -94,12 +145,13 @@ export default {
 }
 
 .sendMessage button:hover {
-  background-color: #577AC7;
+  background-color: #577ac7;
 }
 
 .sendMessage button:active {
   transform: scale(0.95);
 }
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -112,6 +164,4 @@ export default {
 .sendMessage button {
   animation: fadeIn 0.5s ease;
 }
-
-
 </style>

@@ -1,7 +1,9 @@
 import axios from 'axios';
-import { createTempUser } from '../userEntity/service/userservice';
+import { v4 as uuidv4 } from 'uuid';
 
-const BASE_URL = 'https://66355711415f4e1a5e244cb2.mockapi.io';
+import { createTempUser } from '../userEntity/service/userservice';
+//const BASE_URL = 'https://66355711415f4e1a5e244cb2.mockapi.io';
+const BASE_URL = 'http://190.239.59.223:3000';
 export async function obtenerIdDelPinPorPin(pin) {
     try {
         const response = await axios.get(`${BASE_URL}/pins?pins=${pin}`);
@@ -18,19 +20,31 @@ export async function obtenerIdDelPinPorPin(pin) {
         return null;
     }
 }
+
 function generarPinAleatorio() {
     const pin = Math.floor(1000 + Math.random() * 9000).toString();
     return pin;
 }
 
-async function enviarPinAlServicio(pins) {
+export async function enviarPinAlServicio(pin) {
+    const uniqueId = uuidv4(); // Generate a unique ID
+    const payload = {
+        id: uniqueId,
+        pins: pin,
+        usersID: [],
+        creator: {},
+        sesionIniciada: false
+
+    };
+
     try {
-        const response = await axios.post(`${BASE_URL}/pins`, { pins });
+        const response = await axios.post(`${BASE_URL}/pins`, payload);
         console.log('PIN agregado con éxito:', response.data);
     } catch (error) {
         console.error('Error al agregar el PIN:', error.message);
     }
 }
+
 
 async function introducirUsuarioEnSalaAsync(piID, inputName) {
     try {
@@ -90,7 +104,46 @@ async function obtenerPinPorId(id) {
 
         return null;
     }
+}export async function modificarSesionIniciadaDelPin(pinId) {
+    console.log("------------------------------");
+    console.log("MODIFICACION DE LA SESION INICIADA");
+    console.log("------------------------------");
+
+    try {
+        // Obtener el ID del PIN
+        const IDPIN = await obtenerIdDelPinPorPin(pinId);
+
+        // Obtener los datos del PIN por su ID
+        const pinData = await obtenerPinPorId(IDPIN);
+
+        // Modificar solo el atributo sesionIniciada
+        pinData.sesionIniciada = true;
+
+        // Realizar la solicitud PUT con Axios para actualizar el PIN
+        await axios.put(`${BASE_URL}/pins/${IDPIN}`, pinData);
+
+        console.log(`Sesión iniciada para el PIN: ${pinId}`);
+    } catch (error) {
+        console.error('Error al modificar la sesión iniciada del PIN:', error.message);
+    }
 }
 
+export async function verificarSesionIniciada(pinId) {
+    try {
+        const IDPIN = await obtenerIdDelPinPorPin(pinId);
+        const pinData = await obtenerPinPorId(IDPIN);
+        if (pinData) {
+            console.log(`Estado de sesión iniciada para el PIN ${pinId}:`, pinData.sesionIniciada);
+            console.log(pinId)
+            return pinData.sesionIniciada;
+        } else {
+            console.log('No se pudo encontrar el PIN.');
+            return false;
+        }
+    } catch (error) {
+        console.error('Error al verificar la sesión iniciada del PIN:', error.message);
+        return false;
+    }
+}
 
-export { generarPinAleatorio, enviarPinAlServicio, buscarPin,obtenerPinPorId };
+export { generarPinAleatorio, buscarPin,obtenerPinPorId };

@@ -2,6 +2,7 @@
 import { getUsersInWaitingRoom, getUserInfoWR } from '@/notelive/userEntity/service/userservice';
 import { enviarPinAlServicio, generarPinAleatorio } from "@/notelive/services/pinService.";
 import OrangeCard from "@/shared/components/OrangeCard.vue";
+import {pinvalue} from "../../../../router/router";
 
 export default {
   name: "waitingTeacher",
@@ -13,7 +14,7 @@ export default {
       text2: "Participantes",
       number: '',
       text3: "",
-      items: [{ label: 'ProfessorSession', to: '/professorSession' }],
+      items: [{label: 'ProfessorSession', to: '/professorSession'}],
       users: [],
       interval: null
     };
@@ -62,28 +63,23 @@ export default {
     generarPinAleatorio() {
       let valor = generarPinAleatorio();
       this.pin = valor;
+      pinvalue.value=this.pin;
       this.empezarSesion(this.pin);
     },
-
   }
 };
 </script>
 
-
-
 <template>
-
-
   <section class="global">
     <section class="crear-session">
       <OrangeCard class="card" :text="text" :pin="pin"></OrangeCard>
       <div class="icono-subir">
         <div class="imagen">
-          <img class="subir-archivoimg" src="../../../assets/subir-archivo.png" >
+          <img class="subir-archivoimg" src="../../../assets/subir-archivo.png">
         </div>
       </div>
       <OrangeCard class="card2" :text="text2" :pin="number"></OrangeCard>
-
     </section>
     <section class="crear-session2">
       <router-link v-for="item in items" :key="item.label" v-slot="{navigate, href}" :to="item.to" custom>
@@ -96,21 +92,19 @@ export default {
           </template>
         </li>
       </ul>
-
-
     </section>
     <router-view></router-view>
   </section>
-
 </template>
 
 <style>
-.global{
-  display:grid;
+.global {
+  display: grid;
   grid-template-columns:1fr;
   grid-template-rows:1fr 1fr;
-  grid-gap:2vh;
+  grid-gap: 2vh;
 }
+
 .crear-session {
   display: flex;
   width: 100vw;
@@ -119,15 +113,16 @@ export default {
   background-color: rgba(194, 144, 104, 0);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
   border-radius: 0.8%;
-  align-items:center;
+  align-items: center;
   justify-content: center;
   height: auto;
-  margin-top:7vh;
+  margin-top: 7vh;
 }
 
 .crear-session > * {
   margin: 1vw;
 }
+
 .crear-session2 {
   display: flex;
   width: 100vw;
@@ -136,10 +131,9 @@ export default {
   background-color: rgba(194, 144, 104, 0);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
   border-radius: 8px;
-  align-items:center;
+  align-items: center;
   justify-content: center;
 }
-
 
 .card {
   display: flex;
@@ -152,8 +146,7 @@ export default {
   transition: transform 0.5s ease;
   align-self: center;
   font-size: 4vh;
-  width:20%;
-
+  width: 20%;
 }
 
 .card2 {
@@ -163,16 +156,12 @@ export default {
   align-items: center;
 
   background-color: #f7a072;
-  width:20%;
+  width: 20%;
   min-height: 5vw;
   border-radius: 8px;
   transition: transform 0.5s ease;
   align-self: center;
-
 }
-
-
-
 
 .imagen {
   background-color: #fde49c;
@@ -181,8 +170,8 @@ export default {
   margin-right: 1vw;
   cursor: pointer;
   padding: 1vw;
-  padding-top:2vw;
-  padding-bottom:2vw;
+  padding-top: 2vw;
+  padding-bottom: 2vw;
 }
 
 .icono-subir .subir-archivoimg {
@@ -200,8 +189,9 @@ export default {
   width: 33vh;
   font-size: 4vh;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-  margin-bottom:8vh;
+  margin-bottom: 8vh;
 }
+
 .boton:active {
   transform: translateY(-2%) scale(1.1);
 }
@@ -211,15 +201,14 @@ export default {
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-auto-flow: row;
   grid-gap: 1vh;
-  width:65%;
+  width: 65%;
 }
 
-.lista .listaNombre{
+.lista .listaNombre {
   background-color: rgba(244, 215, 192, 0.37);
   padding: 1vh;
   border-radius: 5px;
   text-align: center;
-  font-size:2vh;
+  font-size: 2vh;
 }
-
 </style>

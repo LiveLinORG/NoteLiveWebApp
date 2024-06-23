@@ -1,235 +1,87 @@
 {
   "pins": [
     {
-      "id": "7485"
+      "id": "71bc426b-d202-4063-b77a-f0c982c2fa93",
+      "pins": "8902",
+      "usersID": [
+        {
+          "id": "lxr7e98ivn30ls0wfw"
+        }
+      ],
+      "creator": {},
+      "sesionIniciada": true
+    },
+    {
+      "id": "2f088813-da1f-436b-a736-595951a59677",
+      "pins": "6206",
+      "usersID": [
+        {
+          "id": "lxr7oxvn41sbrij3ey"
+        },
+        {
+          "id": "lxr7q0a88fl8ang4a5"
+        }
+      ],
+      "creator": {},
+      "sesionIniciada": true
+    },
+    {
+      "id": "dfca4d7e-2bfe-4d7a-920b-7b80212e2af8",
+      "pins": "6847",
+      "usersID": [
+        {
+          "id": "lxr7s1ew9amnk9cnsb"
+        }
+      ],
+      "creator": {},
+      "sesionIniciada": true
     }
   ],
   "users": [
-      {
-        "id": 1,
-        "username": "juancgarcia",
-        "password": "JuanC@rcia123",
-        "firstname": "Juan Carlos",
-        "lastname": "García Pérez",
-        "phonenumber": "912345671",
-        "email": "juancgarcia@example.com",
-        "usertype": "Alumno",
-        "membership": {
-          "id": 101,
-          "activatete": true,
-          "membertype": "Básico"
-        }
-      },
-      {
-        "id": 2,
-        "username": "mariaplopez",
-        "password": "MariaL0pez!",
-        "firstname": "María Paula",
-        "lastname": "López Sánchez",
-        "phonenumber": "912345672",
-        "email": "mariaplopez@example.com",
-        "usertype": "Profesor",
-        "membership": {
-          "id": 102,
-          "activate": false,
-          "membertype": "Premium"
-        }
-      },
-      {
-        "id": 3,
-        "username": "luismartinez",
-        "password": "Lui$Martinez",
-        "firstname": "Luis Alberto",
-        "lastname": "Martínez González",
-        "phonenumber": "912345673",
-        "email": "luismartinez@example.com",
-        "usertype": "Alumno",
-        "membership": {
-          "id": 103,
-          "activate": true,
-          "membertype": "Empresarial"
-        }
-      },
-      {
-        "id": 4,
-        "username": "anagomez",
-        "password": "AnaGomez_2023",
-        "firstname": "Ana María",
-        "lastname": "Gómez Rodríguez",
-        "phonenumber": "912345674",
-        "email": "anagomez@example.com",
-        "usertype": "Alumno",
-        "membership": {
-          "id": 104,
-          "activate": true,
-          "membertype": "Premium"
-        }
-      },
-      {
-        "id": 5,
-        "username": "carlosrodriguez",
-        "password": "C@rl0sRodriguez",
-        "firstname": "Carlos Eduardo",
-        "lastname": "Rodríguez Pérez",
-        "phonenumber": "912345675",
-        "email": "carlosrodriguez@example.com",
-        "usertype": "Profesor",
-        "membership": {
-          "id": 105,
-          "activate": false,
-          "membertype": "Básico"
-        }
-      },
-      {
-        "id": 6,
-        "username": "laurahernandez",
-        "password": "L@uraH3rnandez",
-        "firstname": "Laura Sofía",
-        "lastname": "Hernández Ramírez",
-        "phonenumber": "912345676",
-        "email": "laurahernandez@example.com",
-        "usertype": "Alumno",
-        "membership": {
-          "id": 106,
-          "activate": true,
-          "membertype": "Empresarial"
-        }
-      },
-      {
-        "id": 7,
-        "username": "pedroperez",
-        "password": "P3droPerez!",
-        "firstname": "Pedro José",
-        "lastname": "Pérez López",
-        "phonenumber": "912345677",
-        "email": "pedroperez@example.com",
-        "usertype": "Alumno",
-        "membership": {
-          "id": 107,
-          "activate": false,
-          "membertype": "Premium"
-        }
-      },
-      {
-        "id": 8,
-        "username": "monicafernandez",
-        "password": "M0nicaFernandez",
-        "firstname": "Mónica Isabel",
-        "lastname": "Fernández López",
-        "phonenumber": "912345678",
-        "email": "monicafernandez@example.com",
-        "usertype": "Profesor",
-        "membership": {
-          "id": 108,
-          "activate": true,
-          "membertype": "Básico"
-        }
-      },
-      {
-        "id": 9,
-        "username": "diegosanchez",
-        "password": "DiegoS@nchez12",
-        "firstname": "Diego Andrés",
-        "lastname": "Sánchez Rodríguez",
-        "phonenumber": "912345679",
-        "email": "diegosanchez@example.com",
-        "usertype": "Alumno",
-        "membership": {
-          "id": 109,
-          "activate": true,
-          "membertype": "Empresarial"
-        }
-      },
-      {
-        "id": 10,
-        "username": "carmenmartin",
-        "password": "C@rmenMart1n",
-        "firstname": "Carmen Rosa",
-        "lastname": "Martín González",
-        "phonenumber": "912345680",
-        "email": "carmenmartin@example.com",
-        "usertype": "Alumno",
-        "membership": {
-          "id": 110,
-          "activate": false,
-          "membertype": "Premium"
-        }
-      },
-      {
-        "id": 11,
-        "username": "pablolima",
-        "password": "P@bloLima456",
-        "firstname": "Pablo Andrés",
-        "lastname": "Lima García",
-        "phonenumber": "912345681",
-        "email": "pablolima@example.com",
-        "usertype": "Profesor",
-        "membership": {
-          "id": 111,
-          "activate": true,
-          "membertype": "Básico"
-        }
-      },
-      {
-        "id": 12,
-        "username": "juliaramirez",
-        "password": "JuliaR@mirez",
-        "firstname": "Julia María",
-        "lastname": "Ramírez Pérez",
-        "phonenumber": "912345682",
-        "email": "juliaramirez@example.com",
-        "usertype": "Alumno",
-        "membership": {
-          "id": 112,
-          "activate": true,
-          "membertype": "Empresarial"
-        }
-      },
-      {
-        "id": 13,
-        "username": "robertogutierrez",
-        "password": "Rob3rtoGuti3rrez",
-        "firstname": "Roberto Carlos",
-        "lastname": "Gutiérrez Rodríguez",
-        "phonenumber": "912345683",
-        "email": "robertogutierrez@example.com",
-        "usertype": "Alumno",
-        "membership": {
-          "id": 113,
-          "activate": true,
-          "membertype": "Básico"
-        }
-      },
-      {
-        "id": 14,
-        "username": "luciafernandez",
-        "password": "L@c1aFernandez",
-        "firstname": "Lucía Fernanda",
-        "lastname": "Fernández Pérez",
-        "phonenumber": "912345684",
-        "email": "luciafernandez@example.com",
-        "usertype": "Profesor",
-        "membership": {
-          "id": 114,
-          "activate": false,
-          "membertype": "Premium"
-        }
-      },
-      {
-        "id": 15,
-        "username": "sergioortiz",
-        "password": "S3rgioOrtiz!",
-        "firstname": "Sergio Alberto",
-        "lastname": "Ortiz Ramírez",
-        "phonenumber": "912345685",
-        "email": "sergioortiz@example.com",
-        "usertype": "Alumno",
-        "membership": {
-          "id": 115,
-          "activate": true,
-          "membertype": "Empresarial"
-        }
-      }
+    {
+      "id": "lxr7e98ivn30ls0wfw",
+      "username": "adrian",
+      "password": "lxr7e98ivn30ls0wfw",
+      "firstname": "",
+      "lastname": "",
+      "phonenumber": "",
+      "email": "",
+      "usertype": "Alumno",
+      "membership": ""
+    },
+    {
+      "id": "lxr7oxvn41sbrij3ey",
+      "username": "Erick",
+      "password": "lxr7oxvn41sbrij3ey",
+      "firstname": "",
+      "lastname": "",
+      "phonenumber": "",
+      "email": "",
+      "usertype": "Alumno",
+      "membership": ""
+    },
+    {
+      "id": "lxr7q0a88fl8ang4a5",
+      "username": "Erick",
+      "password": "lxr7q0a88fl8ang4a5",
+      "firstname": "",
+      "lastname": "",
+      "phonenumber": "",
+      "email": "",
+      "usertype": "Alumno",
+      "membership": ""
+    },
+    {
+      "id": "lxr7s1ew9amnk9cnsb",
+      "username": "eeee",
+      "password": "lxr7s1ew9amnk9cnsb",
+      "firstname": "",
+      "lastname": "",
+      "phonenumber": "",
+      "email": "",
+      "usertype": "Alumno",
+      "membership": ""
+    }
   ],
   "Profesores": [],
   "Alumnos": []

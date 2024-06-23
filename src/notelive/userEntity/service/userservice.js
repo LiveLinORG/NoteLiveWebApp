@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {obtenerIdDelPinPorPin, obtenerPinPorId} from '../../services/pinService.';
 import {User} from "@/notelive/userEntity/models/user.entity";
+import {iduser} from "../../../../router/router";
 
 export async function getUserInfoWR(id) {
     try {
@@ -11,8 +12,8 @@ export async function getUserInfoWR(id) {
     }
 }
 
-const BASE_URL = 'https://66355711415f4e1a5e244cb2.mockapi.io';
-
+//const BASE_URL = 'https://66355711415f4e1a5e244cb2.mockapi.io';
+const BASE_URL = 'http://190.239.59.223:3000';
 function generateUniqueId() {
     const randomId = Math.random().toString(36).substr(2, 10);
     const timestamp = Date.now().toString(36);
@@ -23,7 +24,7 @@ export async function createTempUser(username, rol) {
     try {
         const password = generateUniqueId();
         const tempUser = new User(
-            '',
+            password,
             username,
             password,
             '',
@@ -35,6 +36,7 @@ export async function createTempUser(username, rol) {
         );
 
         await axios.post(`${BASE_URL}/users`, tempUser);
+        iduser.value=password;
         return password;
     } catch (error) {
         console.error('Error al crear usuario temporal:', error.message);

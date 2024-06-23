@@ -15,10 +15,10 @@ export default{
     <p class="text-left">Correo electrónico:</p>
     <input type="text" class="input-container"  placeholder="Ingresa tu correo electrónico">
     <p class="text-left">Contraseña:</p>
-    <input type="text" class="input-container"  placeholder="Ingresa tu contraseña">
+    <input type="text" class="input-container"  placeholder="Ingresa tu contraseña" >
     <div class="button-container">
       <router-link to='/login'>
-        <button class="button-register">Registrarse</button>
+        <button  class="button-register">Registrarse</button>
       </router-link>
     </div>
   </div>

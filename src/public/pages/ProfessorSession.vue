@@ -1,42 +1,51 @@
-<script>
-import { onMounted } from 'vue';
-import TheChat from "@/shared/components/TheChat.vue";
-import PreguntaCard from "@/shared/components/PreguntaCard.vue";
-import mitt from 'mitt';
-const emitter = mitt();
-
-export default {
-  name: "professorSession",
-  title: "Professor Session",
-  components: { PreguntaCard, TheChat },
-  setup() {
-    onMounted(() => {
-      emitter.on('socket-ready', socket => {
-        emitter.emit('student-socket-ready', socket);
-      });
-    });
-  }
-
-}
-</script>
-
 <template>
   <section class="Session-container">
     <section class="Chat-container">
-      <TheChat></TheChat>
+      <TheChat :roomId="roomId" :userId="userId"></TheChat>
     </section>
     <section class="diaposity-container">
-      <section class="ppt">
-
+      <section class="ppt"></section>
+      <section class="question-sender">
+        <input type="text" class="question-placehold" placeholder="Ingresa una pregunta para el profesor..." />
+        <button class="send-svg"></button>
       </section>
     </section>
     <section class="questions-container">
       <PreguntaCard pregunta="¿Cómo afecta la inmutabilidad en .NET a la concurrencia en aplicaciones multi-hilo?" nombre="Carlos Sánchez"></PreguntaCard>
-
     </section>
   </section>
 </template>
 
+<script>
+import {onMounted, ref} from 'vue';
+import TheChat from "@/shared/components/TheChat.vue";
+import PreguntaCard from "@/shared/components/PreguntaCard.vue";
+import {modificarSesionIniciadaDelPin} from "@/notelive/services/pinService.";
+import {iduser, pinvalue} from "../../../router/router";
+
+
+export default {
+  name: "ProfessorSession",
+  components: { PreguntaCard, TheChat },
+   setup() {
+    // Emit socket event
+     const pin =pinvalue.value;
+     const roomId = ref('');
+     const userId = ref('');
+    onMounted(() => {
+      roomId.value = pinvalue.value; // Asigna el valor del pinvalue a roomId
+      userId.value = iduser.value; // Aquí debes obtener el userId del usuario actual, asegúrate de tener esta lógica implementada
+
+      modificarSesionIniciadaDelPin(pin);
+    });
+
+    return {
+      roomId,
+      userId,
+    };
+  }
+};
+</script>
 <style scoped>
 .Session-container {
   height: 80vh;

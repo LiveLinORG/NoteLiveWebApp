@@ -2,6 +2,7 @@
 import OrangeCard from "@/shared/components/OrangeCard.vue";
 import {getUserInfoWR, getUsersInWaitingRoom} from "@/notelive/userEntity/service/userservice";
 import {pinvalue} from "../../../../router/router";
+import {verificarSesionIniciada} from "@/notelive/services/pinService.";
 
 
 export default {
@@ -49,7 +50,10 @@ export default {
 
         console.log('Resultado previsto:', userInfoArray);
         this.users = userInfoArray;
+        if (await verificarSesionIniciada(this.pin)===true) {
+          this.$router.push('/studentSession');
 
+        }
       } catch (error) {
         console.error('Error obteniendo usuarios en la sala de espera:', error.message);
         this.users = [];

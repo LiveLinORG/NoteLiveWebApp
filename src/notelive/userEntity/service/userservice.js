@@ -13,7 +13,7 @@ export async function getUserInfoWR(id) {
 }
 
 //const BASE_URL = 'https://66355711415f4e1a5e244cb2.mockapi.io';
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'http://190.239.59.223:3000';
 function generateUniqueId() {
     const randomId = Math.random().toString(36).substr(2, 10);
     const timestamp = Date.now().toString(36);

@@ -55,22 +55,12 @@ export default {
     },
   },
   async mounted() {
-    /*
-
-        if (typeof this.roomId === 'undefined') {
-      this.roomId = await obtenerIdDelPinPorPin(pinvalue.value);
-    }
-    if (typeof this.roomId === 'undefined') {
-      this.userId = iduser.value.toString();
-    }
-
-     */
 
 console.log("datos:::");
 
     console.log(this.roomId, this.userId, this.newMessage);
     this.connection = new signalR.HubConnectionBuilder()
-        .withUrl("https://localhost:44353/chatHub")
+        .withUrl("http://190.239.59.223:44353/chatHub")
         .build();
 
     this.connection.on("ReceiveMessage", (userId, message) => {

@@ -11,7 +11,11 @@
       </div>
     </div>
     <div class="sendMessage">
-      <input v-model="newMessage" placeholder="Escribe aquí..." />
+      <input
+          v-model="newMessage"
+          placeholder="Escribe aquí..."
+          @keydown.enter="sendMessage"
+      />
       <button @click="sendMessage">Enviar</button>
     </div>
   </div>

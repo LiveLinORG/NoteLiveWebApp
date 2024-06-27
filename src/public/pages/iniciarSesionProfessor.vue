@@ -1,4 +1,16 @@
+<template>
+  <section class="global">
+    <div class="ingresar-section">
+      <input type="text" class="placeholder" v-model="inputName" placeholder="Ingrese su nombre">
+      <button class="botoncito" @click="createRoom">Crear Sala</button>
+    </div>
+  </section>
+</template>
+
 <script>
+import {createTEMPUser} from "@/notelive/userEntity/service/userservice";
+import {username} from "../../../router/router";
+
 export default {
   name: "createSession",
   data() {
@@ -8,22 +20,26 @@ export default {
         { label: 'SalaDeEspera', to: '/salaCreada' },
       ]
     };
+  },
+  methods: {
+    async createRoom() {
+      try {
+        username.value=this.inputName;
+        await createTEMPUser({
+          username: this.inputName,
+          password: 'temporal',
+          name: 'temporal',
+          lastName: 'temporal',
+          correo: 'temporal',
+        });
+        this.$router.push('/salaCreada');
+      } catch (error) {
+        console.error('Error al crear la sala:', error);
+      }
+    },
   }
 };
 </script>
-
-
-
-<template>
-  <section class="global">
-    <div class="ingresar-section">
-      <input type="text" class="placeholder" v-model="inputName"  placeholder="Ingrese su nombre">
-      <router-link v-for="item in items" :key="item.label" v-slot="{navigate, href}" :to="item.to" custom>
-        <button :href="href" class="botoncito" @click="navigate">Crear Sala</button>
-      </router-link>
-    </div>
-  </section>
-</template>
 
 
 <style scoped>

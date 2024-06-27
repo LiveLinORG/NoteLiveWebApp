@@ -1,12 +1,17 @@
 <script>
+import { username } from "../../../../router/router";
+
 export default {
   name: "elMensaje",
+  computed: {
+    username() {
+      return username
+    }
+  },
   props: {
-    nombre: String,
     texto: String
   }
 }
-
 </script>
 
 <template>
@@ -22,7 +27,7 @@ export default {
 	</g>
 </g>
 </svg>
-    <h4>{{ nombre }}</h4>
+    <h4>{{ username.value }}</h4>
   </div>
   <div class="message">
     <p>{{ texto }}</p>

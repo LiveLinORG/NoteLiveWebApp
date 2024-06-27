@@ -3,12 +3,13 @@
     <section class="Chat-container">
       <TheChat :roomId="roomId" :userId="userId"></TheChat>
     </section>
-    <section class="diaposity-container">
-      <section class="ppt"></section>
-      <section class="question-sender">
-        <input type="text" class="question-placehold" placeholder="Ingresa una pregunta para el profesor..." />
-        <button class="send-svg"></button>
-      </section>
+    <section class="pdf-container">
+      <div class="diaposity-container">
+        <button class="nav-button" @click="downloadPDF">Descargar PDF</button>
+        <PdfViewer :roomId="roomId" :userId="userId" :isProfessor="true"></PdfViewer>
+
+      </div>
+
     </section>
     <section class="questions-container">
       <PreguntaCard pregunta="¿Cómo afecta la inmutabilidad en .NET a la concurrencia en aplicaciones multi-hilo?" nombre="Carlos Sánchez"></PreguntaCard>
@@ -17,121 +18,144 @@
 </template>
 
 <script>
-import {onMounted, ref} from 'vue';
+import { onMounted, ref } from 'vue';
+import { modificarSesionIniciadaDelPin } from "@/notelive/services/pinService.";
+import { iduser, pinvalue } from "../../../router/router";
 import TheChat from "@/shared/components/TheChat.vue";
 import PreguntaCard from "@/shared/components/PreguntaCard.vue";
-import {modificarSesionIniciadaDelPin} from "@/notelive/services/pinService.";
-import {iduser, pinvalue} from "../../../router/router";
-
+import PdfViewer from "@/shared/components/PdfViewer.vue";
 
 export default {
   name: "ProfessorSession",
-  components: { PreguntaCard, TheChat },
-   setup() {
-    // Emit socket event
-     const pin =pinvalue.value;
-     const roomId = ref('');
-     const userId = ref('');
-    onMounted(() => {
-      roomId.value = pinvalue.value; // Asigna el valor del pinvalue a roomId
-      userId.value = iduser.value; // Aquí debes obtener el userId del usuario actual, asegúrate de tener esta lógica implementada
+  components: {PdfViewer, TheChat, PreguntaCard },
+  setup() {
+    const pin = pinvalue.value;
+    const roomId = ref('');
+    const userId = ref('');
+    const roomIdForChat=ref('');
+    const pdfBlobUrl = ref('');
+    const loadSession = async () => {
+      roomId.value = localStorage.getItem('roomId');
+      userId.value = iduser.value;
+      roomIdForChat.value=pinvalue.value;
+      try {
+        await modificarSesionIniciadaDelPin(pin);
+      } catch (error) {
+        console.error('Error modifying session:', error);
+      }
+    };
 
-      modificarSesionIniciadaDelPin(pin);
+    const downloadPDF = () => {
+      const link = document.createElement('a');
+      link.href = pdfBlobUrl.value;
+      link.download = 'document.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    };
+
+    onMounted(() => {
+      loadSession();
     });
 
     return {
       roomId,
       userId,
+      roomIdForChat,
+      downloadPDF,
     };
-  }
+  },
 };
 </script>
 <style scoped>
+.pdf-viewer {
+  width: 80%;
+  height: 90%;
+  overflow: auto;
+}
 .Session-container {
   height: 80vh;
-  padding:5vh;
+  padding: 5vh;
   display: grid;
   grid-template-columns: 0.5fr 2fr 0.5fr;
   grid-template-rows: auto;
-  grid-gap:10vh;
+  grid-gap: 10vh;
 }
 .Chat-container {
   grid-column: 1 / 2;
   height: 90%;
-
 }
 .diaposity-container {
   grid-column: 2 / 3;
   height: 95%;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  padding:0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
   justify-content: flex-start;
-}
-.ppt{
-  width:100%;
-  height:90%;
-  background-color:red;
-}
-.question-sender{
-  height:20%;
-  width:100%;
-  display:flex;
-  flex-direction:row;
-  align-items:center;
-  justify-content:center;
-  gap:3vw;
-}
-.question-placehold{
-  border:none;
-  width:60%;
-  height:40%;
-  border-radius:1.1vh;
-  transition: transform 0.3s ease;
-  font-size: 1em;
-  padding-left: 4vh;
-
-}
-.question-placehold:hover{
-  transform: scale(1.05);
-}
-.question-placehold:active{
-  transition: transform 0.5s ease;
-  transform: translateY(-5%);
 }
 .question-placehold input::placeholder {
   font-size: 1em;
-
 }
-
-
 .question-placehold input:focus {
   font-size: 1em;
 }
-.send-svg{
-  border:none;
-  border-radius:1.1vh;
-  background-color:#DF711B;
-  width:13%;
-  height:40%;
-  transition: transform 0.3s ease;
+.questions-container {
+  grid-column: 3 / 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 3vh;
+  padding: 1vh;
 }
-.send-svg:hover {
+.pdf-viewer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pdf-viewer img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.question-sender {
+  height: 20%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 3vw;
+}
+
+.nav-button {
+  border: none;
+  border-radius: 1.1vh;
+  background-color: rgba(223, 113, 27, 0.96);
+  width: 15%;
+  height: 5%;
+  transition: transform 0.3s ease;
+  font-size: 1em;
+  cursor: pointer;
+  position:absolute;
+}
+
+.nav-button:hover {
   transform: scale(1.1);
 }
-.send-svg:active {
+
+.nav-button:active {
   transition: transform 0.5s ease;
   transform: translateY(-5%);
 }
-.questions-container {
-  grid-column: 3 / 4;
-  display:flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items:center;
-  gap:3vh;
-  padding:1vh;
-}
 
+.nav-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
 </style>

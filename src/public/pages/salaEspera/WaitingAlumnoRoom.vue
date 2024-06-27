@@ -23,7 +23,7 @@ export default {
   mounted() {
     console.log("Estás en el WaitingAlumnoRoom");
     this.fetchUsersMetadata(); // Llamada inicial
-    this.interval = setInterval(this.fetchUsersMetadata, 10000); // Llamada cada 10 segundos
+    this.interval = setInterval(this.fetchUsersMetadata, 6000); // Llamada cada 10 segundos
   },
   beforeUnmount() {
 
@@ -33,7 +33,7 @@ export default {
     async fetchUsersMetadata() {
       console.log(pinvalue.value)
 
-      this.pin=pinvalue;
+      this.pin=pinvalue.value;
       console.log(pinvalue.value)
 
       console.log('pin actual: ',this.pin)

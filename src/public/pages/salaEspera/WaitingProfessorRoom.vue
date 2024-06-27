@@ -2,7 +2,8 @@
 import { getUsersInWaitingRoom, getUserInfoWR } from '@/notelive/userEntity/service/userservice';
 import { enviarPinAlServicio, generarPinAleatorio } from "@/notelive/services/pinService.";
 import OrangeCard from "@/shared/components/OrangeCard.vue";
-import {pinvalue} from "../../../../router/router";
+import { pinvalue, username } from "../../../../router/router";
+import { createRoom, getUserByUsername, getRoomById, uploadpdf } from "@/notelive/services/bdservice";
 
 export default {
   name: "waitingTeacher",
@@ -14,9 +15,11 @@ export default {
       text2: "Participantes",
       number: '',
       text3: "",
-      items: [{label: 'ProfessorSession', to: '/professorSession'}],
+      items: [{ label: 'ProfessorSession', to: '/professorSession' }],
       users: [],
-      interval: null
+      interval: null,
+      pdfBytes: null,
+      fileName: ''
     };
   },
   mounted() {
@@ -55,17 +58,68 @@ export default {
     },
 
     async empezarSesionAndNavigate(navigate) {
-      navigate();
+      try {
+        const userdata = await getUserByUsername(username.value);
+        const response = await createRoom({ name: this.pin, professorId: userdata.id });
+
+        console.log("roomid:");
+        console.log(response.id);
+        localStorage.setItem('roomId', response.id);
+
+        if (await getRoomById(response.id)) {
+          console.log("PDF:");
+
+          const formData = new FormData();
+          formData.append('Content', new Blob([this.pdfBytes], { type: 'application/pdf' }));
+
+          const resultPDF = await uploadpdf(response.id, formData);
+          if (resultPDF) {
+            navigate();
+          }
+          console.log('PDF uploaded successfully:', resultPDF);
+        } else {
+          console.error('Error al crear la sala:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error al crear la sala:', error.message);
+      }
     },
+
     async empezarSesion(pin1) {
       await enviarPinAlServicio(pin1);
     },
     generarPinAleatorio() {
       let valor = generarPinAleatorio();
       this.pin = valor;
-      pinvalue.value=this.pin;
+      pinvalue.value = this.pin;
       this.empezarSesion(this.pin);
     },
+    handleDrop(event) {
+      event.preventDefault();
+      const files = event.dataTransfer.files;
+      if (files.length > 0) {
+        this.readFile(files[0]);
+      }
+    },
+    handleDragOver(event) {
+      event.preventDefault();
+    },
+    handleFileChange(event) {
+      const files = event.target.files;
+      if (files.length > 0) {
+        this.readFile(files[0]);
+      }
+    },
+    readFile(file) {
+      this.fileName = file.name;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const arrayBuffer = e.target.result;
+        this.pdfBytes = new Uint8Array(arrayBuffer);
+        console.log(this.pdfBytes);
+      };
+      reader.readAsArrayBuffer(file);
+    }
   }
 };
 </script>
@@ -74,15 +128,31 @@ export default {
   <section class="global">
     <section class="crear-session">
       <OrangeCard class="card" :text="text" :pin="pin"></OrangeCard>
-      <div class="icono-subir">
+      <div
+          class="icono-subir"
+          @drop="handleDrop"
+          @dragover="handleDragOver"
+          @click="$refs.fileInput.click()"
+      >
         <div class="imagen">
-          <img class="subir-archivoimg" src="../../../assets/subir-archivo.png">
+          <template v-if="!fileName">
+            <img class="subir-archivoimg" src="../../../assets/subir-archivo.png">
+          </template>
+          <template v-else>
+            <span>{{ fileName }}</span>
+          </template>
         </div>
+        <input
+            type="file"
+            ref="fileInput"
+            @change="handleFileChange"
+            style="display: none;"
+        />
       </div>
       <OrangeCard class="card2" :text="text2" :pin="number"></OrangeCard>
     </section>
     <section class="crear-session2">
-      <router-link v-for="item in items" :key="item.label" v-slot="{navigate, href}" :to="item.to" custom>
+      <router-link v-for="item in items" :key="item.label" v-slot="{ navigate, href }" :to="item.to" custom>
         <button :href="href" class="boton" @click="empezarSesionAndNavigate(navigate)">Empezar</button>
       </router-link>
       <ul class="lista">

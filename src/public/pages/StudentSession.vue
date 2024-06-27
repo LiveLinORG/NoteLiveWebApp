@@ -22,10 +22,9 @@
 import TheChat from "@/shared/components/TheChat.vue";
 import PreguntaCard from "@/shared/components/PreguntaCard.vue";
 import { onMounted, ref } from 'vue';
-import { pinvalue } from "../../../router/router";
+import {isProfessor, pinvalue} from "../../../router/router";
 import {modificarSesionIniciadaDelPin} from "@/notelive/services/pinService.";
 import PdfViewer from "@/shared/components/PdfViewer.vue";
-import {getRoomByName} from "@/notelive/services/bdservice";
 
 export default {
   name: "ProfessorSession",
@@ -41,13 +40,18 @@ export default {
       console.log(localStorage.getItem('nameROOMBD'));
 
       console.log(localStorage.getItem('nameROOMBD'));
+      isProfessor.value=false;
+      console.log('VALOR DE SI ES PROFESSOR O NO',isProfessor.value)
+      console.log('VALOR DE SI ES PROFESSOR O NO',isProfessor.value)
+      console.log('VALOR DE SI ES PROFESSOR O NO',isProfessor.value)
+      console.log('VALOR DE SI ES PROFESSOR O NO',isProfessor.value)
+      console.log('VALOR DE SI ES PROFESSOR O NO',isProfessor.value)
+      console.log('VALOR DE SI ES PROFESSOR O NO',isProfessor.value)
+      console.log('VALOR DE SI ES PROFESSOR O NO',isProfessor.value)
+      console.log('VALOR DE SI ES PROFESSOR O NO',isProfessor.value)
 
-
-      const roomdata= await getRoomByName(localStorage.getItem('pinSTUDENT'));
-      roomId.value = roomdata.id;
-      roomIdForChat.value = pinvalue.value
-      userId.value = localStorage.getItem('usernameSTUDENT')
-
+      roomId.value = localStorage.getItem('roomId');
+      userId.value = localStorage.getItem('usernameSTUDENT');
       // Modificar la sesión iniciada del pin
       await modificarSesionIniciadaDelPin(pinvalue.value);
     });

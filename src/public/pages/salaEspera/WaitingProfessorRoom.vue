@@ -65,7 +65,7 @@ export default {
         console.log("roomid:");
         console.log(response.id);
         localStorage.setItem('roomIdPROFESSOR', response.id);
-
+        localStorage.setItem('roomId',response.id);
         if (await getRoomById(response.id)) {
           console.log("PDF:");
 

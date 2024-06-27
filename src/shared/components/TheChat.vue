@@ -56,11 +56,11 @@ export default {
   },
   async mounted() {
 
-console.log("datos:::");
+    console.log("datos:::");
 
     console.log(this.roomId, this.userId, this.newMessage);
     this.connection = new signalR.HubConnectionBuilder()
-        .withUrl("http://190.239.59.223:44353/chatHub")
+        .withUrl("http://190.239.59.168:44353/chatHub")
         .build();
 
     this.connection.on("ReceiveMessage", (userId, message) => {

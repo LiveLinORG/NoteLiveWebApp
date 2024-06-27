@@ -3,7 +3,7 @@ import OrangeCard from "@/shared/components/OrangeCard.vue";
 import {getUserInfoWR, getUsersInWaitingRoom} from "@/notelive/userEntity/service/userservice";
 import {pinvalue} from "../../../../router/router";
 import {verificarSesionIniciada} from "@/notelive/services/pinService.";
-
+import {createTEMPUserJoin} from "@/notelive/userEntity/service/userservice";
 
 export default {
   name: "waitingStudent",
@@ -23,7 +23,7 @@ export default {
   mounted() {
     console.log("Estás en el WaitingAlumnoRoom");
     this.fetchUsersMetadata(); // Llamada inicial
-    this.interval = setInterval(this.fetchUsersMetadata, 10000); // Llamada cada 10 segundos
+    this.interval = setInterval(this.fetchUsersMetadata, 6000); // Llamada cada 10 segundos
   },
   beforeUnmount() {
 
@@ -33,7 +33,7 @@ export default {
     async fetchUsersMetadata() {
       console.log(pinvalue.value)
 
-      this.pin=pinvalue;
+      this.pin=pinvalue.value;
       console.log(pinvalue.value)
 
       console.log('pin actual: ',this.pin)
@@ -51,6 +51,9 @@ export default {
         console.log('Resultado previsto:', userInfoArray);
         this.users = userInfoArray;
         if (await verificarSesionIniciada(this.pin)===true) {
+          //ACÁ CREARÁS USUARIOS PARA LE SESION ACTIVA
+          localStorage.setItem('pinSTUDENT',this.pin);
+          await createTEMPUserJoin(localStorage.getItem('usernameSTUDENT'));
           this.$router.push('/studentSession');
 
         }

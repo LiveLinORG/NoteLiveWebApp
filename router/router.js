@@ -73,6 +73,7 @@ export const isLogged = ref(false);
 export const usernameinput = ref(String);
 export const pinvalue = ref(String);
 export const iduser = ref(String);
+export const username = ref(String);
 
 export default router;
 

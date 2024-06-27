@@ -1,3 +1,4 @@
+
 {
   "pins": [
     {
@@ -10,79 +11,19 @@
       ],
       "creator": {},
       "sesionIniciada": true
-    },
-    {
-      "id": "2f088813-da1f-436b-a736-595951a59677",
-      "pins": "6206",
-      "usersID": [
-        {
-          "id": "lxr7oxvn41sbrij3ey"
-        },
-        {
-          "id": "lxr7q0a88fl8ang4a5"
-        }
-      ],
-      "creator": {},
-      "sesionIniciada": true
-    },
-    {
-      "id": "dfca4d7e-2bfe-4d7a-920b-7b80212e2af8",
-      "pins": "6847",
-      "usersID": [
-        {
-          "id": "lxr7s1ew9amnk9cnsb"
-        }
-      ],
-      "creator": {},
-      "sesionIniciada": true
     }
   ],
-  "users": [
-    {
-      "id": "lxr7e98ivn30ls0wfw",
-      "username": "adrian",
-      "password": "lxr7e98ivn30ls0wfw",
-      "firstname": "",
-      "lastname": "",
-      "phonenumber": "",
-      "email": "",
-      "usertype": "Alumno",
-      "membership": ""
-    },
-    {
-      "id": "lxr7oxvn41sbrij3ey",
-      "username": "Erick",
-      "password": "lxr7oxvn41sbrij3ey",
-      "firstname": "",
-      "lastname": "",
-      "phonenumber": "",
-      "email": "",
-      "usertype": "Alumno",
-      "membership": ""
-    },
-    {
-      "id": "lxr7q0a88fl8ang4a5",
-      "username": "Erick",
-      "password": "lxr7q0a88fl8ang4a5",
-      "firstname": "",
-      "lastname": "",
-      "phonenumber": "",
-      "email": "",
-      "usertype": "Alumno",
-      "membership": ""
-    },
-    {
-      "id": "lxr7s1ew9amnk9cnsb",
-      "username": "eeee",
-      "password": "lxr7s1ew9amnk9cnsb",
-      "firstname": "",
-      "lastname": "",
-      "phonenumber": "",
-      "email": "",
-      "usertype": "Alumno",
-      "membership": ""
-    }
-  ],
-  "Profesores": [],
-  "Alumnos": []
+    "users": [
+      {
+        "id": "lxr7s1ew9amnk9cnsb",
+        "username": "eeee",
+        "password": "lxr7s1ew9amnk9cnsb",
+        "firstname": "",
+        "lastname": "",
+        "phonenumber": "",
+        "email": "",
+        "usertype": "Alumno",
+        "membership": ""
+      }
+    ]
 }

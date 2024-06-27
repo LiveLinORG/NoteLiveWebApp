@@ -23,6 +23,8 @@ export default {
         if (!pinEncontrado) {
           console.log('El PIN no existe.');
         } else {
+          localStorage.setItem('usernameSTUDENT',this.inputName);
+          localStorage.setItem('nameROOMBD',inputPin);
           navigate();
         }
       } catch (error) {
@@ -35,6 +37,7 @@ export default {
       usernameinput.value=this.inputName;
       pinvalue.value=document.getElementById('pin').value;
       console.log(pinvalue.value)
+      localStorage.setItem('username',this.inputName);
     }
   }
 

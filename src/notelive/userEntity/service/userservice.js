@@ -2,6 +2,9 @@ import axios from 'axios';
 import {obtenerIdDelPinPorPin, obtenerPinPorId} from '../../services/pinService.';
 import {User} from "@/notelive/userEntity/models/user.entity";
 import {iduser} from "../../../../router/router";
+const BASE_URL = 'http://190.239.59.168:3000';
+const BASEDATABASE_URL = 'http://190.239.59.168:44353';
+//const BASEDATABASE_URLAPI = 'http://190.239.59.168:44353api/v1/';
 
 export async function getUserInfoWR(id) {
     try {
@@ -12,8 +15,6 @@ export async function getUserInfoWR(id) {
     }
 }
 
-//const BASE_URL = 'https://66355711415f4e1a5e244cb2.mockapi.io';
-const BASE_URL = 'http://190.239.59.223:3000';
 function generateUniqueId() {
     const randomId = Math.random().toString(36).substr(2, 10);
     const timestamp = Date.now().toString(36);
@@ -68,7 +69,62 @@ function isProfessor(userData) {
 }
 
 export { getUserInfo, isProfessor };
+export async function createTEMPUser(userData) {
+    const url = `${BASEDATABASE_URL}/sign-up`;
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: userData.username,
+                password: userData.password,
+                role: 'Profesor',
+                name: userData.name,
+                lastName: userData.lastName,
+                correo: userData.correo,
+            }),
+        });
 
+        if (!response.ok) {
+            throw new Error('Error al crear el usuario');
+        }
+
+        return response.json();
+    } catch (error) {
+        console.error('Error al crear el usuario:', error);
+        throw error;
+    }
+}
+export async function createTEMPUserJoin(userData) {
+    const url = `${BASEDATABASE_URL}/sign-up`;
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: userData,
+                password: userData,
+                role: 'Alumno',
+                name: userData,
+                lastName: userData,
+                correo: userData,
+            }),
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al crear el usuario');
+        }
+
+        return response.json();
+    } catch (error) {
+        console.error('Error al crear el usuario:', error);
+        throw error;
+    }
+}
 export async function getUsersInWaitingRoom(PIN) {
     try {
         const pinID = await obtenerIdDelPinPorPin(PIN);

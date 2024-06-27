@@ -4,10 +4,12 @@
       <TheChat :roomId="roomId" :userId="userId"></TheChat>
     </section>
     <section class="diaposity-container">
-      <section class="ppt"></section>
+      <section class="pdf-container">
+        <PdfViewer :roomId="roomId" :userId="userId" :isProfessor="false"></PdfViewer>
+      </section>
       <section class="question-sender">
         <input type="text" class="question-placehold" placeholder="Ingresa una pregunta para el profesor..." />
-        <button class="send-svg"></button>
+        <button class="send-svg">Enviar</button>
       </section>
     </section>
     <section class="questions-container">
@@ -20,27 +22,40 @@
 import TheChat from "@/shared/components/TheChat.vue";
 import PreguntaCard from "@/shared/components/PreguntaCard.vue";
 import { onMounted, ref } from 'vue';
-import { iduser, pinvalue } from "../../../router/router";
+import { pinvalue } from "../../../router/router";
 import {modificarSesionIniciadaDelPin} from "@/notelive/services/pinService.";
+import PdfViewer from "@/shared/components/PdfViewer.vue";
+import {getRoomByName} from "@/notelive/services/bdservice";
 
 export default {
   name: "ProfessorSession",
-  components: { PreguntaCard, TheChat },
+  components: {PdfViewer, PreguntaCard, TheChat },
   setup() {
     const roomId = ref('');
     const userId = ref('');
+    const roomIdForChat = ref('');
+    onMounted(async () => {
+      console.log(localStorage.getItem('nameROOMBD'));
+      console.log(localStorage.getItem('nameROOMBD'));
 
-    onMounted(() => {
-      roomId.value = pinvalue.value; // Asigna el valor del pinvalue a roomId
-      userId.value = iduser.value; // Aquí debes obtener el userId del usuario actual, asegúrate de tener esta lógica implementada
+      console.log(localStorage.getItem('nameROOMBD'));
+
+      console.log(localStorage.getItem('nameROOMBD'));
+
+
+      const roomdata= await getRoomByName(localStorage.getItem('pinSTUDENT'));
+      roomId.value = roomdata.id;
+      roomIdForChat.value = pinvalue.value
+      userId.value = localStorage.getItem('usernameSTUDENT')
 
       // Modificar la sesión iniciada del pin
-      modificarSesionIniciadaDelPin(pinvalue.value);
+      await modificarSesionIniciadaDelPin(pinvalue.value);
     });
 
     return {
       roomId,
       userId,
+      roomIdForChat
     };
   },
 };
@@ -142,4 +157,9 @@ export default {
   gap: 3vh;
   padding: 1vh;
 }
+.pdf-container{
+  height: 90%;
+  width: 75%;
+}
+
 </style>

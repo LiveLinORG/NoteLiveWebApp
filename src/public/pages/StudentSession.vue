@@ -25,6 +25,7 @@ import { onMounted, ref } from 'vue';
 import { pinvalue } from "../../../router/router";
 import {modificarSesionIniciadaDelPin} from "@/notelive/services/pinService.";
 import PdfViewer from "@/shared/components/PdfViewer.vue";
+import {getRoomByName} from "@/notelive/services/bdservice";
 
 export default {
   name: "ProfessorSession",
@@ -33,13 +34,22 @@ export default {
     const roomId = ref('');
     const userId = ref('');
     const roomIdForChat = ref('');
-    onMounted(() => {
-      roomId.value = localStorage.getItem('roomId');
-      roomIdForChat.value=pinvalue.value
-      userId.value = localStorage.getItem('inputName')
+    onMounted(async () => {
+      console.log(localStorage.getItem('nameROOMBD'));
+      console.log(localStorage.getItem('nameROOMBD'));
+
+      console.log(localStorage.getItem('nameROOMBD'));
+
+      console.log(localStorage.getItem('nameROOMBD'));
+
+
+      const roomdata= await getRoomByName(localStorage.getItem('pinSTUDENT'));
+      roomId.value = roomdata.id;
+      roomIdForChat.value = pinvalue.value
+      userId.value = localStorage.getItem('usernameSTUDENT')
 
       // Modificar la sesión iniciada del pin
-      modificarSesionIniciadaDelPin(pinvalue.value);
+      await modificarSesionIniciadaDelPin(pinvalue.value);
     });
 
     return {

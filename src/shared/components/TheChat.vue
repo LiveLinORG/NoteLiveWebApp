@@ -5,6 +5,7 @@
         <el-Mensaje
             v-for="message in messages"
             :key="message.id"
+            :nombre="message.userId"
             :texto="message.content"
         ></el-Mensaje>
       </div>
@@ -19,7 +20,7 @@
 <script>
 import * as signalR from "@microsoft/signalr";
 import ElMensaje from "@/shared/components/ChatHijos/Mensaje.vue";
-import { username } from "../../../router/router";
+
 
 export default {
   name: "TheChat",
@@ -46,10 +47,6 @@ export default {
   methods: {
     sendMessage() {
       if (this.newMessage.trim()) {
-        if (this.messages.length >= 10) {
-          this.messages.shift();
-        }
-
         this.connection
             .invoke("SendMessage", this.roomId, this.userId, this.newMessage)
             .catch((err) => console.error(err));
@@ -58,17 +55,24 @@ export default {
     },
   },
   async mounted() {
+
+    console.log("datos:::");
+
+    console.log(this.roomId, this.userId, this.newMessage);
     this.connection = new signalR.HubConnectionBuilder()
         .withUrl("http://190.239.59.168:44353/chatHub")
         .build();
 
-    this.connection.on("ReceiveMessage", async (userId, message) => {
-      console.log("Message received: ", { userId, message });
-      this.messages.push({ userId, content: message, username });
+    this.connection.on("ReceiveMessage", (userId, message) => {
+      console.log("Message received: ", {userId, message});
+      this.messages.push({userId, content: message});
+    });
 
-      if (this.messages.length > 6) {
-        this.messages.shift(); // Elimina el primer mensaje si hay más de 6
-      }
+    this.connection.on("RemoveMessage", (userId, message) => {
+      console.log("Message removed: ", {userId, message});
+      this.messages = this.messages.filter(
+          (m) => !(m.userId === userId && m.content === message)
+      );
     });
 
     this.connection
@@ -82,7 +86,7 @@ export default {
         .catch((err) => {
           console.error("Error starting connection: ", err);
         });
-  },
+  }, // Aquí cierra la función mounted correctamente
 };
 </script>
 

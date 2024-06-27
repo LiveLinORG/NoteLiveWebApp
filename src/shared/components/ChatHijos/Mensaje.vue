@@ -1,24 +1,19 @@
 <script>
-import { username } from "../../../../router/router";
-
 export default {
   name: "elMensaje",
-  computed: {
-    username() {
-      return username
-    }
-  },
   props: {
+    nombre: String,
     texto: String
   }
 }
+
 </script>
 
 <template>
-<div class="message-container">
-  <div class="sender">
-    <svg height="15px" width="20px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-         viewBox="0 0 60.671 60.671" xml:space="preserve">
+  <div class="message-container">
+    <div class="sender">
+      <svg height="15px" width="20px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+           viewBox="0 0 60.671 60.671" xml:space="preserve">
 <g>
 	<g>
 		<ellipse style="fill:#010002;" cx="30.336" cy="12.097" rx="11.997" ry="12.097"/>
@@ -27,12 +22,12 @@ export default {
 	</g>
 </g>
 </svg>
-    <h4>{{ username.value }}</h4>
+      <h4>{{ nombre }}</h4>
+    </div>
+    <div class="message">
+      <p>{{ texto }}</p>
+    </div>
   </div>
-  <div class="message">
-    <p>{{ texto }}</p>
-  </div>
-</div>
   <span class="separator"></span>
 </template>
 

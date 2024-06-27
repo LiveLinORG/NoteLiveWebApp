@@ -20,7 +20,7 @@
 <script>
 import { onMounted, ref } from 'vue';
 import { modificarSesionIniciadaDelPin } from "@/notelive/services/pinService.";
-import { iduser, pinvalue } from "../../../router/router";
+import { pinvalue } from "../../../router/router";
 import TheChat from "@/shared/components/TheChat.vue";
 import PreguntaCard from "@/shared/components/PreguntaCard.vue";
 import PdfViewer from "@/shared/components/PdfViewer.vue";
@@ -32,12 +32,10 @@ export default {
     const pin = pinvalue.value;
     const roomId = ref('');
     const userId = ref('');
-    const roomIdForChat=ref('');
     const pdfBlobUrl = ref('');
     const loadSession = async () => {
-      roomId.value = localStorage.getItem('roomId');
-      userId.value = iduser.value;
-      roomIdForChat.value=pinvalue.value;
+      roomId.value = localStorage.getItem('roomIdPROFESSOR');
+      userId.value = localStorage.getItem('usernamePROFESSOR');
       try {
         await modificarSesionIniciadaDelPin(pin);
       } catch (error) {
@@ -61,7 +59,6 @@ export default {
     return {
       roomId,
       userId,
-      roomIdForChat,
       downloadPDF,
     };
   },

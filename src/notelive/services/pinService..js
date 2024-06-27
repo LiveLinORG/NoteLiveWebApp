@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
-import {createTempUser, createTEMPUserJoin,} from '../userEntity/service/userservice';
+import {createTempUser} from '../userEntity/service/userservice';
 //const BASE_URL = 'https://66355711415f4e1a5e244cb2.mockapi.io';
 const BASE_URL = 'http://190.239.59.168:3000';
 export async function obtenerIdDelPinPorPin(pin) {
@@ -50,8 +50,6 @@ export async function enviarPinAlServicio(pin) {
 async function introducirUsuarioEnSalaAsync(piID, inputName) {
     try {
         const userId = await createTempUser(inputName, "Alumno");
-        const userTODATABASE = await createTEMPUserJoin(inputName);
-        console.log('User agregado a database: ', userTODATABASE)
 
         const pinData = await obtenerPinPorId(piID);
 

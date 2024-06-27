@@ -25,6 +25,9 @@ export default {
     async createRoom() {
       try {
         username.value=this.inputName;
+        localStorage.setItem("usernamePROFESSOR", this.inputName);
+        localStorage.setItem('username', this.inputName)
+
         await createTEMPUser({
           username: this.inputName,
           password: 'temporal',

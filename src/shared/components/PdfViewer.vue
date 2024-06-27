@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import {getPDFbyId,getRoomById} from "@/notelive/services/bdservice";
+import { getPDFbyId, getRoomById } from "@/notelive/services/bdservice";
 
 export default {
   name: "PdfViewer",
@@ -24,13 +24,12 @@ export default {
   data() {
     return {
       pdfBlobUrl: '',
-      ws: null,
     };
   },
   methods: {
     async loadPDF() {
       try {
-        const room = await this.getRoomById(localStorage.getItem('roomId'));
+        const room = await this.getRoomById(localStorage.getItem('roomIdPROFESSOR'));
         const pdf = await this.getPDFbyId(room.pdfId);
 
         const base64Data = pdf.content;
@@ -42,42 +41,15 @@ export default {
         const blob = new Blob([byteArray], { type: 'application/pdf' });
         this.pdfBlobUrl = URL.createObjectURL(blob);
         this.$refs.pdfIframe.src = this.pdfBlobUrl;
-
-        this.setupWebSocket();
       } catch (error) {
         console.error('Error loading PDF:', error);
       }
     },
-    setupWebSocket() {
-      this.ws = new WebSocket('ws://190.239.59.168:8080');
-
-      this.ws.onopen = () => {
-        console.log('WebSocket connection established');
-      };
-
-      this.ws.onmessage = (event) => {
-        const scrollData = JSON.parse(event.data);
-        if (!this.isProfessor && this.$refs.pdfIframe) {
-          this.$refs.pdfIframe.contentWindow.scrollTo(scrollData.scrollLeft, scrollData.scrollTop);
-        }
-      };
-
-      if (this.isProfessor) {
-        this.$refs.pdfIframe.addEventListener('scroll', this.sendScrollPosition);
-      }
-    },
-    sendScrollPosition() {
-      if (this.isProfessor && this.ws && this.$refs.pdfIframe) {
-        const scrollLeft = this.$refs.pdfIframe.contentWindow.scrollX;
-        const scrollTop = this.$refs.pdfIframe.contentWindow.scrollY;
-        this.ws.send(JSON.stringify({ scrollLeft, scrollTop }));
-      }
-    },
     async getRoomById(roomId) {
-    return await getRoomById(roomId)
+      return await getRoomById(roomId);
     },
     async getPDFbyId(pdfId) {
-    return await getPDFbyId(pdfId)
+      return await getPDFbyId(pdfId);
     },
   },
   mounted() {

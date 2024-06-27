@@ -2,7 +2,7 @@
 import { getUsersInWaitingRoom, getUserInfoWR } from '@/notelive/userEntity/service/userservice';
 import { enviarPinAlServicio, generarPinAleatorio } from "@/notelive/services/pinService.";
 import OrangeCard from "@/shared/components/OrangeCard.vue";
-import { pinvalue, username } from "../../../../router/router";
+import { pinvalue } from "../../../../router/router";
 import { createRoom, getUserByUsername, getRoomById, uploadpdf } from "@/notelive/services/bdservice";
 
 export default {
@@ -59,12 +59,12 @@ export default {
 
     async empezarSesionAndNavigate(navigate) {
       try {
-        const userdata = await getUserByUsername(username.value);
+        const userdata = await getUserByUsername(localStorage.getItem('usernamePROFESSOR'));
         const response = await createRoom({ name: this.pin, professorId: userdata.id });
 
         console.log("roomid:");
         console.log(response.id);
-        localStorage.setItem('roomId', response.id);
+        localStorage.setItem('roomIdPROFESSOR', response.id);
 
         if (await getRoomById(response.id)) {
           console.log("PDF:");
@@ -92,6 +92,7 @@ export default {
       let valor = generarPinAleatorio();
       this.pin = valor;
       pinvalue.value = this.pin;
+      localStorage.setItem('pinvaluePROFESSOR',valor);
       this.empezarSesion(this.pin);
     },
     handleDrop(event) {

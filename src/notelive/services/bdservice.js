@@ -66,7 +66,7 @@ export async function getRoomByName(roomName) {
         const response = await axios.get(`${BASEDATABASE_URLAPI}/room/byname/${roomName}`);
         return response.data;
     } catch (error) {
-        console.error('Error al obtener la sala por nombre:', error.message);
+        console.error(`Error al obtener la sala por nombre "${roomName}":`, error.message);
         throw error;
     }
 }

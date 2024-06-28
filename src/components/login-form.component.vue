@@ -1,38 +1,48 @@
 <script>
-//import {User} from "@/notelive/model/user.entity";
-//import {isVisibleInitialPage} from "../../router/router";
-//import {useRouter} from "vue-router";
-
+import {loginUser} from "@/notelive/userEntity/service/userservice";
 export default{
   name: 'LoginForm',
-  //computed: {
-  //  isVisibleInitialPage() {
-  //    return isVisibleInitialPage
-  //  },
-  //},
+  data(){
+    return{
+      username: '',
+      password: ''
+    }
+  },
+  methods:{
+    async login(){
+      try{
+        const userData = {
+          username: this.username,
+          password: this.password
+        };
+        await loginUser(userData);
+        localStorage.setItem('loggedInUsername', this.username);
+        this.$router.push('/userInformation');
+
+      }catch(error){
+        console.error('Error al iniciar sesión:', error);
+      }
+    }
+  }
+
 }
 
-//const router = useRouter();
-
-//const gotoRegisterPage = () => {
-// router.push('/register');
-//}
 
 </script>
 
 <template>
   <div>
-      <p class="text-left">Correo Electrónico:</p>
-      <input type="text" class="input-container"  placeholder="Ingresa tu correo electrónico">
-      <p class="text-left">Contraseña:</p>
-      <input type="text" class="input-container"  placeholder="Ingresa tu contraseña">
-      <p class="text-center">¿No tienes una cuenta?
-        <router-link to='/register'>Regístrate</router-link>
-      </p>
-      <div class="button-container">
-        <button class="button-login">Iniciar Sesión</button>
-      </div>
+    <p class="text-left">Username:</p>
+    <input v-model="username" type="text" class="input-container" placeholder="Ingresa tu correo electronico">
+    <p class="text-left">Contraseña:</p>
+    <input v-model="password" type="text" class="input-container" placeholder="Ingresa tu contraseña">
+    <p class="text-center">¿No tienes una cuenta?
+      <router-link to='/register'>Regístrate</router-link>
+    </p>
+    <div class="button-container">
+      <button @click="login" class="button-login">Iniciar Sesión</button>
     </div>
+  </div>
 </template>
 
 <style>

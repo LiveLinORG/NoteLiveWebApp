@@ -57,6 +57,31 @@
       ],
       "creator": {},
       "sesionIniciada": true
+    },
+    {
+      "id": "ea954896-5bfc-482b-9e57-11410d38dc28",
+      "pins": "1694",
+      "usersID": [
+        {
+          "id": "lxyzfeac891y8rieqk"
+        }
+      ],
+      "creator": {},
+      "sesionIniciada": true
+    },
+    {
+      "id": "a2c70a53-2350-4aac-98bc-c8016fd3f105",
+      "pins": "1096",
+      "usersID": [],
+      "creator": {},
+      "sesionIniciada": true
+    },
+    {
+      "id": "e1ec11ba-2322-47f1-8976-442e262ecbe7",
+      "pins": "4480",
+      "usersID": [],
+      "creator": {},
+      "sesionIniciada": false
     }
   ],
   "users": [
@@ -97,6 +122,17 @@
       "id": "lxyzc7u9i5qozvtuf5",
       "username": "mamih",
       "password": "lxyzc7u9i5qozvtuf5",
+      "firstname": "",
+      "lastname": "",
+      "phonenumber": "",
+      "email": "",
+      "usertype": "Alumno",
+      "membership": ""
+    },
+    {
+      "id": "lxyzfeac891y8rieqk",
+      "username": "dfff",
+      "password": "lxyzfeac891y8rieqk",
       "firstname": "",
       "lastname": "",
       "phonenumber": "",

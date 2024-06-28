@@ -145,3 +145,60 @@ export async function getUsersInWaitingRoom(PIN) {
         throw error;
     }
 }
+export async function registerUser(userData) {
+
+    const urla = `${BASEDATABASE_URL}/sign-up`;
+    try {
+        const response = await fetch(urla, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: userData.username,
+                password: userData.password,
+                role: 'Profesor',
+                name: userData.name,
+                lastName: userData.lastName,
+                correo: userData.correo,
+            }),
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al crear el usuario');
+        }
+
+        return response.json();
+    } catch (error) {
+        console.error('Error al crear el usuario:', error);
+        throw error;
+    }
+}
+
+export async function loginUser(userData) {
+
+
+    const url = `${BASEDATABASE_URL}/sign-in`;
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: userData.username,
+                password: userData.password,
+
+            }),
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al iniciar sesion');
+        }
+
+        return response.json();
+    } catch (error) {
+        console.error('Error al iniciar sesion:', error);
+        throw error;
+    }
+}

@@ -1,15 +1,16 @@
 <script>
-import RegisterForm from '../src/components/register-form.component.vue';
+import {defineComponent} from "vue";
+import UserCrud from "../src/IAM/components/UserCrud.vue";
 
-export default {
-  components: { RegisterForm }
-}
+export default defineComponent({
+  components: {UserCrud}
+})
 </script>
 
 <template>
   <div class="general">
-    <h1 class="title">Registro</h1>
-    <register-form/>
+    <h1 class="title">Information</h1>
+    <UserCrud/>
   </div>
 </template>
 
@@ -24,7 +25,6 @@ export default {
   margin-top: 1%;
   margin-bottom: auto;
 }
-
 .title {
   font-family: "Inter", sans-serif;
   font-size: 48px;

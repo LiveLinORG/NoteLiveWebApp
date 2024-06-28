@@ -1,15 +1,15 @@
 <script>
-import RegisterForm from '../src/components/register-form.component.vue';
-
-export default {
-  components: { RegisterForm }
-}
+import {defineComponent} from "vue";
+import RoomsLista from "@/IAM/components/RoomsLista.vue";
+export default defineComponent({
+  components: {RoomsLista}
+})
 </script>
 
 <template>
   <div class="general">
-    <h1 class="title">Registro</h1>
-    <register-form/>
+    <h1 class="title">Lista de Salas</h1>
+    <RoomsLista/>
   </div>
 </template>
 
@@ -24,7 +24,6 @@ export default {
   margin-top: 1%;
   margin-bottom: auto;
 }
-
 .title {
   font-family: "Inter", sans-serif;
   font-size: 48px;

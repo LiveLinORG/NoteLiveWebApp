@@ -1,16 +1,14 @@
 <script>
-import {defineComponent} from "vue";
-import LoginForm from "@/components/login-form.component.vue";
+import LoginForm from '../src/components/login-form.component.vue';
 
-export default defineComponent({
-  components: {LoginForm}
-})
-
+export default {
+  components: { LoginForm }
+}
 </script>
 
 <template>
   <div class="general">
-  <h1 class="title"> Iniciar Sesión </h1>
+    <h1 class="title">Login</h1>
     <login-form/>
   </div>
 </template>

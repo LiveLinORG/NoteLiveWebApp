@@ -3,12 +3,25 @@ import axios from 'axios';
 //const BASEDATABASE_URL = 'http://190.239.59.168:44353';
 const BASEDATABASE_URLAPI = 'http://190.239.59.168:44353/api/v1';
 
+/**
+ * @summary
+ * Function to create a room
+ * @param roomData
+ * @returns {Object}
+ */
 export async function createRoom(roomData) {
     const response = await axios.post(`${BASEDATABASE_URLAPI}/room`, roomData);
     console.log(response.data);
     return response.data;
 }
 
+/**
+ * @summary
+ * Function to get user by username
+ * @param username
+ * @returns {Object}
+ * @throws {Error}
+ */
 export async function getUserByUsername(username) {
     try {
         const response = await axios.get(`${BASEDATABASE_URLAPI}/user/getbyusername/${username}`);
@@ -18,6 +31,14 @@ export async function getUserByUsername(username) {
         throw error;
     }
 }
+
+/**
+ * @summary
+ * Function to get room by id
+ * @param roomId
+ * @returns {Object}
+ * @throws {Error}
+ */
 export async function getRoomById(roomId) {
     try {
         const response = await axios.get(`${BASEDATABASE_URLAPI}/room/${roomId}`);
@@ -29,6 +50,14 @@ export async function getRoomById(roomId) {
     }
 }
 
+/**
+ * @summary
+ * Function to upload PDF
+ * @param roomId
+ * @param formData
+ * @returns {Object}
+ * @throws {Error}
+ */
 export async function uploadpdf(roomId, formData) {
     try {
         const response = await axios.put(`${BASEDATABASE_URLAPI}/room/upload-pdf/${roomId}`, formData, {
@@ -42,7 +71,15 @@ export async function uploadpdf(roomId, formData) {
         return null;
     }
 }
-export async function getPDFbyId(pdfId){
+
+/**
+ * @summary
+ * Function to get PDF by Id
+ * @param pdfId
+ * @returns {Object}
+ * @throws {Error}
+ */
+export async function getPDFbyId(pdfId) {
     try {
         const response = await axios.get(`${BASEDATABASE_URLAPI}/pdf/getbyid/${pdfId}`);
         console.log(response.data)
@@ -52,6 +89,15 @@ export async function getPDFbyId(pdfId){
         throw error;
     }
 }
+
+/**
+ * @summary
+ * Function to add user to room
+ * @param userId
+ * @param addUserToRoomData
+ * @returns {Object}
+ * @throws {Error}
+ */
 export async function addUserToRoom(userId, addUserToRoomData) {
     try {
         const response = await axios.post(`${BASEDATABASE_URLAPI}/room/${userId}`, addUserToRoomData);
@@ -61,6 +107,14 @@ export async function addUserToRoom(userId, addUserToRoomData) {
         throw error;
     }
 }
+
+/**
+ * @summary
+ * Function to get room by name
+ * @param roomName
+ * @returns {Object}
+ * @throws {Error}
+ */
 export async function getRoomByName(roomName) {
     try {
         const response = await axios.get(`${BASEDATABASE_URLAPI}/room/byname/${roomName}`);

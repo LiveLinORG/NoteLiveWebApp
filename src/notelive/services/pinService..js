@@ -1,9 +1,16 @@
 import axios from 'axios';
-import { v4 as uuidv4 } from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 
 import {createTempUser} from '../userEntity/service/userservice';
 //const BASE_URL = 'https://66355711415f4e1a5e244cb2.mockapi.io';
 const BASE_URL = 'http://190.239.59.168:3000';
+
+/**
+ * @summary
+ * Function to get Id associated with a Pin
+ * @param pin
+ * @returns {string}
+ */
 export async function obtenerIdDelPinPorPin(pin) {
     try {
         const response = await axios.get(`${BASE_URL}/pins?pins=${pin}`);
@@ -21,14 +28,24 @@ export async function obtenerIdDelPinPorPin(pin) {
     }
 }
 
+/**
+ * @summary
+ * Generate a random Pin
+ * @returns {string}
+ */
 function generarPinAleatorio() {
     const pin = Math.floor(1000 + Math.random() * 9000).toString();
-    localStorage.setItem('PinConsultas',pin);
+    localStorage.setItem('PinConsultas', pin);
     return pin;
 }
 
+/**
+ * @summary
+ * Send a Pin to the service
+ * @param pin
+ */
 export async function enviarPinAlServicio(pin) {
-    const uniqueId = uuidv4(); // Generate a unique ID
+    const uniqueId = uuidv4();
     const payload = {
         id: uniqueId,
         pins: pin,
@@ -46,7 +63,13 @@ export async function enviarPinAlServicio(pin) {
     }
 }
 
-
+/**
+ * @summary
+ * Introduces a user in a room with a Pin
+ * @param piID
+ * @param inputName
+ * @returns {string}
+ */
 async function introducirUsuarioEnSalaAsync(piID, inputName) {
     try {
         const userId = await createTempUser(inputName, "Alumno");
@@ -54,7 +77,7 @@ async function introducirUsuarioEnSalaAsync(piID, inputName) {
         const pinData = await obtenerPinPorId(piID);
 
         if (pinData) {
-            pinData.usersID.push({ id: userId });
+            pinData.usersID.push({id: userId});
             await axios.put(`${BASE_URL}/pins/${piID}`, pinData);
             console.log('ID de usuario agregada con éxito al PIN:', userId);
         } else {
@@ -65,6 +88,13 @@ async function introducirUsuarioEnSalaAsync(piID, inputName) {
     }
 }
 
+/**
+ * @summary
+ * Search a Pin and add a user with a Pin if exists
+ * @param pin
+ * @param inputName
+ * @returns {boolean}
+ */
 async function buscarPin(pin, inputName) {
     if (pin.trim().length < 4 || inputName.trim().length <= 3) {
         console.log(pin.trim().length <= 3 ? 'El PIN no existe.' : 'El nombre debe ser mayor a 4 caracteres');
@@ -73,7 +103,7 @@ async function buscarPin(pin, inputName) {
 
     const response = await axios.get(`${BASE_URL}/pins?pins=${pin}`).catch(error => {
         console.error('Error al buscar el PIN:', error.message);
-        return { data: null };
+        return {data: null};
     });
     const pinData = response.data.find(item => item.pins === pin);
     if (!pinData) {
@@ -87,10 +117,15 @@ async function buscarPin(pin, inputName) {
 
 }
 
-
+/**
+ * @summary
+ * Gets data of a Pin by Id
+ * @param id
+ * @returns {Object<any|null>}
+ */
 async function obtenerPinPorId(id) {
     try {
-        const response  = await axios.get(`${BASE_URL}/pins/${id}`);
+        const response = await axios.get(`${BASE_URL}/pins/${id}`);
         console.log('responsedata de obtener pinporid: ', response.data)
         if (response.data) {
             console.log('Datos del PIN:', response.data);
@@ -105,7 +140,14 @@ async function obtenerPinPorId(id) {
 
         return null;
     }
-}export async function modificarSesionIniciadaDelPin(pinId) {
+}
+
+/**
+ * @summary
+ * Modified the status of a Pin by Id
+ * @param pinId
+ */
+export async function modificarSesionIniciadaDelPin(pinId) {
     console.log("------------------------------");
     console.log("MODIFICACION DE LA SESION INICIADA");
     console.log("------------------------------");
@@ -129,6 +171,12 @@ async function obtenerPinPorId(id) {
     }
 }
 
+/**
+ * @summary
+ * Verify the status of a Pin by Id
+ * @param pinId
+ * @returns {boolean}
+ */
 export async function verificarSesionIniciada(pinId) {
     try {
         const IDPIN = await obtenerIdDelPinPorPin(pinId);
@@ -147,4 +195,4 @@ export async function verificarSesionIniciada(pinId) {
     }
 }
 
-export { generarPinAleatorio, buscarPin,obtenerPinPorId };
+export {generarPinAleatorio, buscarPin, obtenerPinPorId};

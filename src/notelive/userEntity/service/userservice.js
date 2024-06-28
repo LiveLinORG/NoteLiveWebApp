@@ -6,6 +6,13 @@ const BASE_URL = 'http://190.239.59.168:3000';
 const BASEDATABASE_URL = 'http://190.239.59.168:44353';
 //const BASEDATABASE_URLAPI = 'http://190.239.59.168:44353api/v1/';
 
+/**
+ * @summary
+ * Get user info using a Get request to the API
+ * @param id
+ * @returns {Promise<Object>}
+ * @throws {Error}
+ */
 export async function getUserInfoWR(id) {
     try {
         const response = await axios.get(`${BASE_URL}/users?password=${id}`);
@@ -15,12 +22,25 @@ export async function getUserInfoWR(id) {
     }
 }
 
+/**
+ * @summary
+ * Generate a random id
+ * @returns {string}
+ */
 function generateUniqueId() {
     const randomId = Math.random().toString(36).substr(2, 10);
     const timestamp = Date.now().toString(36);
     return timestamp + randomId;
 }
 
+/**
+ * @summary
+ * Create a user with a name and rol
+ * @param username
+ * @param rol
+ * @returns {string}
+ * @throws {Error}
+ */
 export async function createTempUser(username, rol) {
     try {
         const password = generateUniqueId();
@@ -45,7 +65,12 @@ export async function createTempUser(username, rol) {
     }
 }
 
-
+/**
+ * @summary
+ * Get user information by userId
+ * @param userId
+ * @returns {Promise<axios.AxiosResponse<any>>}
+ */
 async function getUserInfo(userId) {
     if (userId.length < 3) {
         throw new Error("El userId debe tener al menos 3 caracteres.");
@@ -63,12 +88,25 @@ async function getUserInfo(userId) {
 }
 
 
-
+/**
+ * @summary
+ * Verify if the user is a "Profesor"
+ * @param userData
+ * @returns {boolean}
+ */
 function isProfessor(userData) {
     return userData && userData.usertype === 'Profesor';
 }
 
 export { getUserInfo, isProfessor };
+
+/**
+ * @summary
+ * Create a user "Profesor" in the Database
+ * @param userData
+ * @returns {Promise<Object>}
+ * @throws {Error}
+ */
 export async function createTEMPUser(userData) {
     const url = `${BASEDATABASE_URL}/sign-up`;
     try {
@@ -97,6 +135,14 @@ export async function createTEMPUser(userData) {
         throw error;
     }
 }
+
+/**
+ * @summary
+ * Create a user "Alumno" in the database
+ * @param userData
+ * @returns {Promise<Object>}
+ * @throws {Error}
+ */
 export async function createTEMPUserJoin(userData) {
     const url = `${BASEDATABASE_URL}/sign-up`;
     try {
@@ -125,6 +171,14 @@ export async function createTEMPUserJoin(userData) {
         throw error;
     }
 }
+
+/**
+ * @summary
+ * Get the users in the waiting room by Pin
+ * @param PIN
+ * @returns {Promise<string[]>}
+ * @throws {Error}
+ */
 export async function getUsersInWaitingRoom(PIN) {
     try {
         const pinID = await obtenerIdDelPinPorPin(PIN);

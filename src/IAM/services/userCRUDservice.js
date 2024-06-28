@@ -1,7 +1,7 @@
 import axios from 'axios';
-import {obtenerIdDelPinPorPin, obtenerPinPorId} from '../../services/pinService.';
+import {obtenerIdDelPinPorPin, obtenerPinPorId} from "../../notelive/services/pinService.";
 import {User} from "@/notelive/userEntity/models/user.entity";
-import {iduser} from "../../../../router/router";
+import {iduser} from "../../../router/router";
 const BASE_URL = '';
 //const BASEDATABASE_URL = 'http://190.239.59.168:44353';
 const BASEDATABASE_URL = 'http://localhost:5228';
@@ -25,12 +25,6 @@ function generateUniqueId() {
 
 
 export async function registerUser(userData) {
-    /* try {
-        const response = await axios.post(`${BASE_URL}/sign-up`, userData);
-        return response.data;
-    } catch (error) {
-        throw new Error(`Error al registrar el usuario: ${error.message}`);
-    }*/
 
     const url = `${BASEDATABASE_URL}/sign-up`;
     try {
@@ -113,16 +107,25 @@ export async function createTempUser(username, rol) {
 }
 
 
-async function getUserInfo(userId) {
-    if (userId.length < 3) {
-        throw new Error("El userId debe tener al menos 3 caracteres.");
-    }
-
-    console.log("este es el parámetro recibido por getUserInfo", userId);
+export async function getUserInformation(username) {
+    console.log("este es el parámetro recibido por getUserInfo", username);
     try {
-        const response = await axios.get(`${BASE_URL}/users?password=${userId}`);
+        const response = await axios.get(`${BASEDATABASE_URL}/api/v1/user/getinformationbyusername/${username}`);
         console.log("Respuesta de la solicitud HTTP:", response.data);
         return response;
+    } catch (error) {
+        console.error('Error fetching user information:', error);
+        throw error;
+    }
+}
+
+export async function getRoomsInformation(){
+    try {
+        const response = await axios.get(`${BASEDATABASE_URL}/api/v1/room`);
+        console.log("Respuesta de la solicitud HTTP:", response.data);
+        return response;
+
+
     } catch (error) {
         console.error('Error fetching user information:', error);
         throw error;
@@ -135,7 +138,7 @@ function isProfessor(userData) {
     return userData && userData.usertype === 'Profesor';
 }
 
-export { getUserInfo, isProfessor };
+export {isProfessor };
 export async function createTEMPUser(userData) {
     const url = `${BASEDATABASE_URL}/sign-up`;
     try {

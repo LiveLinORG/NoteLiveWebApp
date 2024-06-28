@@ -1,16 +1,16 @@
 <script>
 import {defineComponent} from "vue";
-import RegistersForm from "@/notelive/userEntity/components/register-form.component.vue";
+import RoomsLista from "../../IAM/components/RoomsLista.component.vue";
 export default defineComponent({
-  components: {RegistersForm}
+  components: {RoomsLista}
 })
 
 </script>
 
 <template>
   <div class="general">
-  <h1 class="title">Registro</h1>
-    <registers-form/>
+    <h1 class="title">Lista de Salas</h1>
+    <RoomsLista/>
   </div>
 </template>
 

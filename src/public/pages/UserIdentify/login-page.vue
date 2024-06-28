@@ -1,9 +1,9 @@
 <script>
 import {defineComponent} from "vue";
-import LoginForm from "@/components/login-form.component.vue";
+import LoginsForm from "@/notelive/userEntity/components/login.form.component.vue";
 
 export default defineComponent({
-  components: {LoginForm}
+  components: {LoginsForm}
 })
 
 </script>
@@ -11,7 +11,7 @@ export default defineComponent({
 <template>
   <div class="general">
   <h1 class="title"> Iniciar Sesión </h1>
-    <login-form/>
+    <logins-form/>
   </div>
 </template>
 

@@ -12,240 +12,39 @@
       "sesionIniciada": true
     },
     {
-      "id": "2214719d-e38f-4753-8dc8-00b535c065f0",
-      "pins": "7281",
-      "usersID": [],
-      "creator": {},
-      "sesionIniciada": false
-    },
-    {
-      "id": "d31d9085-bdf8-467f-b48e-d1a70a7d02f9",
-      "pins": "9168",
-      "usersID": [],
-      "creator": {},
-      "sesionIniciada": false
-    },
-    {
-      "id": "d5769e51-0b0f-4b2e-9951-35c2c6718744",
-      "pins": "8047",
+      "id": "a8be5066-b400-4ec1-a857-338feecf4612",
+      "pins": "6271",
       "usersID": [
         {
-          "id": "lxyz0hxj5wic96iuyy"
+          "id": "lxz8i8k7qfutqtfcse"
+        },
+        {
+          "id": "lxz8ieozqwu6glpoqi"
         }
       ],
       "creator": {},
       "sesionIniciada": true
     },
     {
-      "id": "020e07c5-8f2e-4c16-8d15-7eae740c5f08",
-      "pins": "7648",
+      "id": "94d31dff-d0a0-4b17-9867-4884f4dfac53",
+      "pins": "4995",
       "usersID": [
         {
-          "id": "lxyz6k11j1bkwdwtag"
+          "id": "lxz8qt5gyreikiuvbj"
+        },
+        {
+          "id": "lxz8qth09gwkpacegh"
         }
       ],
       "creator": {},
       "sesionIniciada": true
     },
     {
-      "id": "8dfc48e8-6d58-4934-98ab-63545a916f64",
-      "pins": "4702",
+      "id": "93a9f160-a860-4518-8b82-3577998f1ade",
+      "pins": "3246",
       "usersID": [
         {
-          "id": "lxyzc7u9i5qozvtuf5"
-        }
-      ],
-      "creator": {},
-      "sesionIniciada": true
-    },
-    {
-      "id": "ea954896-5bfc-482b-9e57-11410d38dc28",
-      "pins": "1694",
-      "usersID": [
-        {
-          "id": "lxyzfeac891y8rieqk"
-        }
-      ],
-      "creator": {},
-      "sesionIniciada": true
-    },
-    {
-      "id": "a2c70a53-2350-4aac-98bc-c8016fd3f105",
-      "pins": "1096",
-      "usersID": [],
-      "creator": {},
-      "sesionIniciada": true
-    },
-    {
-      "id": "e1ec11ba-2322-47f1-8976-442e262ecbe7",
-      "pins": "4480",
-      "usersID": [],
-      "creator": {},
-      "sesionIniciada": false
-    },
-    {
-      "id": "e70d0357-9ed2-4291-856f-5ea7935b7146",
-      "pins": "3020",
-      "usersID": [],
-      "creator": {},
-      "sesionIniciada": true
-    },
-    {
-      "id": "c631f1c9-110f-476e-a190-45faaefd4012",
-      "pins": "7881",
-      "usersID": [
-        {
-          "id": "lxz2ju01fz2zmeenrc"
-        }
-      ],
-      "creator": {},
-      "sesionIniciada": true
-    },
-    {
-      "id": "5b3a285f-b704-4591-b697-00a42feec8ee",
-      "pins": "2268",
-      "usersID": [
-        {
-          "id": "lxz36ajuu9b4683edr"
-        }
-      ],
-      "creator": {},
-      "sesionIniciada": true
-    },
-    {
-      "id": "5eecb656-6d09-4376-9f3c-133eae9297af",
-      "pins": "8891",
-      "usersID": [
-        {
-          "id": "lxz3uk3yy73t9aqddp"
-        }
-      ],
-      "creator": {},
-      "sesionIniciada": true
-    },
-    {
-      "id": "e27cf889-47c6-49b0-b974-e580c0ae1848",
-      "pins": "7340",
-      "usersID": [
-        {
-          "id": "lxz3vu8sub8q2d8le8"
-        }
-      ],
-      "creator": {},
-      "sesionIniciada": true
-    },
-    {
-      "id": "593d4339-607e-4215-a524-fe6b0b81524d",
-      "pins": "1936",
-      "usersID": [
-        {
-          "id": "lxz3x52crkhyswixqv"
-        }
-      ],
-      "creator": {},
-      "sesionIniciada": true
-    },
-    {
-      "id": "544f5a3b-42c7-4694-bd98-d8f687d11292",
-      "pins": "9080",
-      "usersID": [
-        {
-          "id": "lxz3ybmdvo6zjx8qwg"
-        }
-      ],
-      "creator": {},
-      "sesionIniciada": true
-    },
-    {
-      "id": "587c5630-7486-4239-81bd-2975e33cc47a",
-      "pins": "1667",
-      "usersID": [
-        {
-          "id": "lxz404u5jmvq8wo27c"
-        }
-      ],
-      "creator": {},
-      "sesionIniciada": true
-    },
-    {
-      "id": "74f0e320-8835-49ee-b8fe-112cdd6798f4",
-      "pins": "3632",
-      "usersID": [
-        {
-          "id": "lxz4146270yk3nc50h"
-        }
-      ],
-      "creator": {},
-      "sesionIniciada": true
-    },
-    {
-      "id": "ae43b2c1-b45c-4b66-9a47-0433503885ab",
-      "pins": "1068",
-      "usersID": [
-        {
-          "id": "lxz42gaft4nuoyqwdf"
-        }
-      ],
-      "creator": {},
-      "sesionIniciada": true
-    },
-    {
-      "id": "b7fe7d3b-1a34-43a7-9557-f9b126d52c79",
-      "pins": "1641",
-      "usersID": [
-        {
-          "id": "lxz4edu9qji3chfbee"
-        }
-      ],
-      "creator": {},
-      "sesionIniciada": true
-    },
-    {
-      "id": "f01ce226-3d88-432a-aae6-2bf50479a856",
-      "pins": "2512",
-      "usersID": [
-        {
-          "id": "lxz4fpj0h5ygvlx8kz"
-        }
-      ],
-      "creator": {},
-      "sesionIniciada": true
-    },
-    {
-      "id": "90d6d904-226f-4306-bb1d-9d90e6fd1894",
-      "pins": "1094",
-      "usersID": [
-        {
-          "id": "lxz4hrj8xf566l2cx6"
-        }
-      ],
-      "creator": {},
-      "sesionIniciada": true
-    },
-    {
-      "id": "83cb7ef8-423c-4b4f-9138-c4d66376b60a",
-      "pins": "2163",
-      "usersID": [],
-      "creator": {},
-      "sesionIniciada": true
-    },
-    {
-      "id": "ac9c5272-521a-4bcc-98d3-7c5970befb6e",
-      "pins": "7272",
-      "usersID": [
-        {
-          "id": "lxz4l2ttpbwo4dx8h4"
-        }
-      ],
-      "creator": {},
-      "sesionIniciada": true
-    },
-    {
-      "id": "8a2f60e4-a8c8-409c-ae74-1e1f70594c69",
-      "pins": "4991",
-      "usersID": [
-        {
-          "id": "lxz4p7m0x52vlipzre"
+          "id": "lxz8sm72ko4lust0sv"
         }
       ],
       "creator": {},
@@ -265,9 +64,9 @@
       "membership": ""
     },
     {
-      "id": "lxyz0hxj5wic96iuyy",
-      "username": "Erick",
-      "password": "lxyz0hxj5wic96iuyy",
+      "id": "lxz8i8k7qfutqtfcse",
+      "username": "AdrianPalmaaaa",
+      "password": "lxz8i8k7qfutqtfcse",
       "firstname": "",
       "lastname": "",
       "phonenumber": "",
@@ -276,9 +75,9 @@
       "membership": ""
     },
     {
-      "id": "lxyz6k11j1bkwdwtag",
-      "username": "altqa",
-      "password": "lxyz6k11j1bkwdwtag",
+      "id": "lxz8ieozqwu6glpoqi",
+      "username": "Diego",
+      "password": "lxz8ieozqwu6glpoqi",
       "firstname": "",
       "lastname": "",
       "phonenumber": "",
@@ -287,9 +86,9 @@
       "membership": ""
     },
     {
-      "id": "lxyzc7u9i5qozvtuf5",
-      "username": "mamih",
-      "password": "lxyzc7u9i5qozvtuf5",
+      "id": "lxz8qt5gyreikiuvbj",
+      "username": "Diegos",
+      "password": "lxz8qt5gyreikiuvbj",
       "firstname": "",
       "lastname": "",
       "phonenumber": "",
@@ -298,9 +97,9 @@
       "membership": ""
     },
     {
-      "id": "lxyzfeac891y8rieqk",
-      "username": "dfff",
-      "password": "lxyzfeac891y8rieqk",
+      "id": "lxz8qth09gwkpacegh",
+      "username": "ErickPalomino",
+      "password": "lxz8qth09gwkpacegh",
       "firstname": "",
       "lastname": "",
       "phonenumber": "",
@@ -309,152 +108,9 @@
       "membership": ""
     },
     {
-      "id": "lxz2ju01fz2zmeenrc",
-      "username": "losientohijito",
-      "password": "lxz2ju01fz2zmeenrc",
-      "firstname": "",
-      "lastname": "",
-      "phonenumber": "",
-      "email": "",
-      "usertype": "Alumno",
-      "membership": ""
-    },
-    {
-      "id": "lxz36ajuu9b4683edr",
-      "username": "posas",
-      "password": "lxz36ajuu9b4683edr",
-      "firstname": "",
-      "lastname": "",
-      "phonenumber": "",
-      "email": "",
-      "usertype": "Alumno",
-      "membership": ""
-    },
-    {
-      "id": "lxz3uk3yy73t9aqddp",
-      "username": "seeeee",
-      "password": "lxz3uk3yy73t9aqddp",
-      "firstname": "",
-      "lastname": "",
-      "phonenumber": "",
-      "email": "",
-      "usertype": "Alumno",
-      "membership": ""
-    },
-    {
-      "id": "lxz3vu8sub8q2d8le8",
-      "username": "asdasda",
-      "password": "lxz3vu8sub8q2d8le8",
-      "firstname": "",
-      "lastname": "",
-      "phonenumber": "",
-      "email": "",
-      "usertype": "Alumno",
-      "membership": ""
-    },
-    {
-      "id": "lxz3x52crkhyswixqv",
-      "username": "seeeuyt",
-      "password": "lxz3x52crkhyswixqv",
-      "firstname": "",
-      "lastname": "",
-      "phonenumber": "",
-      "email": "",
-      "usertype": "Alumno",
-      "membership": ""
-    },
-    {
-      "id": "lxz3ybmdvo6zjx8qwg",
-      "username": "manuel",
-      "password": "lxz3ybmdvo6zjx8qwg",
-      "firstname": "",
-      "lastname": "",
-      "phonenumber": "",
-      "email": "",
-      "usertype": "Alumno",
-      "membership": ""
-    },
-    {
-      "id": "lxz404u5jmvq8wo27c",
-      "username": "adriansaa",
-      "password": "lxz404u5jmvq8wo27c",
-      "firstname": "",
-      "lastname": "",
-      "phonenumber": "",
-      "email": "",
-      "usertype": "Alumno",
-      "membership": ""
-    },
-    {
-      "id": "lxz4146270yk3nc50h",
-      "username": "uawsa",
-      "password": "lxz4146270yk3nc50h",
-      "firstname": "",
-      "lastname": "",
-      "phonenumber": "",
-      "email": "",
-      "usertype": "Alumno",
-      "membership": ""
-    },
-    {
-      "id": "lxz42gaft4nuoyqwdf",
-      "username": "ioiasas",
-      "password": "lxz42gaft4nuoyqwdf",
-      "firstname": "",
-      "lastname": "",
-      "phonenumber": "",
-      "email": "",
-      "usertype": "Alumno",
-      "membership": ""
-    },
-    {
-      "id": "lxz4edu9qji3chfbee",
-      "username": "asdas",
-      "password": "lxz4edu9qji3chfbee",
-      "firstname": "",
-      "lastname": "",
-      "phonenumber": "",
-      "email": "",
-      "usertype": "Alumno",
-      "membership": ""
-    },
-    {
-      "id": "lxz4fpj0h5ygvlx8kz",
-      "username": "asda",
-      "password": "lxz4fpj0h5ygvlx8kz",
-      "firstname": "",
-      "lastname": "",
-      "phonenumber": "",
-      "email": "",
-      "usertype": "Alumno",
-      "membership": ""
-    },
-    {
-      "id": "lxz4hrj8xf566l2cx6",
-      "username": "ostiaa",
-      "password": "lxz4hrj8xf566l2cx6",
-      "firstname": "",
-      "lastname": "",
-      "phonenumber": "",
-      "email": "",
-      "usertype": "Alumno",
-      "membership": ""
-    },
-    {
-      "id": "lxz4l2ttpbwo4dx8h4",
-      "username": "queencard",
-      "password": "lxz4l2ttpbwo4dx8h4",
-      "firstname": "",
-      "lastname": "",
-      "phonenumber": "",
-      "email": "",
-      "usertype": "Alumno",
-      "membership": ""
-    },
-    {
-      "id": "lxz4p7m0x52vlipzre",
-      "username": "mmiasda",
-      "password": "lxz4p7m0x52vlipzre",
+      "id": "lxz8sm72ko4lust0sv",
+      "username": "AdrianA",
+      "password": "lxz8sm72ko4lust0sv",
       "firstname": "",
       "lastname": "",
       "phonenumber": "",

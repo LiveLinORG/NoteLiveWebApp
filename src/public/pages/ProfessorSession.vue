@@ -33,7 +33,6 @@ export default {
     const pin = pinvalue.value;
     const roomId = ref('');
     const userId = ref('');
-    //const pdfBlobUrl = ref('');
     isProfessor.value=true;
     const loadSession = async () => {
       roomId.value = localStorage.getItem('roomIdPROFESSOR');

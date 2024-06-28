@@ -1,9 +1,9 @@
 <script>
-import {defineComponent} from "vue";
+import { defineComponent } from "vue";
 import UserCrud from "@/IAM/components/UserCrud.vue";
 
 export default defineComponent({
-  components: {UserCrud}
+  components: { UserCrud }
 })
 </script>
 
@@ -15,19 +15,28 @@ export default defineComponent({
 </template>
 
 <style>
-.general{
+.general {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   width: 100%;
   height: auto;
-  align-items: center;
   margin-top: 1%;
   margin-bottom: auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
+
 .title {
   font-family: "Inter", sans-serif;
   font-size: 48px;
-  margin-bottom: 0;
+  margin-bottom: 20px;
+  color: #df711b; /* Color de título */
+  text-align: center;
+  text-transform: uppercase;
 }
+
+
 </style>

@@ -6,16 +6,16 @@
       <tr>
         <th>Nombre de la Sala</th>
         <th>PDF</th>
-        <th>Usuarios en la Sala</th>
+        <th>Código Package</th>
       </tr>
       </thead>
       <tbody>
       <tr v-for="room in rooms" :key="room.id" @mouseover="hoverEffect(true)" @mouseleave="hoverEffect(false)">
         <td>{{ room.name }}</td>
         <td>
-          <button @click="downloadPDF(room.pdfId)" :disabled="!room.pdfId">Descargar PDF</button>
+          <button @click="downloadPDF(room.pdfId)" :disabled="!room.pdfId" class="pdf-button">Descargar PDF</button>
         </td>
-        <td>{{ room.userIds.length }}</td>
+        <td>{{ room.id }}</td>
       </tr>
       </tbody>
     </table>
@@ -65,8 +65,8 @@ export default {
       }
     },
     hoverEffect() {
-      // Implementa el efecto hover si es necesario
-      // Puedes utilizar esta función para futuras funcionalidades de hover si las necesitas
+
+
     }
   }
 };
@@ -96,5 +96,22 @@ export default {
 }
 .room-table tr:hover {
   background-color: #f5f5f5;
+}
+.pdf-button {
+  background-color: #f9d8b3;
+  color: #704214;
+  border: 1px solid #bd973c;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius:1rem;
+}
+.pdf-button:hover {
+  background-color: #ffcc99;
+}
+.pdf-button:disabled {
+  background-color: #e0e0e0;
+  color: #a9a9a9;
+  cursor: not-allowed;
 }
 </style>

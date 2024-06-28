@@ -53,7 +53,7 @@ export default {
     <section class="container">
       <div class="pincontainer">
       <h2>Ingresar PIN de la sesión</h2>
-     <h2> <input type="text" class="placeholdpin" id="pin" placeholder="Ej: 835925" ></h2>
+     <h2> <input type="text" class="placeholdpin" id="pin" placeholder="Ej: 8359" ></h2>
       </div>
       <router-link v-for="item in items" :key="item.label"
                    v-slot="{navigate,href}" :to="item.to" custom>

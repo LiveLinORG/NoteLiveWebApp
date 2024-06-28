@@ -4,8 +4,12 @@
     <div class="room-id-container">
       <p @click="copyRoomId">{{roomId}}</p>
     </div>
-    <p class="info-text">para obtener las preguntas dadas en la sala, dale click al botón, solicitar paquete de preguntas ubicado arriba o aquí mismo.</p>
+    <p class="info-text">Para obtener las preguntas dadas en la sala, dale click al botón, solicitar paquete de preguntas ubicado arriba o aquí mismo.</p>
     <button @click="requestQuestionPackage" class="request-button">Solicitar paquete de preguntas</button>
+    <router-link v-if="showExamButton" :to="'/examen/' + roomId" class="request-button">Solicitar examen</router-link>
+    <div v-if="showAlert" class="alert">
+      <p>{{ alertMessage }}</p>
+    </div>
     <div class="questions-grid">
       <div v-for="question in questions" :key="question.id" class="question-card">
         <p>{{ question.text }}</p>
@@ -26,21 +30,34 @@ export default {
   setup() {
     const roomId = ref(localStorage.getItem('roomId'));
     const questions = ref([]);
+    const alertMessage = ref('');
+    const showExamButton = ref(false);
     isVisibleInitialPage.value = false;
+    const showAlert = ref(false);
 
     const copyRoomId = () => {
+      showExamButton.value = true; // Mostrar el botón del examen si la solicitud es exitosa
 
     };
 
     const requestQuestionPackage = async () => {
       try {
         const fetchedQuestions = await getQuestionsInRoom(roomId.value);
-        questions.value = fetchedQuestions.map(question => ({
-          ...question,
-          showAnswer: false,
-        }));
+        if (fetchedQuestions.length === 0) {
+          showAlert.value = true;
+          alertMessage.value = 'No hay preguntas en esta sala.';
+        } else {
+          questions.value = fetchedQuestions.map(question => ({
+            ...question,
+            showAnswer: false,
+          }));
+          showAlert.value = false;
+          showExamButton.value = true; // Mostrar el botón del examen si la solicitud es exitosa
+        }
       } catch (error) {
         console.error('Error fetching questions:', error);
+        showAlert.value = true;
+        alertMessage.value = 'Hubo un error al cargar las preguntas. Por favor, intenta de nuevo.';
       }
     };
 
@@ -57,15 +74,15 @@ export default {
       copyRoomId,
       requestQuestionPackage,
       toggleAnswer,
+      showExamButton
     };
   },
 };
 </script>
-
 <style scoped>
 .package-question-container {
   padding: 2rem;
-  background-color: #f9f9f9;
+  background-color: #f5f5f5;
   border-radius: 1rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -76,7 +93,7 @@ export default {
   cursor: pointer;
   font-size: 1.5rem;
   color: #333;
-  background-color: #eee;
+  background-color: #FFD8BA;
   padding: 1rem;
   border-radius: 0.5rem;
 }
@@ -88,7 +105,7 @@ export default {
 }
 
 .request-button {
-  background-color: #df711b;
+  background-color: #df711b; /* rgba(223, 113, 27, 0.96) */
   color: white;
   border: none;
   border-radius: 0.5rem;
@@ -114,7 +131,7 @@ export default {
 }
 
 .question-card {
-  background-color: white;
+  background-color: #f9f9f9; /* #F9F9F9 */
   padding: 1rem;
   border-radius: 0.5rem;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
@@ -126,7 +143,7 @@ export default {
 }
 
 .question-card button {
-  background-color: #007bff;
+  background-color: #df711b;
   color: white;
   border: none;
   border-radius: 0.5rem;

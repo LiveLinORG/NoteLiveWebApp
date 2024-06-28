@@ -74,11 +74,14 @@ export default {
 
     onMounted(() => {
       console.log('Component mounted');
-      fetchQuestions();
+      // Start connection immediately
       startConnection();
-      // Refresh questions every 30 seconds
-      setInterval(fetchQuestions, 5000);
+      // Fetch questions after 10 seconds
+      setTimeout(fetchQuestions, 10000);
+      // Refresh questions every 30 seconds after the initial fetch
+      setTimeout(() => setInterval(fetchQuestions, 15000), 10000);
     });
+
     watch(() => props.roomId, (newRoomId) => {
       console.log('Room ID changed:', newRoomId);
       fetchQuestions();

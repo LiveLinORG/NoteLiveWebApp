@@ -85,6 +85,11 @@ const router = createRouter({
             path: '/codigoarrayquestionform',
             name: 'PackageQuestionForm',
             component: ThePackageQuestionForm,
+        },{
+            path: '/examen/:roomId',
+            name: 'Examen',
+            component: () => import('../src/public/Examen.vue'),
+            props: true,
         }
     ]
 });

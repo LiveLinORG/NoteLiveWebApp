@@ -6,7 +6,7 @@
     </div>
     <div class="spacer"></div>
     <div class="username">Username</div>
-    <section v-on:click="isVisibleInitialPage">
+    <section v-on:click="isVisibleInitialPages">
       <router-link to='/login'>
         <button class="login-button">Iniciar sesión</button>
       </router-link>
@@ -25,16 +25,20 @@ export default {
 
     const navigateToQuestionPackage = async () => {
       await router.push('/codigoarrayquestionform');
+      isVisibleInitialPages();
     };
 
     const redirectToHome = () => {
       window.location.href = 'http://190.239.59.168:8080';
     };
-
+    const isVisibleInitialPages = () => {
+      isVisibleInitialPage.value = false;
+    }
     return {
       isVisibleInitialPage,
       navigateToQuestionPackage,
       redirectToHome,
+      isVisibleInitialPages
     };
   },
 }

@@ -6,7 +6,14 @@
     </div>
     <p class="info-text">Para obtener las preguntas dadas en la sala, dale click al botón, solicitar paquete de preguntas ubicado arriba o aquí mismo.</p>
     <button @click="requestQuestionPackage" class="request-button">Solicitar paquete de preguntas</button>
-    <div class="questions-grid">
+
+    <router-link v-if="showExamButton" :to="'/examen/' + roomId" class="request-button">Solicitar examen</router-link>
+
+    <div v-if="showAlert" class="alert">
+      <p>{{ alertMessage }}</p>
+    </div>
+
+    <div class="questions-grid" v-if="questions.length > 0">
       <div v-for="question in questions" :key="question.id" class="question-card">
         <p>{{ question.text }}</p>
         <button @click="toggleAnswer(question.id)">Mostrar respuesta</button>
@@ -19,24 +26,34 @@
 <script>
 import { ref } from 'vue';
 import { getQuestionsInRoom } from '@/notelive/services/bdservice';
-import { isVisibleInitialPage } from "../../router/router";
 
 export default {
   name: 'ThePackageQuestion',
   setup() {
     const roomId = ref('');
     const questions = ref([]);
-    isVisibleInitialPage.value = false;
+    const showAlert = ref(false);
+    const alertMessage = ref('');
+    const showExamButton = ref(false); // Control para mostrar el botón del examen
 
     const requestQuestionPackage = async () => {
       try {
         const fetchedQuestions = await getQuestionsInRoom(roomId.value);
-        questions.value = fetchedQuestions.map(question => ({
-          ...question,
-          showAnswer: false,
-        }));
+        if (fetchedQuestions.length === 0) {
+          showAlert.value = true;
+          alertMessage.value = 'No hay preguntas en esta sala.';
+        } else {
+          questions.value = fetchedQuestions.map(question => ({
+            ...question,
+            showAnswer: false,
+          }));
+          showAlert.value = false;
+          showExamButton.value = true; // Mostrar el botón del examen si la solicitud es exitosa
+        }
       } catch (error) {
         console.error('Error fetching questions:', error);
+        showAlert.value = true;
+        alertMessage.value = 'Hubo un error al cargar las preguntas. Por favor, intenta de nuevo.';
       }
     };
 
@@ -52,6 +69,9 @@ export default {
       questions,
       requestQuestionPackage,
       toggleAnswer,
+      showAlert,
+      alertMessage,
+      showExamButton,
     };
   },
 };
@@ -103,6 +123,14 @@ export default {
   transform: translateY(-0.1rem);
 }
 
+.alert {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+}
+
 .questions-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -111,7 +139,7 @@ export default {
 }
 
 .question-card {
-  background-color: #d0c182;
+  background-color: #ffd8ba;
   padding: 1rem;
   border-radius: 0.5rem;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);

@@ -3,7 +3,7 @@ import { getUsersInWaitingRoom, getUserInfoWR } from '@/notelive/userEntity/serv
 import { enviarPinAlServicio, generarPinAleatorio } from "@/notelive/services/pinService.";
 import OrangeCard from "@/shared/components/OrangeCard.vue";
 import {isProfessor, pinvalue} from "../../../../router/router";
-import { createRoom, getUserByUsername, getRoomById, uploadpdf } from "@/notelive/services/bdservice";
+import {createRoom, getUserByUsername, getRoomById, uploadpdf, StartRoom} from "@/notelive/services/bdservice";
 
 export default {
   name: "waitingTeacher",
@@ -76,6 +76,7 @@ export default {
 
           const resultPDF = await uploadpdf(response.id, formData);
           if (resultPDF) {
+            await StartRoom(response.id);
             navigate();
           }
           console.log('PDF uploaded successfully:', resultPDF);

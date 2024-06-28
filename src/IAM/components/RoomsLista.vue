@@ -36,7 +36,7 @@ export default {
   async mounted() {
     try {
       const response = await getRoomsInformation();
-      this.rooms = response.data; // Asigna las salas obtenidas al arreglo rooms
+      this.rooms = response.data;
     } catch (error) {
       console.error("Error obteniendo la información de las salas:", error);
     }

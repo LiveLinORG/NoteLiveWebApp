@@ -7,6 +7,8 @@ import RegisterPage from "@/public/pages/UserIdentify/register-page.vue";
 import LoginPage from "@/public/pages/UserIdentify/login-page.vue";
 import UserInformationPage from "@/public/pages/UserIdentify/UserInformation-page.vue";
 import RoomsListPage from "@/public/pages/RoomsListPage.vue";
+import ThePackageQuestion from "@/public/ThePackageQuestion.vue";
+import ThePackageQuestionForm from "@/public/ThePackageQuestionForm.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env),
@@ -75,6 +77,14 @@ const router = createRouter({
                 title: 'Alumno',
                 isAlumnoWaiting:true
             }
+        },{
+            path: '/codigoarrayquestion',
+            name: 'Package',
+            component: ThePackageQuestion,
+        },{
+            path: '/codigoarrayquestionform',
+            name: 'PackageQuestionForm',
+            component: ThePackageQuestionForm,
         }
     ]
 });

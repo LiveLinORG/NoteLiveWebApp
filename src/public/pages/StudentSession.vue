@@ -19,43 +19,56 @@
 </template>
 
 <script>
+import {onMounted, onUnmounted, ref} from 'vue';
 import TheChat from "@/shared/components/TheChat.vue";
-import { onMounted, ref } from 'vue';
-import {isProfessor, pinvalue} from "../../../router/router";
-import {modificarSesionIniciadaDelPin} from "@/notelive/services/pinService.";
 import PdfViewer from "@/shared/components/PdfViewer.vue";
 import TheQuestionViewer from "@/shared/components/QuestionViewer.vue";
-import {getUserByUsername, postQuestion} from "@/notelive/services/bdservice";
-
+import router, { isProfessor, pinvalue } from "../../../router/router";
+import { modificarSesionIniciadaDelPin } from "@/notelive/services/pinService.";
+import { getUserByUsername, postQuestion, getRoomById } from "@/notelive/services/bdservice";
 export default {
-  name: "ProfessorSession",
-  components: {TheQuestionViewer, PdfViewer, TheChat },
+  name: "StudentSession",
+  components: { TheQuestionViewer, PdfViewer, TheChat },
   setup() {
     const roomId = ref('');
     const userId = ref('');
     const questionText = ref('');
-    const useridfrombd=ref('');
+    const useridfrombd = ref('');
+    let intervalId = null;
+
+    const checkRoomStatus = async () => {
+      try {
+        const room = await getRoomById(roomId.value);
+        if (room.roomstarted !== false) {
+          console.log("Se ha detectado que la room ha terminado");
+          await router.push('/codigoarrayquestion');
+        }
+      } catch (error) {
+        console.error('Error al verificar el estado de la sala:', error);
+      }
+    };
+
     onMounted(async () => {
-      console.log(localStorage.getItem('nameROOMBD'));
-      console.log(localStorage.getItem('nameROOMBD'));
-
-      console.log(localStorage.getItem('nameROOMBD'));
-
-      console.log(localStorage.getItem('nameROOMBD'));
-      isProfessor.value=false;
-      console.log('VALOR DE SI ES PROFESSOR O NO',isProfessor.value)
-
-      console.log('VALOR DE SI ES PROFESSOR O NO',isProfessor.value)
-
+      isProfessor.value = false;
       roomId.value = localStorage.getItem('roomId');
       userId.value = localStorage.getItem('usernameSTUDENT');
-      const userbd=await getUserByUsername(userId.value);
-      useridfrombd.value=userbd.id;
+      const userbd = await getUserByUsername(userId.value);
+      useridfrombd.value = userbd.id;
 
       await modificarSesionIniciadaDelPin(pinvalue.value);
+
+      intervalId = setInterval(checkRoomStatus, 5000);
     });
+
+    onUnmounted(() => {
+      // Limpia el intervalo cuando el componente se desmonta
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    });
+
     const sendQuestion = async () => {
-      if (!questionText.value) return; // Evitar enviar preguntas vacías
+      if (!questionText.value) return;
 
       try {
         const createQuestionData = {
@@ -64,9 +77,8 @@ export default {
           text: questionText.value,
         };
         await postQuestion(createQuestionData);
-        questionText.value = ''; // Limpiar el campo después de enviar la pregunta
+        questionText.value = '';
 
-        // Esperar un segundo y luego actualizar las preguntas
         setTimeout(() => {
           const questionViewer = document.querySelector('.questions-container');
           if (questionViewer && questionViewer.fetchQuestions) {
@@ -77,7 +89,6 @@ export default {
         console.error('Error sending question:', error);
       }
     };
-
 
     return {
       roomId,

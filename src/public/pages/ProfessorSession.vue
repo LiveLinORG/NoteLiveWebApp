@@ -5,7 +5,7 @@
     </section>
     <section class="pdf-container">
       <div class="diaposity-container">
-        <button class="nav-button" @click="downloadPDF">Finalizar sesión</button>
+        <button class="nav-button" @click="endroom">Finalizar sesión</button>
         <PdfViewer :roomId="roomId" :userId="userId" :isProfessor="true"></PdfViewer>
 
       </div>
@@ -20,10 +20,11 @@
 <script>
 import { onMounted, ref } from 'vue';
 import { modificarSesionIniciadaDelPin } from "@/notelive/services/pinService.";
-import {isProfessor, pinvalue} from "../../../router/router";
+import router, {isProfessor, pinvalue} from "../../../router/router";
 import TheChat from "@/shared/components/TheChat.vue";
 import PdfViewer from "@/shared/components/PdfViewer.vue";
 import TheQuestionViewer from "@/shared/components/QuestionViewer.vue";
+import {EndRoom} from "@/notelive/services/bdservice";
 
 export default {
   name: "ProfessorSession",
@@ -32,7 +33,7 @@ export default {
     const pin = pinvalue.value;
     const roomId = ref('');
     const userId = ref('');
-    const pdfBlobUrl = ref('');
+    //const pdfBlobUrl = ref('');
     isProfessor.value=true;
     const loadSession = async () => {
       roomId.value = localStorage.getItem('roomIdPROFESSOR');
@@ -44,13 +45,10 @@ export default {
       }
     };
 
-    const downloadPDF = () => {
-      const link = document.createElement('a');
-      link.href = pdfBlobUrl.value;
-      link.download = 'document.pdf';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+    const endroom = async () => {
+      await EndRoom(roomId.value);
+      await router.push('/codigoarrayquestion');
+
     };
 
     onMounted(() => {
@@ -60,7 +58,7 @@ export default {
     return {
       roomId,
       userId,
-      downloadPDF,
+      endroom,
     };
   },
 };

@@ -139,3 +139,23 @@ export async function answerQuestion(questionId, answer) {
         throw error;
     }
 }
+export async function EndRoom(roomId) {
+    try {
+        const response = await axios.put(
+            `${BASEDATABASE_URLAPI}/room/end/${roomId}`);
+        return response.data;
+    } catch (error) {
+        console.error('Error answering question:', error.message);
+        throw error;
+    }
+}
+export async function StartRoom(roomId) {
+    try {
+        const response = await axios.put(
+            `${BASEDATABASE_URLAPI}/room/start/${roomId}`);
+        return response.data;
+    } catch (error) {
+        console.error('Error answering question:', error.message);
+        throw error;
+    }
+}

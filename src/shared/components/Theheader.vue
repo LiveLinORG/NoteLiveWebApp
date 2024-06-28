@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import {isVisibleInitialPage} from "../../../router/router";
+import {isVisibleInitialPage} from "@/router/router";
 //import {useRouter} from "vue-router";
 
 export default {

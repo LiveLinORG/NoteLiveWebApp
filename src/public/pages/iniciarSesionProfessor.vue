@@ -9,7 +9,7 @@
 
 <script>
 import {createTEMPUser} from "@/notelive/userEntity/service/userservice";
-import {username} from "../../../router/router";
+import {username} from "@/router/router";
 
 export default {
   name: "createSession",

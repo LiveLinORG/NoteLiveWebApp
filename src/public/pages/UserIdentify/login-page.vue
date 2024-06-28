@@ -1,6 +1,6 @@
 <script>
 import {defineComponent} from "vue";
-import LoginForm from "@/components/login-form.component.vue";
+import LoginForm from "@/notelive/components/login-form.component.vue";
 
 export default defineComponent({
   components: {LoginForm}

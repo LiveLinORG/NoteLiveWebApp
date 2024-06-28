@@ -1,6 +1,6 @@
 <script setup>
 import { useRouter } from 'vue-router';
-import {isVisibleInitialPage} from "../../../router/router";
+import {isVisibleInitialPage} from "@/router/router";
 const router = useRouter();
 
 const irCrear = () => {

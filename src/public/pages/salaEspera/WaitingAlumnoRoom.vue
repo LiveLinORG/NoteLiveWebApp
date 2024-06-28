@@ -1,7 +1,7 @@
 <script>
 import OrangeCard from "@/shared/components/OrangeCard.vue";
 import {getUserInfoWR, getUsersInWaitingRoom} from "@/notelive/userEntity/service/userservice";
-import {isProfessor, pinvalue} from "../../../../router/router";
+import {isProfessor, pinvalue} from "@/router/router";
 import {verificarSesionIniciada} from "@/notelive/services/pinService.";
 import {createTEMPUserJoin} from "@/notelive/userEntity/service/userservice";
 import {getRoomByName} from "@/notelive/services/bdservice";

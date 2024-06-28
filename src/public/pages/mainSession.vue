@@ -8,7 +8,7 @@
 <script>
 import ProfessorSession from "@/public/pages/ProfessorSession.vue";
 import StudentSession from "@/public/pages/StudentSession.vue";
-import {iduser, pinvalue} from "../../../router/router";
+import {iduser, pinvalue} from "@/router/router";
 
 export default {
   components: {

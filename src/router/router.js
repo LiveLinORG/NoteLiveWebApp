@@ -12,7 +12,7 @@ const router = createRouter({
         {
             path: '/init',
             name: 'init',
-            component: () => import( '../src/public/pages/InitPage.vue'),
+            component: () => import( '../public/pages/InitPage.vue'),
         },{
             path: '/register',
             name: 'register',
@@ -24,7 +24,7 @@ const router = createRouter({
         },{
             path:'/crearsesion',
             name:'Crearsesion',
-            component: () => import('../src/public/pages/iniciarSesionProfessor.vue'),
+            component: () => import('../public/pages/iniciarSesionProfessor.vue'),
             meta: {
                 isVisibleInitialPage: false,
                 title: 'Create'
@@ -32,7 +32,7 @@ const router = createRouter({
         },{
             path: '/unirsesesion',
             name: 'unirsesesion',
-            component: () => import('../src/public/pages/JoinSesion.vue'),
+            component: () => import('../public/pages/JoinSesion.vue'),
             meta: {
                 isVisibleInitialPage: false,
                 title: 'Join'

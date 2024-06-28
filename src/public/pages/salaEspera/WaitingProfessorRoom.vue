@@ -2,7 +2,7 @@
 import { getUsersInWaitingRoom, getUserInfoWR } from '@/notelive/userEntity/service/userservice';
 import { enviarPinAlServicio, generarPinAleatorio } from "@/notelive/services/pinService.";
 import OrangeCard from "@/shared/components/OrangeCard.vue";
-import { pinvalue } from "../../../../router/router";
+import { pinvalue } from "@/router/router";
 import { createRoom, getUserByUsername, getRoomById, uploadpdf } from "@/notelive/services/bdservice";
 
 export default {

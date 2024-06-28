@@ -20,7 +20,7 @@
 <script>
 import { onMounted, ref } from 'vue';
 import { modificarSesionIniciadaDelPin } from "@/notelive/services/pinService.";
-import { pinvalue } from "../../../router/router";
+import { pinvalue } from "@/router/router";
 import TheChat from "@/shared/components/TheChat.vue";
 import PreguntaCard from "@/shared/components/PreguntaCard.vue";
 import PdfViewer from "@/shared/components/PdfViewer.vue";

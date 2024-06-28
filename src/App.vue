@@ -10,7 +10,7 @@
   <script>
   import TheFooter from "@/shared/components/TheFooter.vue";
   import TheHeader from "@/shared/components/Theheader.vue";
-  import MainContainer from "@/components/main-contaienr.vue";
+  import MainContainer from "@/notelive/components/main-contaienr.vue";
 
   export default {
     name: 'App',

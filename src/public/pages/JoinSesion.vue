@@ -1,6 +1,6 @@
 <script>
 import {buscarPin} from "@/notelive/services/pinService.";
-import {isProfessor, pinvalue, usernameinput} from "../../../router/router";
+import {isProfessor, pinvalue, usernameinput} from "@/router/router";
 
 export default {
   name: "joinSesion",

@@ -22,7 +22,7 @@
 import TheChat from "@/shared/components/TheChat.vue";
 import PreguntaCard from "@/shared/components/PreguntaCard.vue";
 import { onMounted, ref } from 'vue';
-import {isProfessor, pinvalue} from "../../../router/router";
+import {isProfessor, pinvalue} from "@/router/router";
 import {modificarSesionIniciadaDelPin} from "@/notelive/services/pinService.";
 import PdfViewer from "@/shared/components/PdfViewer.vue";
 

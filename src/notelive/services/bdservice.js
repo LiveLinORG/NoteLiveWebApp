@@ -79,6 +79,17 @@ export async function postQuestion(createQuestionData) {
         throw error;
     }
 }
+export async function getNotAnsweredQuestionsInRoom(roomId) {
+    try {
+        const questions = await getQuestionsInRoom(roomId);
+        const notAnsweredQuestions = questions.filter(question => question.answer === 'No Answer');
+        return notAnsweredQuestions;
+    } catch (error) {
+        console.error('Error fetching not answered questions:', error);
+        throw error;
+    }
+}
+
 export async function getQuestionsInRoom(roomId) {
     try {
         const response = await axios.get(`${BASEDATABASE_URLAPI}/question/getquestionsinroom/${roomId}`);

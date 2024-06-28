@@ -14,7 +14,7 @@
 <script>
 import * as signalR from "@microsoft/signalr";
 import { ref, onMounted, watch } from 'vue';
-import { getQuestionsInRoom } from "@/notelive/services/bdservice";
+import { getNotAnsweredQuestionsInRoom } from "@/notelive/services/bdservice";
 import PreguntaCard from "@/shared/components/PreguntaCard.vue";
 
 export default {
@@ -35,7 +35,7 @@ export default {
       try {
         const roomaid = localStorage.getItem('roomId');
         console.log('Fetching questions for room:', roomaid);
-        const response = await getQuestionsInRoom(roomaid);
+        const response = await getNotAnsweredQuestionsInRoom(roomaid);
         console.log('Received response:', response);
 
         if (Array.isArray(response)) {

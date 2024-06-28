@@ -99,3 +99,13 @@ export async function getUserById(userId) {
         throw error;
     }
 }
+
+export async function likeQuestion(questionId) {
+    try {
+        const response = await axios.patch(`${BASEDATABASE_URLAPI}/question/likeQuestion/${questionId}`);
+        return response.data;
+    } catch (error) {
+        console.error('Error liking question:', error.message);
+        throw error;
+    }
+}

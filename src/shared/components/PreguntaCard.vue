@@ -1,5 +1,5 @@
 <template>
-  <div class="question-card">
+  <div :class="['question-card', { 'highlighted': likes > 0 }]">
     <div class="question-header">
       <div class="nombre">{{ userName }}</div>
       <div class="likes">Likes: {{ likes }}</div>
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { getUserById } from '@/notelive/services/bdservice';
+import { getUserById, likeQuestion as likeQuestionService } from '@/notelive/services/bdservice';
 
 export default {
   props: {
@@ -27,6 +27,10 @@ export default {
     likes: {
       type: Number,
       default: 0
+    },
+    questionId: {
+      type: String,
+      required: true
     }
   },
   data() {
@@ -36,9 +40,13 @@ export default {
     };
   },
   methods: {
-    likeQuestion() {
-      this.liked = !this.liked;
-      // Here you would typically call an API to update the like count
+    async likeQuestion() {
+      try {
+        await likeQuestionService(this.questionId);
+        this.liked = !this.liked;
+      } catch (error) {
+        console.error('Error liking question:', error);
+      }
     },
     async fetchUserName() {
       try {
@@ -63,9 +71,8 @@ export default {
 .question-card {
   border-radius: 1.9%;
   background-color: #FDE49C;
-  padding:1.5vh;
-
-
+  padding: 1.5vh;
+  transition: all 0.3s ease;
 }
 
 .question-header {
@@ -74,13 +81,13 @@ export default {
   align-items: center;
   color: black;
   margin-left: 1%;
-  padding:1vh;
+  padding: 1vh;
 }
 
 .nombre {
   font-weight: bold;
   color: black;
-  font-family: Inter, sans-serif
+  font-family: Inter, sans-serif;
 }
 
 .like-button {
@@ -108,7 +115,12 @@ export default {
   text-align: left;
   color: black;
   font-family: Inter, sans-serif;
-  padding:1vh;
+  padding: 1vh;
+}
 
+.highlighted {
+  border: 2px solid #FFD700;
+  box-shadow: 0 0 10px #FFD700;
+  transform: scale(1.05);
 }
 </style>

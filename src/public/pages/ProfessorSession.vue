@@ -5,7 +5,7 @@
     </section>
     <section class="pdf-container">
       <div class="diaposity-container">
-        <button class="nav-button" @click="downloadPDF">Descargar PDF</button>
+        <button class="nav-button" @click="downloadPDF">Finalizar sesión</button>
         <PdfViewer :roomId="roomId" :userId="userId" :isProfessor="true"></PdfViewer>
 
       </div>

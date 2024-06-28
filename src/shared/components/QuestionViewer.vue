@@ -6,7 +6,7 @@
           :nombre="pregunta.userId"
           :pregunta="pregunta.text"
           :likes="pregunta.likes"
-      ></PreguntaCard>
+          :questionId="pregunta.id"></PreguntaCard>
     </template>
   </div>
 </template>

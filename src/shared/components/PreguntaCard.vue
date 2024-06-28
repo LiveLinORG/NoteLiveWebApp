@@ -1,7 +1,8 @@
 <template>
   <div class="question-card">
     <div class="question-header">
-      <div class="nombre">{{ nombre }}</div>
+      <div class="nombre">{{ userName }}</div>
+      <div class="likes">Likes: {{ likes }}</div>
       <button @click="likeQuestion" :class="{ 'liked': liked }" class="like-button">
         <i class="fa fa-thumbs-up"></i>
       </button>
@@ -11,6 +12,8 @@
 </template>
 
 <script>
+import { getUserById } from '@/notelive/services/bdservice';
+
 export default {
   props: {
     nombre: {
@@ -20,17 +23,36 @@ export default {
     pregunta: {
       type: String,
       required: true
+    },
+    likes: {
+      type: Number,
+      default: 0
     }
   },
   data() {
     return {
-      liked: false
+      liked: false,
+      userName: ''
     };
   },
   methods: {
     likeQuestion() {
       this.liked = !this.liked;
+      // Here you would typically call an API to update the like count
+    },
+    async fetchUserName() {
+      try {
+        const user = await getUserById(this.nombre);
+        this.userName = user.username || 'Usuario desconocido';
+      } catch (error) {
+        console.error('Error fetching user name:', error);
+        this.userName = 'Usuario desconocido';
+      }
     }
+  },
+  mounted() {
+    this.fetchUserName();
+    console.log('PreguntaCard mounted:', this.nombre, this.pregunta, this.likes);
   }
 };
 </script>

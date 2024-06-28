@@ -70,3 +70,32 @@ export async function getRoomByName(roomName) {
         throw error;
     }
 }
+export async function postQuestion(createQuestionData) {
+    try {
+        const response = await axios.post(`${BASEDATABASE_URLAPI}/question/postquestion`, createQuestionData);
+        return response.data;
+    } catch (error) {
+        console.error('Error posting question:', error);
+        throw error;
+    }
+}
+export async function getQuestionsInRoom(roomId) {
+    try {
+        const response = await axios.get(`${BASEDATABASE_URLAPI}/question/getquestionsinroom/${roomId}`);
+        console.log('Room ID used for fetching:', roomId);
+
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching questions:', error);
+        throw error;
+    }
+}
+export async function getUserById(userId) {
+    try {
+        const response = await axios.get(`${BASEDATABASE_URLAPI}/user/${userId}`);
+        return response.data;
+    } catch (error) {
+        console.error('Error al obtener el usuario por ID:', error.message);
+        throw error;
+    }
+}

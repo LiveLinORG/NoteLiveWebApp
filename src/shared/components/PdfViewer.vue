@@ -28,8 +28,6 @@ export default {
   methods: {
     async loadPDF() {
       try {
-        //SI ES ESTUDIANTE
-        //ESTO VALDRIA INCORRECTO
         let room = await this.getRoomById(localStorage.getItem('roomId'));
         let pdf;
           pdf = await this.getPDFbyId(room.pdfId);

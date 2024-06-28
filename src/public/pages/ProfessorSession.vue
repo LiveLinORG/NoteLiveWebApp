@@ -12,7 +12,7 @@
 
     </section>
     <section class="questions-container">
-      <PreguntaCard pregunta="¿Cómo afecta la inmutabilidad en .NET a la concurrencia en aplicaciones multi-hilo?" nombre="Carlos Sánchez"></PreguntaCard>
+      <TheQuestionViewer :roomId="roomId"></TheQuestionViewer>
     </section>
   </section>
 </template>
@@ -22,12 +22,12 @@ import { onMounted, ref } from 'vue';
 import { modificarSesionIniciadaDelPin } from "@/notelive/services/pinService.";
 import { pinvalue } from "../../../router/router";
 import TheChat from "@/shared/components/TheChat.vue";
-import PreguntaCard from "@/shared/components/PreguntaCard.vue";
 import PdfViewer from "@/shared/components/PdfViewer.vue";
+import TheQuestionViewer from "@/shared/components/QuestionViewer.vue";
 
 export default {
   name: "ProfessorSession",
-  components: {PdfViewer, TheChat, PreguntaCard },
+  components: {TheQuestionViewer, PdfViewer, TheChat },
   setup() {
     const pin = pinvalue.value;
     const roomId = ref('');

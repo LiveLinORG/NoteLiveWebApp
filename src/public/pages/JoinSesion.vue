@@ -1,6 +1,6 @@
 <script>
 import {buscarPin} from "@/notelive/services/pinService.";
-import {pinvalue, usernameinput} from "../../../router/router";
+import {isProfessor, pinvalue, usernameinput} from "../../../router/router";
 
 export default {
   name: "joinSesion",
@@ -14,17 +14,20 @@ export default {
   },
   methods: {
     async buscarPinExistente(navigate) {
-      const inputPin = document.getElementById('pin').value;
 
+      pinvalue.value=document.getElementById('pin').value;
+
+      console.log('PIN REGISTRADO: ', pinvalue.value);
       const inputName = this.inputName;
+      isProfessor.value=false;
 
       try {
-        const pinEncontrado = await buscarPin(inputPin, inputName);
+        const pinEncontrado = await buscarPin(pinvalue.value, inputName);
         if (!pinEncontrado) {
           console.log('El PIN no existe.');
         } else {
-          localStorage.setItem('usernameSTUDENT',this.inputName);
-          localStorage.setItem('nameROOMBD',inputPin);
+          localStorage.setItem('usernameSTUDENT',inputName);
+          localStorage.setItem('nameROOMBD',pinvalue.value);
           navigate();
         }
       } catch (error) {
@@ -38,6 +41,7 @@ export default {
       pinvalue.value=document.getElementById('pin').value;
       console.log(pinvalue.value)
       localStorage.setItem('username',this.inputName);
+      isProfessor.value=false;
     }
   }
 

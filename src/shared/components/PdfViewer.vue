@@ -3,8 +3,7 @@
 </template>
 
 <script>
-import { getPDFbyId, getRoomById } from "@/notelive/services/bdservice";
-
+import { getPDFbyId, getRoomById,getRoomByName } from "@/notelive/services/bdservice";
 export default {
   name: "PdfViewer",
   props: {
@@ -29,8 +28,11 @@ export default {
   methods: {
     async loadPDF() {
       try {
-        const room = await this.getRoomById(localStorage.getItem('roomIdPROFESSOR'));
-        const pdf = await this.getPDFbyId(room.pdfId);
+        let room = await this.getRoomById(localStorage.getItem('roomId'));
+        let pdf;
+          pdf = await this.getPDFbyId(room.pdfId);
+
+
 
         const base64Data = pdf.content;
         const binaryData = atob(base64Data);
@@ -50,6 +52,9 @@ export default {
     },
     async getPDFbyId(pdfId) {
       return await getPDFbyId(pdfId);
+    },
+    async getRoomByName(roomName) {
+      return await getRoomByName(roomName);
     },
   },
   mounted() {

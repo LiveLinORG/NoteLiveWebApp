@@ -1,9 +1,10 @@
 <script>
 import OrangeCard from "@/shared/components/OrangeCard.vue";
 import {getUserInfoWR, getUsersInWaitingRoom} from "@/notelive/userEntity/service/userservice";
-import {pinvalue} from "../../../../router/router";
+import {isProfessor, pinvalue} from "../../../../router/router";
 import {verificarSesionIniciada} from "@/notelive/services/pinService.";
 import {createTEMPUserJoin} from "@/notelive/userEntity/service/userservice";
+import {getRoomByName} from "@/notelive/services/bdservice";
 
 export default {
   name: "waitingStudent",
@@ -23,7 +24,8 @@ export default {
   mounted() {
     console.log("Estás en el WaitingAlumnoRoom");
     this.fetchUsersMetadata(); // Llamada inicial
-    this.interval = setInterval(this.fetchUsersMetadata, 6000); // Llamada cada 10 segundos
+    isProfessor.value=false;
+    this.interval = setInterval(this.fetchUsersMetadata, 6000);
   },
   beforeUnmount() {
 
@@ -53,6 +55,11 @@ export default {
         if (await verificarSesionIniciada(this.pin)===true) {
           //ACÁ CREARÁS USUARIOS PARA LE SESION ACTIVA
           localStorage.setItem('pinSTUDENT',this.pin);
+          const room = await getRoomByName(this.pin);
+          console.log('Resultado previsto DE ROOM:', room);
+          console.log('Resultado previsto DE ROOM:', room);
+          console.log('Resultado previsto DE ROOM:', room);
+          localStorage.setItem('roomId',room.id);
           await createTEMPUserJoin(localStorage.getItem('usernameSTUDENT'));
           this.$router.push('/studentSession');
 

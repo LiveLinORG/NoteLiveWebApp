@@ -8,32 +8,33 @@
         <PdfViewer :roomId="roomId" :userId="userId" :isProfessor="false"></PdfViewer>
       </section>
       <section class="question-sender">
-        <input type="text" class="question-placehold" placeholder="Ingresa una pregunta para el profesor..." />
-        <button class="send-svg">Enviar</button>
+        <input type="text" class="question-placehold" v-model="questionText" placeholder="Ingresa una pregunta para el profesor..." />
+        <button class="send-svg" @click="sendQuestion">Enviar</button>
       </section>
     </section>
     <section class="questions-container">
-      <PreguntaCard pregunta="¿Cómo afecta la inmutabilidad en .NET a la concurrencia en aplicaciones multi-hilo?" nombre="Carlos Sánchez"></PreguntaCard>
+      <TheQuestionViewer :roomId="roomId"></TheQuestionViewer>
     </section>
   </section>
 </template>
 
 <script>
 import TheChat from "@/shared/components/TheChat.vue";
-import PreguntaCard from "@/shared/components/PreguntaCard.vue";
 import { onMounted, ref } from 'vue';
-import { pinvalue } from "../../../router/router";
+import {isProfessor, pinvalue} from "../../../router/router";
 import {modificarSesionIniciadaDelPin} from "@/notelive/services/pinService.";
 import PdfViewer from "@/shared/components/PdfViewer.vue";
-import {getRoomByName} from "@/notelive/services/bdservice";
+import TheQuestionViewer from "@/shared/components/QuestionViewer.vue";
+import {getUserByUsername, postQuestion} from "@/notelive/services/bdservice";
 
 export default {
   name: "ProfessorSession",
-  components: {PdfViewer, PreguntaCard, TheChat },
+  components: {TheQuestionViewer, PdfViewer, TheChat },
   setup() {
     const roomId = ref('');
     const userId = ref('');
-    const roomIdForChat = ref('');
+    const questionText = ref('');
+    const useridfrombd=ref('');
     onMounted(async () => {
       console.log(localStorage.getItem('nameROOMBD'));
       console.log(localStorage.getItem('nameROOMBD'));
@@ -41,21 +42,49 @@ export default {
       console.log(localStorage.getItem('nameROOMBD'));
 
       console.log(localStorage.getItem('nameROOMBD'));
+      isProfessor.value=false;
+      console.log('VALOR DE SI ES PROFESSOR O NO',isProfessor.value)
 
+      console.log('VALOR DE SI ES PROFESSOR O NO',isProfessor.value)
 
-      const roomdata= await getRoomByName(localStorage.getItem('pinSTUDENT'));
-      roomId.value = roomdata.id;
-      roomIdForChat.value = pinvalue.value
-      userId.value = localStorage.getItem('usernameSTUDENT')
+      roomId.value = localStorage.getItem('roomId');
+      userId.value = localStorage.getItem('usernameSTUDENT');
+      const userbd=await getUserByUsername(userId.value);
+      useridfrombd.value=userbd.id;
 
-      // Modificar la sesión iniciada del pin
       await modificarSesionIniciadaDelPin(pinvalue.value);
     });
+    const sendQuestion = async () => {
+      if (!questionText.value) return; // Evitar enviar preguntas vacías
+
+      try {
+        const createQuestionData = {
+          roomId: roomId.value,
+          userId: useridfrombd.value,
+          text: questionText.value,
+        };
+        await postQuestion(createQuestionData);
+        questionText.value = ''; // Limpiar el campo después de enviar la pregunta
+
+        // Esperar un segundo y luego actualizar las preguntas
+        setTimeout(() => {
+          const questionViewer = document.querySelector('.questions-container');
+          if (questionViewer && questionViewer.fetchQuestions) {
+            questionViewer.fetchQuestions();
+          }
+        }, 1000);
+      } catch (error) {
+        console.error('Error sending question:', error);
+      }
+    };
+
 
     return {
       roomId,
       userId,
-      roomIdForChat
+      questionText,
+      sendQuestion,
+      useridfrombd
     };
   },
 };

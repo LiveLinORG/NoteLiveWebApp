@@ -11,7 +11,11 @@
       </div>
     </div>
     <div class="sendMessage">
-      <input v-model="newMessage" placeholder="Escribe aquí..." />
+      <input
+          v-model="newMessage"
+          placeholder="Escribe aquí..."
+          @keydown.enter="sendMessage"
+      />
       <button @click="sendMessage">Enviar</button>
     </div>
   </div>
@@ -20,7 +24,6 @@
 <script>
 import * as signalR from "@microsoft/signalr";
 import ElMensaje from "@/shared/components/ChatHijos/Mensaje.vue";
-
 
 export default {
   name: "TheChat",
@@ -55,10 +58,9 @@ export default {
     },
   },
   async mounted() {
-
     console.log("datos:::");
-
     console.log(this.roomId, this.userId, this.newMessage);
+
     this.connection = new signalR.HubConnectionBuilder()
         .withUrl("http://190.239.59.168:44353/chatHub")
         .build();
@@ -66,6 +68,10 @@ export default {
     this.connection.on("ReceiveMessage", (userId, message) => {
       console.log("Message received: ", {userId, message});
       this.messages.push({userId, content: message});
+
+      if (this.messages.length > 5) {
+        this.messages.shift(); // Remove the first message if the length exceeds 5
+      }
     });
 
     this.connection.on("RemoveMessage", (userId, message) => {
@@ -86,7 +92,7 @@ export default {
         .catch((err) => {
           console.error("Error starting connection: ", err);
         });
-  }, // Aquí cierra la función mounted correctamente
+  },
 };
 </script>
 

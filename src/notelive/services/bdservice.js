@@ -70,3 +70,61 @@ export async function getRoomByName(roomName) {
         throw error;
     }
 }
+export async function postQuestion(createQuestionData) {
+    try {
+        const response = await axios.post(`${BASEDATABASE_URLAPI}/question/postquestion`, createQuestionData);
+        return response.data;
+    } catch (error) {
+        console.error('Error posting question:', error);
+        throw error;
+    }
+}
+export async function getQuestionsInRoom(roomId) {
+    try {
+        const response = await axios.get(`${BASEDATABASE_URLAPI}/question/getquestionsinroom/${roomId}`);
+        console.log('Room ID used for fetching:', roomId);
+
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching questions:', error);
+        throw error;
+    }
+}
+export async function getUserById(userId) {
+    try {
+        const response = await axios.get(`${BASEDATABASE_URLAPI}/user/${userId}`);
+        return response.data;
+    } catch (error) {
+        console.error('Error al obtener el usuario por ID:', error.message);
+        throw error;
+    }
+}
+
+export async function likeQuestion(questionId) {
+    try {
+        const response = await axios.patch(`${BASEDATABASE_URLAPI}/question/likeQuestion/${questionId}`);
+        return response.data;
+    } catch (error) {
+        console.error('Error liking question:', error.message);
+        throw error;
+    }
+}
+
+
+export async function answerQuestion(questionId, answer) {
+    try {
+        const response = await axios.patch(
+            `${BASEDATABASE_URLAPI}/question/answer/${questionId}`,
+                { answer },
+            {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+        );
+        return response.data;
+    } catch (error) {
+        console.error('Error answering question:', error.message);
+        throw error;
+    }
+}

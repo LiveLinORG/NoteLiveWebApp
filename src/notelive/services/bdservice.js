@@ -109,3 +109,22 @@ export async function likeQuestion(questionId) {
         throw error;
     }
 }
+
+
+export async function answerQuestion(questionId, answer) {
+    try {
+        const response = await axios.patch(
+            `${BASEDATABASE_URLAPI}/question/answer/${questionId}`,
+                { answer },
+            {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+        );
+        return response.data;
+    } catch (error) {
+        console.error('Error answering question:', error.message);
+        throw error;
+    }
+}

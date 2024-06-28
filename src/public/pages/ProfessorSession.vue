@@ -20,7 +20,7 @@
 <script>
 import { onMounted, ref } from 'vue';
 import { modificarSesionIniciadaDelPin } from "@/notelive/services/pinService.";
-import { pinvalue } from "../../../router/router";
+import {isProfessor, pinvalue} from "../../../router/router";
 import TheChat from "@/shared/components/TheChat.vue";
 import PdfViewer from "@/shared/components/PdfViewer.vue";
 import TheQuestionViewer from "@/shared/components/QuestionViewer.vue";
@@ -33,6 +33,7 @@ export default {
     const roomId = ref('');
     const userId = ref('');
     const pdfBlobUrl = ref('');
+    isProfessor.value=true;
     const loadSession = async () => {
       roomId.value = localStorage.getItem('roomIdPROFESSOR');
       userId.value = localStorage.getItem('usernamePROFESSOR');

@@ -1,18 +1,23 @@
 <template>
-  <div :class="['question-card', { 'highlighted': likes > 0 }]">
-    <div class="question-header">
-      <div class="nombre">{{ userName }}</div>
-      <div class="likes">Likes: {{ likes }}</div>
-      <button @click="likeQuestion" :class="{ 'liked': liked }" class="like-button">
-        <i class="fa fa-thumbs-up"></i>
-      </button>
-    </div>
-    <div class="question-text">{{ pregunta }}</div>
-  </div>
+<div v-if="!answered" :class="['question-card', { 'highlighted': likes > 0 }]">
+<div class="question-header">
+  <div class="nombre">{{ userName }}</div>
+  <div class="likes">Likes: {{ likes }}</div>
+  <button @click="likeQuestion" :class="{ 'liked': liked }" class="like-button">
+    <i class="fa fa-thumbs-up"></i>
+  </button>
+</div>
+<div class="question-text">{{ pregunta }}</div>
+<button v-if="isProfessor" @click="openAnswerModal" class="answer-button">
+  Answer Question
+</button>
+</div>
 </template>
 
 <script>
-import { getUserById, likeQuestion as likeQuestionService } from '@/notelive/services/bdservice';
+import { ref } from 'vue';
+import { getUserById, likeQuestion as likeQuestionService, answerQuestion } from '@/notelive/services/bdservice';
+import { isProfessor } from "../../../router/router";
 
 export default {
   props: {
@@ -33,34 +38,57 @@ export default {
       required: true
     }
   },
-  data() {
-    return {
-      liked: false,
-      userName: ''
-    };
-  },
-  methods: {
-    async likeQuestion() {
+  setup(props) {
+    const liked = ref(false);
+    const userName = ref('');
+    const answered = ref(false);
+
+    const likeQuestion = async () => {
       try {
-        await likeQuestionService(this.questionId);
-        this.liked = !this.liked;
+        await likeQuestionService(props.questionId);
+        liked.value = !liked.value;
       } catch (error) {
         console.error('Error liking question:', error);
       }
-    },
-    async fetchUserName() {
+    };
+
+    const fetchUserName = async () => {
       try {
-        const user = await getUserById(this.nombre);
-        this.userName = user.username || 'Usuario desconocido';
+        const user = await getUserById(props.nombre);
+        userName.value = user.username || 'Usuario desconocido';
       } catch (error) {
         console.error('Error fetching user name:', error);
-        this.userName = 'Usuario desconocido';
+        userName.value = 'Usuario desconocido';
       }
-    }
-  },
-  mounted() {
-    this.fetchUserName();
-    console.log('PreguntaCard mounted:', this.nombre, this.pregunta, this.likes);
+    };
+
+    const openAnswerModal = () => {
+      const answer = prompt('Ingrese la respuesta a la pregunta:');
+      if (answer) {
+        submitAnswer(answer);
+      }
+    };
+
+    const submitAnswer = async (answer) => {
+      try {
+        await answerQuestion(props.questionId, answer);
+        answered.value = true;
+      } catch (error) {
+        console.error('Error answering question:', error);
+      }
+    };
+
+
+    fetchUserName();
+
+    return {
+      liked,
+      userName,
+      answered,
+      isProfessor,
+      likeQuestion,
+      openAnswerModal
+    };
   }
 };
 </script>
@@ -93,7 +121,7 @@ export default {
 .like-button {
   background-color: transparent;
   padding: 0.8%;
-  font-size: 100%; /* Aumentado el tamaño del botón */
+  font-size: 100%;
   cursor: pointer;
   border: none;
   border-radius: 50%;
@@ -122,5 +150,22 @@ export default {
   border: 2px solid #FFD700;
   box-shadow: 0 0 10px #FFD700;
   transform: scale(1.05);
+}
+.answer-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.answer-button:hover {
+  background-color: #45a049;
 }
 </style>

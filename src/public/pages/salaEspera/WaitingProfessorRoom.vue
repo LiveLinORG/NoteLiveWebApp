@@ -2,7 +2,7 @@
 import { getUsersInWaitingRoom, getUserInfoWR } from '@/notelive/userEntity/service/userservice';
 import { enviarPinAlServicio, generarPinAleatorio } from "@/notelive/services/pinService.";
 import OrangeCard from "@/shared/components/OrangeCard.vue";
-import { pinvalue } from "../../../../router/router";
+import {isProfessor, pinvalue} from "../../../../router/router";
 import { createRoom, getUserByUsername, getRoomById, uploadpdf } from "@/notelive/services/bdservice";
 
 export default {
@@ -25,6 +25,8 @@ export default {
   mounted() {
     console.log("Estás en el WaitingProffesorRoom");
     this.generarPinAleatorio();
+    isProfessor.value=true;
+
     setTimeout(() => {
       this.getUsers();
     }, 5000);

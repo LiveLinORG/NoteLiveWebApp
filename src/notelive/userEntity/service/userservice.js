@@ -3,10 +3,9 @@ import {obtenerIdDelPinPorPin, obtenerPinPorId} from '../../services/pinService.
 import {User} from "@/notelive/userEntity/models/user.entity";
 import {iduser} from "../../../../router/router";
 const BASE_URL = '';
-//const BASEDATABASE_URL = 'http://190.239.59.168:44353';
-const BASEDATABASE_URL = 'http://localhost:5228';
+const BASEDATABASE_URL = 'http://190.239.59.168:44353';
 
-//const BASEDATABASE_URLAPI = 'http://190.239.59.168:44353api/v1/';
+//const BASEDATABASE_URLAPI = 'http://190.239.59.168:44353/api/v1/';
 
 export async function getUserInfoWR(id) {
     try {

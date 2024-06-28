@@ -1,5 +1,5 @@
 <script>
-import {registerUser} from "../src/notelive/userEntity/service/userservice";
+import {registerUser} from "@/notelive/userEntity/service/userservice";
 
 export default {
   name: 'RegisterForm',

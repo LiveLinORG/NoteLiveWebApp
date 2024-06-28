@@ -5,14 +5,16 @@
       <thead>
       <tr>
         <th>Nombre de la Sala</th>
-        <th>Preguntas</th>
+        <th>PDF</th>
         <th>Usuarios en la Sala</th>
       </tr>
       </thead>
       <tbody>
       <tr v-for="room in rooms" :key="room.id" @mouseover="hoverEffect(true)" @mouseleave="hoverEffect(false)">
         <td>{{ room.name }}</td>
-        <td>{{ room.questions.length > 0 ? room.questions.join(', ') : 'Ninguna' }}</td>
+        <td>
+          <button @click="downloadPDF(room.pdfId)" :disabled="!room.pdfId">Descargar PDF</button>
+        </td>
         <td>{{ room.userIds.length }}</td>
       </tr>
       </tbody>
@@ -22,11 +24,13 @@
 
 <script>
 import { getRoomsInformation } from "@/IAM/services/userCRUDservice";
+import { getPDFbyId } from "@/notelive/services/bdservice";
+
 export default {
   name: "RoomsLista",
   data() {
     return {
-      rooms: [] // Arreglo para almacenar las salas obtenidas
+      rooms: []
     };
   },
   async mounted() {
@@ -38,6 +42,28 @@ export default {
     }
   },
   methods: {
+    async downloadPDF(pdfId) {
+      try {
+        const response = await getPDFbyId(pdfId);
+        const base64Data = response.content;
+        const binaryData = atob(base64Data);
+        const byteArray = new Uint8Array(binaryData.length);
+        for (let i = 0; i < binaryData.length; i++) {
+          byteArray[i] = binaryData.charCodeAt(i);
+        }
+        const blob = new Blob([byteArray], { type: 'application/pdf' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `room_${pdfId}.pdf`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      } catch (error) {
+        console.error("Error descargando el PDF:", error);
+      }
+    },
     hoverEffect() {
       // Implementa el efecto hover si es necesario
       // Puedes utilizar esta función para futuras funcionalidades de hover si las necesitas
@@ -45,6 +71,7 @@ export default {
   }
 };
 </script>
+
 <style scoped>
 .text-left {
   font-family: "Inter", sans-serif;

@@ -82,6 +82,13 @@
       "usersID": [],
       "creator": {},
       "sesionIniciada": false
+    },
+    {
+      "id": "e70d0357-9ed2-4291-856f-5ea7935b7146",
+      "pins": "3020",
+      "usersID": [],
+      "creator": {},
+      "sesionIniciada": true
     }
   ],
   "users": [

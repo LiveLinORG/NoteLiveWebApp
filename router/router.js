@@ -5,6 +5,8 @@ import mainSession from "@/public/pages/mainSession.vue";
 import waitingMainRoom from "@/public/pages/salaEspera/WaitingMainRoom.vue";
 import RegisterPage from "@/public/pages/UserIdentify/register-page.vue";
 import LoginPage from "@/public/pages/UserIdentify/login-page.vue";
+import UserInformationPage from "@/public/pages/UserIdentify/UserInformation-page.vue";
+import RoomsListPage from "@/public/pages/RoomsListPage.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env),
@@ -21,6 +23,14 @@ const router = createRouter({
             path: '/login',
             name: 'login',
             component: LoginPage,
+        },{
+            path: '/salas',
+            name: 'roomsList',
+            component: RoomsListPage,
+        },{
+            path: '/userinformation',
+            name: 'userInformation',
+            component: UserInformationPage,
         },{
             path:'/crearsesion',
             name:'Crearsesion',

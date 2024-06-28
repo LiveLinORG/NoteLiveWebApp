@@ -1,6 +1,6 @@
 <script>
 import {defineComponent} from "vue";
-import UserCrud from "../src/IAM/components/UserCrud.vue";
+import UserCrud from "@/IAM/components/UserCrud.vue";
 
 export default defineComponent({
   components: {UserCrud}

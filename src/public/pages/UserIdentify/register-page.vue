@@ -1,5 +1,5 @@
 <script>
-import RegisterForm from '../src/components/register-form.component.vue';
+import RegisterForm from '@/components/register-form.component.vue';
 
 export default {
   components: { RegisterForm }
